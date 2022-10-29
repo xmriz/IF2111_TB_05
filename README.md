@@ -39,3 +39,8 @@ Kelompok 05
 </table>
 
 **Asisten** : Jason Stanley Yoman
+
+How to Compile :
+```
+gcc -o main main.c console.c
+```
