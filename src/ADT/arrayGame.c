@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"arrayKata.h"
+#include"arrayGame.h"
 
 
 void MakeEmptyGame (TabGame *T) {
@@ -47,26 +47,9 @@ boolean IsIdxEffGame (TabGame T, IdxType i) {
 }
 
 boolean IsEmptyGame (TabGame T) {
-    return (NbEl(T) == 0);
+    return (NbElGame(T) == 0);
 }
 
 boolean IsFullGame (TabGame T) {
-    return (NbEl(T) == MaxNbEl(T));
-}
-
-IdxType GetIdx(TabGame T, ElTypeG v) {
-    IdxType i = IdxMin;
-    boolean found = false;
-    while (i <= NbEl(T) && !found) {
-        if (v == GetElmt(T, i)) {
-            found = true;
-        } else {
-            i++;
-        }
-    }
-    if (found) {
-        return i;
-    } else {
-        return IdxUndef;
-    }
+    return (NbElGame(T) == MaxNbElGame(T));
 }

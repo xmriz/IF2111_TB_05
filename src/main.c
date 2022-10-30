@@ -8,7 +8,8 @@ int main(){
     display_welcoming();
     // display menu
     menu();
-
+    // start BNMO
+    start();
 
     return 0;
 }

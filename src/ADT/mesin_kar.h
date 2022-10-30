@@ -15,7 +15,7 @@ void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Mengambil parameter nama file yang hendak dibaca */
 
-void STARTFILE(char *filename);
+void STARTFILE(char filename[]);
 /* Mesin membaca dari sebuah file */
 
 void ADV();

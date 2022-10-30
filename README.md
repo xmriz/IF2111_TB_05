@@ -40,7 +40,8 @@ Kelompok 05
 
 **Asisten** : Jason Stanley Yoman
 
-How to Compile :
+**How to Compile :**
+Write the code below in your terminal, but make sure you're in main.c directory.
 ```
-gcc -o main main.c console.c
+main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c
 ```

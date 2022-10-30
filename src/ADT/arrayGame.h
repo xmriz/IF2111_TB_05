@@ -3,7 +3,7 @@
 /* Penempatan elemen selalu rapat kiri */
 
 #include "boolean.h"
-#include "mesin_kata.h"
+#include "mesin_kalimat.h"
 
 #ifndef ARRAYGAME_H 
 #define ARRAYGAME_H
@@ -16,11 +16,11 @@
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;
-typedef Kata ElTypeG;
+typedef Kalimat ElTypeG;
 
 typedef struct 
 {
-	ElTypeG TG [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
+	ElTypeG TG[IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
 	int Neff; /* banyaknya elemen efektif */
 } TabGame;
 
@@ -37,7 +37,7 @@ IdxType GetLastIdxGame (TabGame T);
 
 ElTypeG GetElmtGame (TabGame T, IdxType i);
 
-void SetTabGame (TabGame Tin, TabInt *Tout);
+void SetTabGame (TabGame Tin, TabGame *Tout);
 
 void SetElGame (TabGame *T, IdxType i, ElTypeG v);
 
@@ -50,8 +50,6 @@ boolean IsIdxEffGame (TabGame T, IdxType i);
 boolean IsEmptyGame (TabGame T);
 
 boolean IsFullGame (TabGame T);
-
-IdxType GetIdxGame (TabGame T, ElTypeG v);
 
 
 #endif

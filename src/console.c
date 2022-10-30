@@ -25,42 +25,16 @@ void menu(){
     printf("---------------------------------------------\n");
 }
 
-void insert_file (char *file_dir) {
-    // KAMUS
-    boolean is_valid = false;
-    char filename[MAXC];
-    // ALGORITMA
-    while (!is_valid)
-    {
-        printf("Masukkan nama file : ");
-        scanf("%s", filename);
-        strcpy(file_dir, "data/");
-        strcat(file_dir, filename);
-        printf("Mencari file...\n");
-        delay(1);
-        if (access(file_dir, F_OK) != -1)
-        {
-            printf("File ditemukan di %s.\n\n", file_dir);
-            is_valid = true;
-        }
-        else
-        {
-            printf("Tetot! File di %s tidak ditemukan, coba cek lagi!\n", file_dir);
-        }
-    }
-}
 
-void readConfig(char *filePath, TabChar *listgame){
-    STARTKATAFILE(filePath);
-    if (fopen(filePath, "r") == NULL) {
-        printf("File path not found!!!\n");
-    } else {
-        while (!EndKata) {
-            if (CKata.Length > 0) {
-                AddAsLastElChar(listgame, CKata);
-            }
-            ADVKATA();
-        }
+
+void readConfig(char filepath[], TabGame *listgame, int *n_game) {
+    STARTKALIMATFILE(filepath);
+    *n_game = strToInt(CKalimat.TabKalimat);
+    listgame->Neff = *n_game;
+    ADVKALIMAT();
+    for (int i = 0; i < listgame->Neff; i++){
+        listgame->TG[i] = CKalimat;
+        ADVKALIMAT();
     }
 }
 
@@ -68,17 +42,10 @@ void start(){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
     TabGame listgame; 
     int n_game; // jumlah game pada list game
-    // TabInt tIn, tOut;
     MakeEmptyGame(&listgame);
-    // MakeEmpty(&tIn); MakeEmpty(&tOut);
-    // printf("---------------------------\nInput config file path: ");
-    // STARTKATA();
-    // char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
-    // KataToString(CKata, filePath);
-    // printf("%s\n", filePath);
-    readConfig("data/config.txt", &listgame, &n_game);
-    // free(filePath);
-    printf("Berhasil baca file\n");
+    char filepath[] = "..\\data\\config.txt";
+    readConfig(filepath, &listgame, &n_game);
+    printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
 void load(char* filename){
