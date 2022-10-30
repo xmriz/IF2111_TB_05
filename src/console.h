@@ -7,3 +7,5 @@ void welcoming(FILE *ff);
 void display_welcoming();
 
 void menu();
+
+void start();

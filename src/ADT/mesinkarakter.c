@@ -18,7 +18,7 @@ void START() {
           Jika CC = MARK maka EOP akan menyala (true) */
 
 	/* Algoritma */
-	pita = stdin;
+	pita = fopen("config.txt","r");
     ADV();
 }
 
