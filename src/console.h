@@ -16,6 +16,7 @@ void start();
 
 void readConfig(char *filePath, TabGame *listgame, int *n_game){
     // membaca file config
+    int i=0;
     STARTKATAFILE(filePath);
     if (fopen(filePath, "r") == NULL) {
         printf("File path not found!!!\n");
@@ -23,7 +24,8 @@ void readConfig(char *filePath, TabGame *listgame, int *n_game){
         *n_game = CKata.TabKata[0] - '0'; // banyak game ada di first line config.txt
         while (!EndKata) {
             if (CKata.Length > 0) {
-                AddAsLastElChar(listgame, CKata);
+                *listgame->TG[i]=CKata;
+                i++;
             }
             ADVKATA();
         }
