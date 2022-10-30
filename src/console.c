@@ -29,19 +29,20 @@ void menu(){
 
 void start(){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
-    TabChar map;
-    TabInt tIn, tOut;
-
-    MakeEmptyChar(&map);
-    MakeEmpty(&tIn); MakeEmpty(&tOut);
+    TabChar game;
+    Kata game;
+    int n_game; // jumlah game pada list game
+    // TabInt tIn, tOut;
+    MakeEmptyChar(&game);
+    // MakeEmpty(&tIn); MakeEmpty(&tOut);
     printf("---------------------------\nInput config file path: ");
-    STARTNAME();
+    STARTKATA();
     char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
     KataToString(CKata, filePath);
     printf("%s\n", filePath);
-    readConfig(filePath, &map, &maxRoll, &teleporterCount, &tIn, &tOut);
+    readConfig(filePath, &game, &n_game);
     free(filePath);
-    
+    printf("Berhasil baca file\n");
 }
 
 

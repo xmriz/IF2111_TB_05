@@ -3,6 +3,7 @@
 #include "ADT\boolean.h"
 #include "ADT\arrayChar.h"
 #include "ADT\array.h"
+#include "ADT\arrayGame.h"
 #include "ADT\mesin_kata.h"
 
 void welcoming(FILE *ff);
@@ -13,11 +14,13 @@ void menu();
 
 void start();
 
-void readConfig(char *filePath, TabChar *listgame){
+void readConfig(char *filePath, TabGame *listgame, int *n_game){
+    // membaca file config
     STARTKATAFILE(filePath);
     if (fopen(filePath, "r") == NULL) {
         printf("File path not found!!!\n");
     } else {
+        *n_game = CKata.TabKata[0] - '0'; // banyak game ada di first line config.txt
         while (!EndKata) {
             if (CKata.Length > 0) {
                 AddAsLastElChar(listgame, CKata);

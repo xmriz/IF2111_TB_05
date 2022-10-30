@@ -35,6 +35,7 @@ void STARTKATA () {
 }
 
 void STARTKATAFILE (char *filename) {
+    // seperti prosedur startkata tetapi dengan input namafile
     STARTFILE(filename);
     IgnoreBlank();
     if (CC == MARK) {
@@ -43,28 +44,6 @@ void STARTKATAFILE (char *filename) {
         EndKata = false;
         SalinKata();
     }
-}
-
-void STARTNAME () {
-    START();
-    IgnoreBlank();
-    if (CC == MARK) {
-        EndKata = true;
-    } else {
-        EndKata = false;
-        SalinName();
-    }
-}
-
-void SalinName () {
-    int i = 1;
-    while ((CC != MARK) && (CC != NEWLINE))
-    {
-        CKata.TabKata[i] = CC;
-        ADV();
-        i++;
-    }
-    CKata.Length = i - 1;
 }
 
 void ADVKATA () {
