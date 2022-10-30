@@ -8,51 +8,51 @@ void MakeEmptyGame (TabGame *T) {
     T->Neff = 0;
 }
 
-int NbEl (TabGame T) {
+int NbElGame (TabGame T) {
     return T.Neff;
 }
 
-int MaxNbEl (TabGame T) {
+int MaxNbElGame (TabGame T) {
     return (IdxMax-IdxMin+1);
 }
 
-IdxType GetFirstIdx (TabGame T) {
+IdxType GetFirstIdxGame (TabGame T) {
     return IdxMin;
 }
 
-IdxType GetLastIdx (TabGame T) {
+IdxType GetLastIdxGame (TabGame T) {
     return T.Neff;
 }
 
-ElTypeG GetElmt (TabGame T, IdxType i) {
+ElTypeG GetElmtGame (TabGame T, IdxType i) {
     return T.TG[i];
 }
 
-void SetTab (TabGame Tin, TabGame *Tout) {
+void SetTabGame (TabGame Tin, TabGame *Tout) {
     *Tout = Tin;
 }
 
-void SetEl (TabGame *T, IdxType i, ElTypeG v) {
+void SetElGame (TabGame *T, IdxType i, ElTypeG v) {
     T->TG[i] = v;
 }
 
-void SetNeff (TabGame *T, IdxType N) {
+void SetNeffGame (TabGame *T, IdxType N) {
     T->Neff = N;
 }
 
-boolean IsIdxValid (TabGame T, IdxType i) {
+boolean IsIdxValidGame (TabGame T, IdxType i) {
     return ((i >= IdxMin) && (i <= IdxMax));
 }
 
-boolean IsIdxEff (TabGame T, IdxType i) {
+boolean IsIdxEffGame (TabGame T, IdxType i) {
     return ((i >= IdxMin) && (i <= T.Neff));
 }
 
-boolean IsEmpty (TabGame T) {
+boolean IsEmptyGame (TabGame T) {
     return (NbEl(T) == 0);
 }
 
-boolean IsFull (TabGame T) {
+boolean IsFullGame (TabGame T) {
     return (NbEl(T) == MaxNbEl(T));
 }
 

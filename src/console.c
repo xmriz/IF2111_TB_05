@@ -30,19 +30,29 @@ void menu(){
 void start(){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
     TabGame listgame; 
-    Kata game;
     int n_game; // jumlah game pada list game
     // TabInt tIn, tOut;
-    MakeEmpty(&game);
+    MakeEmptyGame(&listgame);
     // MakeEmpty(&tIn); MakeEmpty(&tOut);
-    printf("---------------------------\nInput config file path: ");
-    STARTKATA();
-    char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
-    KataToString(CKata, filePath);
-    printf("%s\n", filePath);
-    readConfig(filePath, &game, &n_game);
-    free(filePath);
+    // printf("---------------------------\nInput config file path: ");
+    // STARTKATA();
+    // char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
+    // KataToString(CKata, filePath);
+    // printf("%s\n", filePath);
+    readConfig("data/config.txt", &listgame, &n_game);
+    // free(filePath);
     printf("Berhasil baca file\n");
+}
+
+void load(char* filename){
+    TabGame listgame; 
+    int n_game; // jumlah game pada list game
+    MakeEmptyGame(&listgame);
+    readConfig("data/config.txt", &listgame, &n_game); //state listgame sm n_game ngikutin file yg di load
+}
+
+void save(char* filename){
+
 }
 
 
