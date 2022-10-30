@@ -1,5 +1,9 @@
+// Deklarasi module dasar
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
+// Deklarasi ADT
 #include "ADT\boolean.h"
 #include "ADT\arrayChar.h"
 #include "ADT\array.h"
@@ -13,16 +17,4 @@ void menu();
 
 void start();
 
-void readConfig(char *filePath, TabChar *listgame){
-    STARTKATAFILE(filePath);
-    if (fopen(filePath, "r") == NULL) {
-        printf("File path not found!!!\n");
-    } else {
-        while (!EndKata) {
-            if (CKata.Length > 0) {
-                AddAsLastElChar(listgame, CKata);
-            }
-            ADVKATA();
-        }
-    }
-}
+void readConfig(char *filePath, int *jumlahGame, );
