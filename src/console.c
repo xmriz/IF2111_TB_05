@@ -29,11 +29,11 @@ void menu(){
 
 void start(){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
-    TabChar game;
+    TabGame listgame; 
     Kata game;
     int n_game; // jumlah game pada list game
     // TabInt tIn, tOut;
-    MakeEmptyChar(&game);
+    MakeEmpty(&game);
     // MakeEmpty(&tIn); MakeEmpty(&tOut);
     printf("---------------------------\nInput config file path: ");
     STARTKATA();

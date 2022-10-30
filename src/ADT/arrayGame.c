@@ -1,54 +1,74 @@
 #include<stdio.h>
 #include"arrayGame.h"
 
-void MakeEmptyChar (TabGame *T) {
+#include<stdio.h>
+#include"arrayGame.h"
+
+void MakeEmptyGame (TabGame *T) {
     T->Neff = 0;
 }
 
-int NbElmtChar (TabGame T) {
+int NbEl (TabGame T) {
     return T.Neff;
 }
 
-int MaxNbElChar (TabGame T) {
+int MaxNbEl (TabGame T) {
     return (IdxMax-IdxMin+1);
 }
 
-IdxType GetFirstIdxChar (TabGame T) {
+IdxType GetFirstIdx (TabGame T) {
     return IdxMin;
 }
 
-IdxType GetLastIdxChar (TabGame T) {
+IdxType GetLastIdx (TabGame T) {
     return T.Neff;
 }
 
-ElType GetElmtChar (TabGame T, IdxType i) {
+ElTypeG GetElmt (TabGame T, IdxType i) {
     return T.TG[i];
 }
 
-void SetTabChar (TabGame Tin, TabGame *Tout) {
+void SetTab (TabGame Tin, TabGame *Tout) {
     *Tout = Tin;
 }
 
-void SetElChar (TabGame *T, IdxType i, ElType v) {
+void SetEl (TabGame *T, IdxType i, ElTypeG v) {
     T->TG[i] = v;
 }
 
-void SetNeffChar (TabGame *T, IdxType N) {
+void SetNeff (TabGame *T, IdxType N) {
     T->Neff = N;
 }
 
-boolean IsIdxValidChar (TabGame T, IdxType i) {
+boolean IsIdxValid (TabGame T, IdxType i) {
     return ((i >= IdxMin) && (i <= IdxMax));
 }
 
-boolean IsIdxEffChar (TabGame T, IdxType i) {
+boolean IsIdxEff (TabGame T, IdxType i) {
     return ((i >= IdxMin) && (i <= T.Neff));
 }
 
-boolean IsEmptyChar (TabGame T) {
-    return (NbElmtChar(T) == 0);
+boolean IsEmpty (TabGame T) {
+    return (NbEl(T) == 0);
 }
 
-boolean IsFullChar (TabGame T) {
-    return (NbElmtChar(T) == MaxNbElChar(T));
+boolean IsFull (TabGame T) {
+    return (NbEl(T) == MaxNbEl(T));
+}
+
+IdxType GetIdx(TabGame T, ElTypeG v) {
+    IdxType i = IdxMin;
+    boolean found = false;
+    while (i <= NbEl(T) && !found) {
+        if (v == GetElmt(T, i)) {
+            found = true;
+        } else {
+            i++;
+        }
+    }
+    if (found) {
+        return i;
+    } else {
+        return IdxUndef;
+    }
 }

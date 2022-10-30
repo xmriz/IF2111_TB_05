@@ -16,42 +16,42 @@
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;
-typedef Kata ElType;
+typedef Kata ElTypeG;
 
 typedef struct 
 {
-	ElType TG [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
+	ElTypeG TG [IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
 	int Neff; /* banyaknya elemen efektif */
 } TabGame;
 
 
-void MakeEmpty (TabGame *T);
+void MakeEmptyGame (TabGame *T);
 
-int NbEl (TabGame T);
+int NbElGame (TabGame T);
 
-int MaxNbEl (TabGame T);
+int MaxNbElGame (TabGame T);
 
-IdxType GetFirstIdx (TabGame T);
+IdxType GetFirstIdxGame (TabGame T);
 
-IdxType GetLastIdx (TabGame T);
+IdxType GetLastIdxGame (TabGame T);
 
-ElType GetElmt (TabGame T, IdxType i);
+ElTypeG GetElmtGame (TabGame T, IdxType i);
 
-void SetTab (TabGame Tin, TabInt *Tout);
+void SetTabGame (TabGame Tin, TabInt *Tout);
 
-void SetEl (TabGame *T, IdxType i, ElType v);
+void SetElGame (TabGame *T, IdxType i, ElTypeG v);
 
-void SetNeff (TabGame *T, IdxType N);
+void SetNeffGame (TabGame *T, IdxType N);
 
-boolean IsIdxValid (TabGame T, IdxType i);
+boolean IsIdxValidGame (TabGame T, IdxType i);
 
-boolean IsIdxEff (TabGame T, IdxType i);
+boolean IsIdxEffGame (TabGame T, IdxType i);
 
-boolean IsEmpty (TabGame T);
+boolean IsEmptyGame (TabGame T);
 
-boolean IsFull (TabGame T);
+boolean IsFullGame (TabGame T);
 
-IdxType GetIdx (TabGame T, ElType v);
+IdxType GetIdxGame (TabGame T, ElTypeG v);
 
 
 #endif
