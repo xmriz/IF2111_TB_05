@@ -1,9 +1,9 @@
 /* File: mesinkar.c */
 /* Implementasi Mesin Karakter */
 
-#include"mesin_kar.h"
-#include<stdio.h>
-#include<stdlib.h>
+#include "mesin_kar.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 char CC;
 boolean EOP;

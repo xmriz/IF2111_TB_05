@@ -1,5 +1,6 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
+// 1 kata pada ADT ini adalah 1 game
 
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
@@ -8,7 +9,6 @@
 #include "mesin_kar.h"
 
 #define NMax 450
-#define BLANK ' '
 #define NEWLINE '\n'
 
 typedef struct {
