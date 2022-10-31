@@ -83,5 +83,4 @@ void Help () {
     printf("SKIPGAME - Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
     printf("QUIT - Memungkinkanmu keluar dari program.\n");
     printf("HELP - Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
-    return 0;
 }
