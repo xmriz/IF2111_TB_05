@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "array.h": "c"
+        "array.h": "c",
+        "console.h": "c",
+        "stdio.h": "c"
     }
 }
