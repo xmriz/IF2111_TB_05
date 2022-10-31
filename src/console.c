@@ -38,13 +38,11 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     }
 }
 
-void start(){
+void start(TabGame *listgame, int *n_game){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
-    TabGame listgame; 
-    int n_game; // jumlah game pada list game
-    MakeEmptyGame(&listgame);
+    MakeEmptyGame(listgame);
     char filepath[] = "..\\data\\config.txt";
-    readConfig(filepath, &listgame, &n_game);
+    readConfig(filepath, listgame, n_game);
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 

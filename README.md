@@ -43,5 +43,5 @@ Kelompok 05
 **How to Compile :**
 Write the code below in your terminal, but make sure you're in main.c directory.
 ```
-main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c
+gcc -o main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c
 ```

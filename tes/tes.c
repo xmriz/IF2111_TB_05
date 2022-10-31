@@ -2,6 +2,7 @@
 
 int main()
 {
-    printf("█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█");
+    char x[] = "teddddddddddd";
+    printf("%s", x);
     return 0;
 }
