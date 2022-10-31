@@ -21,3 +21,6 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game);
 void load(char* filename);
 
 void save(char* filename);
+ 
+ void skipgame ();
+ void commandlain();

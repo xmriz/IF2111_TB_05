@@ -31,3 +31,4 @@ void tebakan (int x, int random){
         printf("Ya, X adalah %d",x);
         }  
 }
+//test
