@@ -71,4 +71,17 @@ void skipgame(){
     
 }
 
-
+void Help () {
+    printf("START - Untuk memulai petualanganmu bersama BNMO! Memungkinkan file konfigurasi default yang berisi list game dimainkan\n");
+    printf("LOAD - Pilih filename yang berisi list game yang ingin dimainkan.\n");
+    printf("SAVE - Simpan state game-mu dengan command ini!\n");
+    printf("CREATEGAME - Ingin menambahkan game baru? Command ini jawabannya.\n");
+    printf("LISTGAME - Untuk melihat daftar game yang tersedia.\n");
+    printf("DELETEGAME - Hapus game yang kamu tidak suka dengan command ini.\n");
+    printf("QUEUEGAME - Lihat dan tambahkan permainan yang ingin kamu mainkan ke dalam list!\n");
+    printf("PLAYGAME - Mulai memainkan game sesukamu dengan command ini!\n");
+    printf("SKIPGAME - Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
+    printf("QUIT - Memungkinkanmu keluar dari program.\n");
+    printf("HELP - Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
+    return 0;
+}
