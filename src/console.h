@@ -22,5 +22,8 @@ void load(char* filename);
 
 void save(char* filename);
  
- void skipgame ();
- void commandlain();
+void skipgame ();
+
+void listofgame(int n_game, TabGame listgame);
+
+void commandlain();

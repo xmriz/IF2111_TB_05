@@ -58,6 +58,18 @@ void save(char* filename){
 
 }
 
+void listofgame(int n_game, TabGame listgame){
+    // printf("%d\n", n_game);
+    // print list game
+    for (int i = 0; i < n_game; i++){
+        printf("%d. ",(i+1));
+        for (int j = 0; j < listgame.TG[i].Length+1; j++){
+            printf("%c", listgame.TG[i].TabKalimat[j]);
+        }
+        printf("\n");
+    }
+}
+
 void commandlain(){
 //command-command lain selain yang disebutkan diatas tidak valid
 //keluar dari program
