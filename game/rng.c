@@ -10,11 +10,14 @@ int main(){
     printf("Tebakan: ");
     scanf("%d",&x);
     int random=(rand()%100)+1;//batasan X 100
+    int makstebak = 5; //batas maksimal menebak
     tebakan(x,random);
     while (random!=x){
-        printf("Tebakan: ");
-        scanf("%d",&x);
-        tebakan(x,random);
+        for (int coba = 0; coba < makstebak; coba++){
+            printf("Tebakan: ");
+            scanf("%d",&x);
+            tebakan(x,random);
+        } 
     }    
     return 0;
 }
