@@ -57,5 +57,18 @@ void save(char* filename){
 
 }
 
+void commandlain(){
+//command-command lain selain yang disebutkan diatas tidak valid
+//keluar dari program
+}
+
+void skipgame(){
+    char* masukan;
+    printf("ENTER COMMAND: \n");
+    scanf("%s",&masukan);
+    printf("Berikut adalah daftar Game-mu\n");
+    displaylist()
+    
+}
 
 
