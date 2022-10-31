@@ -15,9 +15,12 @@ int main(){
     start(&listgame, &n_game);
 
     printf("%d\n", n_game);
+    // print list game
     for (int i = 0; i < n_game; i++){
-        KalimatToString(listgame.TG[i], s);
-        printf("%s\n", s);
+        for (int j = 0; j < listgame.TG[i].Length+1; j++){
+            printf("%c", listgame.TG[i].TabKalimat[j]);
+        }
+        printf("\n");
     }
 
 

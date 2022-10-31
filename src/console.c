@@ -35,7 +35,8 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     for (int i = 0; i < listgame->Neff; i++){
         listgame->TG[i] = CKalimat;
         ADVKALIMAT();
-    }
+        }
+    
 }
 
 void start(TabGame *listgame, int *n_game){
@@ -62,13 +63,13 @@ void commandlain(){
 //keluar dari program
 }
 
-void skipgame(){
-    char* masukan;
-    printf("ENTER COMMAND: \n");
-    scanf("%s",&masukan);
-    printf("Berikut adalah daftar Game-mu\n");
-    displaylist()
+// void skipgame(){
+//     char* masukan;
+//     printf("ENTER COMMAND: \n");
+//     scanf("%s",&masukan);
+//     printf("Berikut adalah daftar Game-mu\n");
+//     displaylist();
     
-}
+// }
 
 

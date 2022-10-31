@@ -53,3 +53,5 @@ boolean IsEmptyGame (TabGame T) {
 boolean IsFullGame (TabGame T) {
     return (NbElGame(T) == MaxNbElGame(T));
 }
+
+

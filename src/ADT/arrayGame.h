@@ -52,4 +52,5 @@ boolean IsEmptyGame (TabGame T);
 boolean IsFullGame (TabGame T);
 
 
+
 #endif
