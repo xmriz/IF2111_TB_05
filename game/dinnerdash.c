@@ -12,23 +12,29 @@ void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
     printf("Daftar Pesanan\n");
     printf("Makanan | Durasi memasak | Ketahanan | Harga \n");
     printf("----------------------------------------------\n");
-    for (i = 0; i < length(antrian); i++)
+    for (i = IDX_HEAD(antrian); i < length(antrian); i++)
     {
         printf("M%d      | %d              | %d         | %d  \n", (antrian.buffer[i]).makanan, (antrian.buffer[i]).durasi, (antrian.buffer[i]).ketahanan, (antrian.buffer[i]).harga);
     }
     printf("\nDaftar Makanan yang sedang dimasak\n");
     printf("Makanan | Sisa durasi memasak \n");
     printf("------------------------------\n");
-    for (i = 0; i < length(antrian); i++)
+    if (!isEmpty(memasak))
     {
-        printf("M%d      | %d                   \n", (antrian.buffer[i]).makanan, (antrian.buffer[i]).durasi);
+        for (i = IDX_HEAD(memasak); i < length(memasak); i++)
+        {
+            printf("M%d      | %d                   \n", (memasak.buffer[i]).makanan, (memasak.buffer[i]).durasi);
+        }
     }
     printf("\nDaftar Makanan yang dapat disajikan\n");
     printf("Makanan | Sisa ketahanan makanan \n");
     printf("------------------------------\n");
-    for (i = 0; i < length(makanan_siap); i++)
+    if (!isEmpty(makanan_siap))
     {
-        printf("M%d      | %d                   \n", (antrian.buffer[i]).makanan, (antrian.buffer[i]).ketahanan);
+        for (i = IDX_HEAD(makanan_siap); i < length(makanan_siap); i++)
+        {
+            printf("M%d      | %d                   \n", (makanan_siap.buffer[i]).makanan, (makanan_siap.buffer[i]).ketahanan);
+        }
     }
     printf("\n\n");
 }
@@ -38,10 +44,9 @@ int main()
     /* KAMUS */
     Queue antrian, memasak, makanan_siap, served;
     int saldo, pelanggan, i, j, count, ref;
-    char *command;
+    char command[5];
     ElType val;
     boolean found;
-    char temp;
     /* ALGORITMA */
     srand(time(NULL));
     CreateQueue(&antrian);
@@ -76,7 +81,7 @@ int main()
                 if ((memasak.buffer[i]).durasi == 0)
                 {
                     enqueue(&makanan_siap, memasak.buffer[i]);
-                    printf("Berhasil memasak M%d\n", (memasak.buffer[i]).makanan);
+                    printf("Makanan M%d telah selesai dimasak\n", (memasak.buffer[i]).makanan);
                 }
             }
             else
@@ -85,7 +90,6 @@ int main()
             }
         }
         count = 0;
-        // sus
         for (i = 0; i < length(memasak); i++)
         {
             if ((memasak.buffer[i]).durasi == 0)
@@ -107,14 +111,7 @@ int main()
             IDX_TAIL(memasak) = (IDX_TAIL(memasak) - count) % CAPACITY;
         }
 
-        val.makanan = pelanggan;
-        val.durasi = (rand() % 5) + 1;
-        val.ketahanan = (rand() % 5) + 1;
-        val.harga = (rand() % 40001) + 10000;
-        enqueue(&antrian, val);
-        pelanggan++;
-
-        if (command == "COOK")
+        if ((command[0] == 'C') && (command[1] == 'O') && (command[2] == 'O') && (command[3] == 'K'))
         {
             for (i = 0; i < length(antrian); i++)
             {
@@ -122,17 +119,23 @@ int main()
                 {
                     enqueue(&memasak, antrian.buffer[i]);
                     printf("Berhasil memasak M%d\n", (antrian.buffer[i]).makanan);
+                    val.makanan = pelanggan;
+                    val.durasi = (rand() % 5) + 1;
+                    val.ketahanan = (rand() % 5) + 1;
+                    val.harga = (rand() % 40001) + 10000;
+                    enqueue(&antrian, val);
+                    pelanggan++;
                 }
             }
             printf("==========================================================\n\n");
-        }
-        else if (command == "SERVE")
+                }
+        else if ((command[0] == 'S') && (command[1] == 'E') && (command[2] == 'R') && (command[3] == 'V') && (command[4] == 'E'))
         {
             if (ref == HEAD(antrian).makanan)
             {
                 dequeue(&antrian, &val);
                 enqueue(&served, val);
-                printf("Berhasil mengantar M%d", ref);
+                printf("Berhasil mengantar M%d\n", ref);
                 saldo += val.harga;
 
                 found = false;
@@ -156,6 +159,13 @@ int main()
                 {
                     IDX_TAIL(makanan_siap) = (IDX_TAIL(makanan_siap) - 1) % CAPACITY;
                 }
+
+                val.makanan = pelanggan;
+                val.durasi = (rand() % 5) + 1;
+                val.ketahanan = (rand() % 5) + 1;
+                val.harga = (rand() % 40001) + 10000;
+                enqueue(&antrian, val);
+                pelanggan++;
             }
             else
             {
@@ -163,6 +173,7 @@ int main()
             }
             printf("==========================================================\n\n");
         }
+        deskripsi(saldo, antrian, memasak, makanan_siap);
     }
 
     return 0;
