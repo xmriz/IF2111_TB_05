@@ -1,8 +1,8 @@
 /* File : queue.h */
 /* Definisi ADT Queue dengan representasi array secara eksplisit dan alokasi statik */
 
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef QUEUEDINNERDASH_H
+#define QUEUEDINNERDASH_H
 
 #include "boolean.h"
 
@@ -11,7 +11,7 @@
 
 /* Definisi elemen dan address */
 typedef struct {
-    char* makanan;
+    int makanan;
     int durasi;
     int ketahanan;
     int harga;
