@@ -95,11 +95,6 @@ void listofgame(int n_game, TabGame listgame){
     }
 }
 
-void commandlain(){
-//command-command lain selain yang disebutkan diatas tidak valid
-//keluar dari program
-}
-
 // void skipgame(){
 //     char* masukan;
 //     printf("ENTER COMMAND: \n");
@@ -109,7 +104,13 @@ void commandlain(){
     
 // }
 
-void Help () {
+void quit(){
+    printf("Anda keluar dari game BNMO.\n");
+    printf("Bye bye ...\n");
+    exit(0);
+}
+
+void help() {
     printf("START - Untuk memulai petualanganmu bersama BNMO! Memungkinkan file konfigurasi default yang berisi list game dimainkan\n");
     printf("LOAD - Pilih filename yang berisi list game yang ingin dimainkan.\n");
     printf("SAVE - Simpan state game-mu dengan command ini!\n");
@@ -121,4 +122,9 @@ void Help () {
     printf("SKIPGAME - Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
     printf("QUIT - Memungkinkanmu keluar dari program.\n");
     printf("HELP - Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
+}
+
+void commandlain(){
+//command-command lain selain yang disebutkan diatas tidak valid
+//keluar dari program
 }
