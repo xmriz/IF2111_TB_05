@@ -39,6 +39,24 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     
 }
 
+void readSavefile(char filepath[], TabGame *listgame, int *n_game, QueueGame *history) {
+    STARTKALIMATFILE(filepath);
+    *n_game = strToInt(CKalimat.TabKalimat);
+    listgame->Neff = *n_game;
+    ADVKALIMAT();
+    for (int i = 0; i < listgame->Neff; i++){
+        listgame->TG[i] = CKalimat;
+        ADVKALIMAT();
+        }
+    int lenHistory=strToInt(CKalimat.TabKalimat);
+    ADVKALIMAT(); // skip jumlah history
+    for (int i = 0; i < lenHistory; i++){
+        enqueueGame(history,CKalimat);
+        ADVKALIMAT();
+        }
+    
+}
+
 void start(TabGame *listgame, int *n_game){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
     MakeEmptyGame(listgame);
@@ -47,9 +65,10 @@ void start(TabGame *listgame, int *n_game){
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char* filename, TabGame *listgame, int *n_game){
+void load(char filename[], TabGame *listgame, int *n_game, QueueGame *history){
     MakeEmptyGame(listgame);
-    readConfig(filename, listgame, n_game); //state listgame sm n_game ngikutin file yg di load
+    CreateQueueGame(history);
+    readSavefile(filename, listgame, n_game, history); //state listgame sm n_game ngikutin file yg di load
     printf("Load file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
@@ -63,6 +82,7 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
         // masukin  listgame ke file
         char c=n_game + '0';
         fputc(c, savePtr);
+        fputc('\n', savePtr);
         for (i=0;i<n_game;i++){
             for (j=0;i<listgame.TG[i].Length;j++){
                 fputc(listgame.TG[i].TabKalimat[j], savePtr);
