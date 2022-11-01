@@ -47,25 +47,39 @@ void start(TabGame *listgame, int *n_game){
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char* filename, TabGame listgame, int n_game){
+void load(char* filename, TabGame *listgame, int *n_game){
     MakeEmptyGame(listgame);
-    readConfig(filename, &listgame, &n_game); //state listgame sm n_game ngikutin file yg di load
+    readConfig(filename, listgame, n_game); //state listgame sm n_game ngikutin file yg di load
     printf("Load file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void save(char* filename, TabGame listgame, int n_game, Queue history){
+void save(char* filename, TabGame listgame, int n_game, QueueGame history){
     FILE * savePtr;
-    int i;
+    int i,j;
     savePtr =  fopen(filename, "w");
     if ((savePtr)==NULL){
-        printf("Tidak bisa membuka file. ")
+        printf("Tidak bisa membuka file. ");
     } else{
+        // masukin  listgame ke file
+        char c=n_game + '0';
+        fputc(c, savePtr);
         for (i=0;i<n_game;i++){
-            
+            for (j=0;i<listgame.TG[i].Length;j++){
+                fputc(listgame.TG[i].TabKalimat[j], savePtr);
+                fputc('\n',savePtr);
+            } 
+        }
+        // masukin queue history ke game
+        char c2=lengthGame(history)+'0';
+        fputc(c2, savePtr);
+        fputc('\n', savePtr);
+        for (i=0;i<lengthGame(history);i++){
+            for (j=0;j<history.bufferG[i].Length;j++){
+                fputc(history.bufferG[i].TabKalimat[j],savePtr);
+                fputc('\n',savePtr);
+            }
         }
     }
-
-// pake write ke savefile
 }
 
 void listofgame(int n_game, TabGame listgame){
