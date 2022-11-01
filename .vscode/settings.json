@@ -2,6 +2,7 @@
     "files.associations": {
         "array.h": "c",
         "console.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "queuedinnerdash.h": "c"
     }
 }
