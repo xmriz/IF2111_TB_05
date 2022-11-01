@@ -115,6 +115,32 @@ void listofgame(int n_game, TabGame listgame){
     }
 }
 
+void deleteGame(int n_game, TabGame listgame) {
+    int input, i;
+    printf("Berikut adalah daftar game yang tersedia\n");
+    listofgame(n_game, listgame);
+    printf("Masukkan nomor game yang akan dihapus: ");
+    scanf("%d", &input);
+    printf("\n\n");
+    if ((input > 5) && (input <= n_game)) {
+        if (input != n_game) {
+            for (i = input - 1; i < n_game; i++) {
+                listgame.TG[i] = listgame.TG[i + 1];
+            }
+            (listgame.Neff)--;
+            n_game--;
+        } else {
+            (listgame.Neff)--;
+            n_game--;
+        }
+        printf("Game berhasil dihapus\n");
+    } else if ((input >= 0) && (input <= 5)) {
+        printf("Game gagal dihapus\n");
+    } else {
+        printf("Nomor game tidak valid\n");
+    }
+}
+
 // void skipgame(){
 //     char* masukan;
 //     printf("ENTER COMMAND: \n");
