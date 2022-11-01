@@ -13,8 +13,9 @@ int main(){
     char *s;
     int n_game;
     start(&listgame, &n_game);
-    quit();
     listofgame(n_game,listgame);
+    help();
+    quit();
     return 0;
 }
 

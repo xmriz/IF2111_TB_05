@@ -48,4 +48,7 @@ gcc -o main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c
 
 {dinner dash} directory (cd "D:\Coding\git-repo\Tubes_IF2111_Alstrukdat\IF2111_TB_05\src\game\")
 gcc -o dinnerdash dinnerdash.c ../ADT/queueDinnerDash.c
+
+{RNG} directory (cd "D:\Coding\git-repo\Tubes_IF2111_Alstrukdat\IF2111_TB_05\src\game\")
+gcc -o RNG RNG.c
 ```
