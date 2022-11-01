@@ -12,7 +12,7 @@ void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
     printf("Daftar Pesanan\n");
     printf("Makanan | Durasi memasak | Ketahanan | Harga \n");
     printf("----------------------------------------------\n");
-    for (i = IDX_HEAD(antrian); i < length(antrian); i++)
+    for (i = IDX_HEAD(antrian); i < IDX_HEAD(antrian) + length(antrian); i++)
     {
         printf("M%d      | %d              | %d         | %d  \n", (antrian.buffer[i]).makanan, (antrian.buffer[i]).durasi, (antrian.buffer[i]).ketahanan, (antrian.buffer[i]).harga);
     }
@@ -21,7 +21,7 @@ void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
     printf("------------------------------\n");
     if (!isEmpty(memasak))
     {
-        for (i = IDX_HEAD(memasak); i < length(memasak); i++)
+        for (i = IDX_HEAD(memasak); i < IDX_HEAD(memasak) + length(memasak); i++)
         {
             printf("M%d      | %d                   \n", (memasak.buffer[i]).makanan, (memasak.buffer[i]).durasi);
         }
@@ -31,7 +31,7 @@ void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
     printf("------------------------------\n");
     if (!isEmpty(makanan_siap))
     {
-        for (i = IDX_HEAD(makanan_siap); i < length(makanan_siap); i++)
+        for (i = IDX_HEAD(makanan_siap); i < IDX_HEAD(makanan_siap) + length(makanan_siap); i++)
         {
             printf("M%d      | %d                   \n", (makanan_siap.buffer[i]).makanan, (makanan_siap.buffer[i]).ketahanan);
         }
@@ -43,7 +43,7 @@ int main()
 {
     /* KAMUS */
     Queue antrian, memasak, makanan_siap, served;
-    int saldo, pelanggan, i, j, count, ref;
+    int saldo, pelanggan, i, count, ref;
     char command[5];
     ElType val;
     boolean found;
@@ -128,7 +128,7 @@ int main()
                 }
             }
             printf("==========================================================\n\n");
-                }
+        }
         else if ((command[0] == 'S') && (command[1] == 'E') && (command[2] == 'R') && (command[3] == 'V') && (command[4] == 'E'))
         {
             if (ref == HEAD(antrian).makanan)
@@ -175,6 +175,8 @@ int main()
         }
         deskripsi(saldo, antrian, memasak, makanan_siap);
     }
+    printf("Permainan selesai! Kamu berhasil memperoleh uang sebanyak %d\n", saldo);
+    printf("==========================================================\n\n");
 
     return 0;
 }
