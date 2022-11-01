@@ -1,1 +1,0 @@
-void start(TabGame *listgame, int *n_game)
