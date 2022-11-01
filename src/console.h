@@ -24,6 +24,8 @@ void load(char filename[], TabGame *listgame, int *n_game, QueueGame *history);
 void save(char* filename, TabGame listgame, int n_game, QueueGame history);
 
 void listofgame(int n_game, TabGame listgame);
+
+void deleteGame(int n_game, TabGame listgame);
  
 // void skipgame ();
 
