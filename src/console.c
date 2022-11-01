@@ -79,6 +79,7 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
                 fputc('\n',savePtr);
             }
         }
+        fclose(savePtr);
     }
 }
 
