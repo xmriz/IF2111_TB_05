@@ -47,7 +47,7 @@ void start(TabGame *listgame, int *n_game){
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char* filename, TabGame listgame, int n_game){
+void load(char* filename, TabGame *listgame, int n_game){
     MakeEmptyGame(listgame);
     readConfig(filename, &listgame, &n_game); //state listgame sm n_game ngikutin file yg di load
     printf("Load file berhasil dibaca. BNMO berhasil dijalankan.\n");
@@ -58,7 +58,7 @@ void save(char* filename, TabGame listgame, int n_game, Queue history){
     int i;
     savePtr =  fopen(filename, "w");
     if ((savePtr)==NULL){
-        printf("Tidak bisa membuka file. ")
+        printf("Tidak bisa membuka file. ");
     } else{
         for (i=0;i<n_game;i++){
             
