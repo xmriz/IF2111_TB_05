@@ -125,6 +125,5 @@ void help() {
 }
 
 void commandlain(){
-//command-command lain selain yang disebutkan diatas tidak valid
-//keluar dari program
+    printf("Command tidak dikenali, silahkan masukkan command yang valid.");
 }
