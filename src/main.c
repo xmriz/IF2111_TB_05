@@ -14,6 +14,7 @@ int main(){
     int n_game;
     start(&listgame, &n_game);
     listofgame(n_game,listgame);
+    quit();
     return 0;
 }
 

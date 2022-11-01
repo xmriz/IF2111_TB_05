@@ -43,8 +43,8 @@ Kelompok 05
 **How to Compile :**
 Write the code below in your terminal, but make sure you're in main.c directory.
 ```
-{run}
-gcc -o main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c
+{main}
+gcc -o main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c
 
 {dinner dash}
 gcc -o dinnerdash dinnerdash.c ../src/ADT/queueDinnerDash.c
