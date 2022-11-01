@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ADT/queueDinnerDash.h"
+#include "../ADT/queueDinnerDash.h"
 #include <time.h>
 
 void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)

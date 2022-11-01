@@ -13,8 +13,8 @@ int main(){
     char *s;
     int n_game;
     start(&listgame, &n_game);
-    listofgame(n_game,listgame);
     quit();
+    listofgame(n_game,listgame);
     return 0;
 }
 
