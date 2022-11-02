@@ -141,6 +141,37 @@ void deleteGame(int n_game, TabGame listgame) {
     }
 }
 
+void QueueGame (QueueGame *q, int n_game, TabGame listgame) {
+    // menampilkan daftar antrian 
+    if (isEmpty(*q)) {
+        printf("Antrian game kosong\n");
+    }
+    else {
+        printf("Berikut adalah daftar antrian game-mu\n");
+        for (int i = 0; i < (*q).bufferG[i].Length; i++){
+            printf("%d. %c\n", i+1, q.bufferG[i].TabKalimat[i]);
+        }
+    }
+
+    // menampilkan daftar game yang tersedia
+    int input;
+    printf("Berikut adalah daftar game yang tersedia\n");
+    listofgame(n_game, listgame);
+    printf("Nomor Game yang mau ditambahkan ke antrian: ");
+    scanf("%d", &input);
+    while (input < 1 || input > n_game) {
+        printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
+        scanf("%d", &input);
+    }
+    if (isFullGame(q)) {
+        // asumsi daftar antrian mungkin penuh (sudah 100)
+        printf("Daftar antrian sudah penuh");
+    }
+    else if (input <= n_game) {
+        enqueueGame(&q, listgame.TG[input].TabKalimat[input] );
+        printf("Game berhasil ditambahkan kedalam daftar antrian.\n");
+}
+
 // void skipgame(){
 //     char* masukan;
 //     printf("ENTER COMMAND: \n");
