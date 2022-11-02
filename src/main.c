@@ -10,6 +10,7 @@ int main(){
     menu();
     // start BNMO
     TabGame listgame;
+    QueueGame history;
     char *s;
     int n_game;
     start(&listgame, &n_game);

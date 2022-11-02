@@ -62,16 +62,23 @@ void dequeueGame(QueueGame *q, ElTypeG *val){
 
 /* *** Display Queue *** */
 void displayQueueGame(QueueGame q){
-    int i;
+    int i,j;
     if (isEmptyGame(q)){
-        printf("[]\n");
+        printf("Antrian game kosong\n");
     } else {
-        printf("[");
+        printf("Berikut adalah daftar antrian game-mu\n");
         for (i=IDX_HEADG(q); i!=IDX_TAILG(q); i=(i+1)%CAPACITY){
-            printf("%d,", q.bufferG[i]);
+            printf("%d. ", i);
+            for (j=0;j<q.bufferG[i].Length;j++){
+                printf("%c", q.bufferG[i].TabKalimat[j]);
+            }
+            printf("\n");
         }
-        printf("%d", q.bufferG[i]);
-        printf("]\n");
+        printf("%d. ", i);
+        for (j=0;j<q.bufferG[i].Length;j++){
+                printf("%c", q.bufferG[i].TabKalimat[j]);
+            }
+        printf("\n");
     }
 }
 /* Proses : Menuliskan isi Queue dengan traversal, Queue ditulis di antara kurung 
