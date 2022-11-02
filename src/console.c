@@ -141,7 +141,7 @@ void deleteGame(int n_game, TabGame listgame) {
     }
 }
 
-void QueueofGame (QueueGame *q, int n_game, TabGame listgame) {
+void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     // menampilkan daftar antrian 
     displayQueueGame(*q);
     // menampilkan daftar game yang tersedia
@@ -159,7 +159,7 @@ void QueueofGame (QueueGame *q, int n_game, TabGame listgame) {
         printf("Daftar antrian sudah penuh");
     }
     else if (input <= n_game) {
-        enqueueGame(&q, listgame.TG[input] );
+        enqueueGame(q, listgame.TG[input] );
         printf("Game berhasil ditambahkan kedalam daftar antrian.\n");
 }
 }
@@ -169,7 +169,7 @@ void skipgame(QueueGame *q, int masukan[9]){
         ElTypeG val;
         dequeueGame(q,&val);
     }
-    playgame();   
+    // playgame();   
  }
 
 void quit(){
