@@ -172,14 +172,13 @@ void QueueGame (QueueGame *q, int n_game, TabGame listgame) {
         printf("Game berhasil ditambahkan kedalam daftar antrian.\n");
 }
 
-// void skipgame(){
-//     char* masukan;
-//     printf("ENTER COMMAND: \n");
-//     scanf("%s",&masukan);
-//     printf("Berikut adalah daftar Game-mu\n");
-//     displaylist();
-    
-// }
+void skipgame(QueueGame *q, int masukan[9]){
+    for(int i=0;i<masukan[9];i++){
+        ElTypeG val;
+        dequeueGame(q,val);
+    }
+    playgame();   
+ }
 
 void quit(){
     printf("Anda keluar dari game BNMO.\n");

@@ -27,9 +27,11 @@ void listofgame(int n_game, TabGame listgame);
 
 void deleteGame(int n_game, TabGame listgame);
 
+
+
 void QueueGame (QueueGame *q, int n_game, TabGame listgame); 
  
-// void skipgame ();
+void skipgame(QueueGame *q, int masukan[10]);
 
 void quit();
 
