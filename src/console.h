@@ -7,7 +7,7 @@
 #include "ADT\boolean.h"
 #include "ADT\arrayGame.h"
 #include "ADT\mesin_kalimat.h"
-#include "ADT\mesin_kata.h"
+#include "ADT\mesin_input.h"
 #include "ADT\queueGame.h"
 
 void welcoming(FILE *ff);

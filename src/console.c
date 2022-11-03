@@ -26,27 +26,25 @@ void menu(){
 }
 
 char *scanstring(){
-    STARTKATA();
-    char *string = (char*)malloc(sizeof(char)* CKalimat.Length);
-    KataToString(CKata, string);
+    STARTINPUT();
+    char *string = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput, string);
     return string;
 }
 
-// SCANINT MASIH BUG DI STARTKALIMAT()
 int scanint(){
     int val;
-    STARTKATA();
-    val=KatatoInt(CKata);
+    STARTINPUT();
+    val=InputtoInt(CInput);
     return val;
 }
 
 void scanParser(char *sInput, int *valInput){
-    // inputnya berupa 1 kata spasi 1 integer --> contoh skipgame 5
-    STARTKATA();
+    STARTINPUT();
     sInput = (char*)malloc(sizeof(char)* CKalimat.Length);
-    KataToString(CKata,sInput);
-    ADVKATA();
-    *valInput=KatatoInt(CKata);
+    InputToString(CInput,sInput);
+    ADVINPUT();
+    *valInput=InputtoInt(CInput);
 }
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
