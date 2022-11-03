@@ -43,10 +43,10 @@ int main()
 {
     /* KAMUS */
     Queue antrian, memasak, makanan_siap, served;
-    int saldo, pelanggan, i, count, ref;
-    char command[5];
+    int saldo, pelanggan, i, ref, count;
+    char *command;
     ElType val;
-    boolean found;
+    boolean found, check;
     /* ALGORITMA */
     srand(time(NULL));
     CreateQueue(&antrian);
@@ -71,61 +71,123 @@ int main()
     while ((length(antrian) <= 7) && (length(served) < 15))
     {
         printf("MASUKKAN COMMAND: ");
-        scanf("%s M%d", command, &ref);
-        printf("\n\n");
-        for (i = 0; i < length(memasak); i++)
+        command = scanstring();
+        ref = -1;
+        i = 0;
+        check = false;
+        while (command[i] != '\0')
         {
-            if (i < 5)
+            if (check)
             {
-                ((memasak.buffer[i]).durasi)--;
-                if ((memasak.buffer[i]).durasi == 0)
+                if (ref == -1)
                 {
-                    enqueue(&makanan_siap, memasak.buffer[i]);
-                    printf("Makanan M%d telah selesai dimasak\n", (memasak.buffer[i]).makanan);
+                    ref = command[i] - '0';
+                }
+                else
+                {
+                    ref *= 10;
+                    ref += (command[i] - '0');
                 }
             }
-            else
+            if (command[i] == ' ')
             {
-                break;
+                check = true;
+                i++;
             }
+            i++;
         }
-        count = 0;
-        for (i = 0; i < length(memasak); i++)
-        {
-            if ((memasak.buffer[i]).durasi == 0)
-            {
-                count++;
-            }
-            if ((count != 0) && (i != length(memasak) - 1))
-            {
-                memasak.buffer[i - count + 1] = memasak.buffer[i + 1];
-            }
-        }
-        if (length(memasak) == count)
-        {
-            IDX_HEAD(memasak) = IDX_UNDEF;
-            IDX_TAIL(memasak) = IDX_UNDEF;
-        }
-        else
-        {
-            IDX_TAIL(memasak) = (IDX_TAIL(memasak) - count) % CAPACITY;
-        }
+        printf("\n\n");
 
         if ((command[0] == 'C') && (command[1] == 'O') && (command[2] == 'O') && (command[3] == 'K'))
         {
+            found = false;
             for (i = 0; i < length(antrian); i++)
             {
                 if (ref == (antrian.buffer[i]).makanan)
                 {
-                    enqueue(&memasak, antrian.buffer[i]);
                     printf("Berhasil memasak M%d\n", (antrian.buffer[i]).makanan);
+                    for (i = 0; i < length(makanan_siap); i++)
+                    {
+                        ((makanan_siap.buffer[i]).ketahanan)--;
+                        if ((makanan_siap.buffer[i]).ketahanan == 0)
+                        {
+                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                        }
+                    }
+                    count = 0;
+                    for (i = 0; i < length(makanan_siap); i++)
+                    {
+                        if ((makanan_siap.buffer[i]).ketahanan == 0)
+                        {
+                            count++;
+                        }
+                        if ((count != 0) && (i != length(makanan_siap) - 1))
+                        {
+                            makanan_siap.buffer[i - count + 1] = makanan_siap.buffer[i + 1];
+                        }
+                    }
+                    if (length(makanan_siap) == count)
+                    {
+                        IDX_HEAD(makanan_siap) = IDX_UNDEF;
+                        IDX_TAIL(makanan_siap) = IDX_UNDEF;
+                    }
+                    else
+                    {
+                        IDX_TAIL(makanan_siap) = (IDX_TAIL(makanan_siap) - count) % CAPACITY;
+                    }
+
+                    for (i = 0; i < length(memasak); i++)
+                    {
+                        if (i < 5)
+                        {
+                            ((memasak.buffer[i]).durasi)--;
+                            if ((memasak.buffer[i]).durasi == 0)
+                            {
+                                enqueue(&makanan_siap, memasak.buffer[i]);
+                                printf("Makanan M%d telah selesai dimasak\n", (memasak.buffer[i]).makanan);
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    count = 0;
+                    for (i = 0; i < length(memasak); i++)
+                    {
+                        if ((memasak.buffer[i]).durasi == 0)
+                        {
+                            count++;
+                        }
+                        if ((count != 0) && (i != length(memasak) - 1))
+                        {
+                            memasak.buffer[i - count + 1] = memasak.buffer[i + 1];
+                        }
+                    }
+                    if (length(memasak) == count)
+                    {
+                        IDX_HEAD(memasak) = IDX_UNDEF;
+                        IDX_TAIL(memasak) = IDX_UNDEF;
+                    }
+                    else
+                    {
+                        IDX_TAIL(memasak) = (IDX_TAIL(memasak) - count) % CAPACITY;
+                    }
+
                     val.makanan = pelanggan;
                     val.durasi = (rand() % 5) + 1;
                     val.ketahanan = (rand() % 5) + 1;
                     val.harga = (rand() % 40001) + 10000;
                     enqueue(&antrian, val);
                     pelanggan++;
+                    enqueue(&memasak, antrian.buffer[i]);
+                    found = true;
+                    break;
                 }
+            }
+            if (!found)
+            {
+                printf("Makanan yang ingin dimasak tidak ada di antrian!\n");
             }
             printf("==========================================================\n\n");
         }
@@ -133,11 +195,6 @@ int main()
         {
             if (ref == HEAD(antrian).makanan)
             {
-                dequeue(&antrian, &val);
-                enqueue(&served, val);
-                printf("Berhasil mengantar M%d\n", ref);
-                saldo += val.harga;
-
                 found = false;
                 for (i = 0; i < length(makanan_siap); i++)
                 {
@@ -150,27 +207,110 @@ int main()
                         makanan_siap.buffer[i] = makanan_siap.buffer[i + 1];
                     }
                 }
-                if (length(makanan_siap) == 1)
+                if (found)
                 {
-                    IDX_HEAD(makanan_siap) = IDX_UNDEF;
-                    IDX_TAIL(makanan_siap) = IDX_UNDEF;
+                    if (length(makanan_siap) == 1)
+                    {
+                        IDX_HEAD(makanan_siap) = IDX_UNDEF;
+                        IDX_TAIL(makanan_siap) = IDX_UNDEF;
+                    }
+                    else
+                    {
+                        IDX_TAIL(makanan_siap) = (IDX_TAIL(makanan_siap) - 1) % CAPACITY;
+                    }
+                    dequeue(&antrian, &val);
+                    enqueue(&served, val);
+                    printf("Berhasil mengantar M%d\n", ref);
+                    saldo += val.harga;
+                    for (i = 0; i < length(makanan_siap); i++)
+                    {
+                        ((makanan_siap.buffer[i]).ketahanan)--;
+                        if ((makanan_siap.buffer[i]).ketahanan == 0)
+                        {
+                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                        }
+                    }
+                    count = 0;
+                    for (i = 0; i < length(makanan_siap); i++)
+                    {
+                        if ((makanan_siap.buffer[i]).ketahanan == 0)
+                        {
+                            count++;
+                        }
+                        if ((count != 0) && (i != length(makanan_siap) - 1))
+                        {
+                            makanan_siap.buffer[i - count + 1] = makanan_siap.buffer[i + 1];
+                        }
+                    }
+                    if (length(makanan_siap) == count)
+                    {
+                        IDX_HEAD(makanan_siap) = IDX_UNDEF;
+                        IDX_TAIL(makanan_siap) = IDX_UNDEF;
+                    }
+                    else
+                    {
+                        IDX_TAIL(makanan_siap) = (IDX_TAIL(makanan_siap) - count) % CAPACITY;
+                    }
+
+                    for (i = 0; i < length(memasak); i++)
+                    {
+                        if (i < 5)
+                        {
+                            ((memasak.buffer[i]).durasi)--;
+                            if ((memasak.buffer[i]).durasi == 0)
+                            {
+                                enqueue(&makanan_siap, memasak.buffer[i]);
+                                printf("Makanan M%d telah selesai dimasak\n", (memasak.buffer[i]).makanan);
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    count = 0;
+                    for (i = 0; i < length(memasak); i++)
+                    {
+                        if ((memasak.buffer[i]).durasi == 0)
+                        {
+                            count++;
+                        }
+                        if ((count != 0) && (i != length(memasak) - 1))
+                        {
+                            memasak.buffer[i - count + 1] = memasak.buffer[i + 1];
+                        }
+                    }
+                    if (length(memasak) == count)
+                    {
+                        IDX_HEAD(memasak) = IDX_UNDEF;
+                        IDX_TAIL(memasak) = IDX_UNDEF;
+                    }
+                    else
+                    {
+                        IDX_TAIL(memasak) = (IDX_TAIL(memasak) - count) % CAPACITY;
+                    }
+
+                    val.makanan = pelanggan;
+                    val.durasi = (rand() % 5) + 1;
+                    val.ketahanan = (rand() % 5) + 1;
+                    val.harga = (rand() % 40001) + 10000;
+                    enqueue(&antrian, val);
+                    pelanggan++;
                 }
                 else
                 {
-                    IDX_TAIL(makanan_siap) = (IDX_TAIL(makanan_siap) - 1) % CAPACITY;
+                    printf("M%d belum dapat disajikan karena belum siap\n", ref);
                 }
-
-                val.makanan = pelanggan;
-                val.durasi = (rand() % 5) + 1;
-                val.ketahanan = (rand() % 5) + 1;
-                val.harga = (rand() % 40001) + 10000;
-                enqueue(&antrian, val);
-                pelanggan++;
             }
             else
             {
                 printf("M%d belum dapat disajikan karena M%d belum selesai\n", ref, HEAD(antrian).makanan);
             }
+            printf("==========================================================\n\n");
+        }
+        else
+        {
+            printf("Command yang kamu masukkan tidak sesuai! (COOK M/ SERVE M)\n");
             printf("==========================================================\n\n");
         }
         deskripsi(saldo, antrian, memasak, makanan_siap);
