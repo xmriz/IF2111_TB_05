@@ -13,7 +13,9 @@ int main(){
     int x = scanint();
     printf("%d\n", x);
     // start BNMO
-
+    scanParser(nama,&x);
+    printf("%s\n", nama);
+    printf("%d\n", x);
     // JANGAN PAKE SCANINT DLU GES ERROR
     TabGame listgame;
     QueueGame history;

@@ -40,10 +40,10 @@ int scanint(){
 }
 
 void scanParser(char *sInput, int *valInput){
-    STARTINPUT();
-    sInput = (char*)malloc(sizeof(char)* CKalimat.Length);
+    STARTINPUT2();
+    sInput = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,sInput);
-    ADVINPUT();
+    ADVINPUT2();
     *valInput=InputtoInt(CInput);
 }
 
