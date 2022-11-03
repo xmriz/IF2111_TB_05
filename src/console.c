@@ -125,8 +125,8 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
 
 void createGame(int n_game, TabGame listgame) {
     printf("Masukkan nama game yang akan ditambahkan: ");
-    STARTKALIMAT();
-    listgame.TG[n_game] = CKalimat;
+    STARTINPUT();
+    listgame.TG[n_game] = CInput;
     n_game++;
     (listgame.Neff)++;
     printf("\nGame berhasil ditambahkan\n");
