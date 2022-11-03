@@ -19,7 +19,7 @@ void START() {
 void STARTFILE (char filename[]) {
     pita = fopen(filename, "r");
     if (pita != NULL) {
-        ADV();
+        ADVFILE();
     } else {
         printf("PATH TO FILE DOES NOT EXIST\n");
     }

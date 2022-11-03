@@ -39,12 +39,34 @@ int scanint(){
     return val;
 }
 
-void scanParser(char* *sInput, int *valInput){
+void scanParserStrInt(char* *sInput, int *valInput){
     STARTINPUT2();
     *sInput = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput);
     ADVINPUT2();
     *valInput=InputtoInt(CInput);
+}
+
+void scanParser2Str(char* *sInput1, char* *sInput2){
+    STARTINPUT2();
+    *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput1);
+    ADVINPUT2();
+    *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput2);
+}
+
+boolean isSameString(char* a, char* b){
+    boolean isSame=true;
+    while (isSame==true && (*a!='\0' || *b!='\0')){
+        if (*a!=*b){
+            isSame=false;
+        } else{
+            a++;
+            b++;
+        }
+    }
+    return(isSame);
 }
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {

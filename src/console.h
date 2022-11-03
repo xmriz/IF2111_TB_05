@@ -18,7 +18,9 @@ char *scanstring();
 
 int scanint();
 
-void scanParser(char* *sInput, int *valInput);
+void scanParserStrInt(char* *sInput, int *valInput);
+
+void scanParser2Str(char* *sInput1, char* *sInput2);
 
 void menu();
 
@@ -45,3 +47,5 @@ void quit();
 void help();
 
 void commandlain();
+
+boolean isSameString(char* a, char* b);

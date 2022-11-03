@@ -23,7 +23,9 @@ extern Kalimat CKalimat;
 void IgnoreNewLine();
 
 void SalinKalimat();
-          
+
+void SalinKalimatFile ();
+
 void STARTKALIMAT();
 
 void STARTKALIMATFILE(char filename[]);
