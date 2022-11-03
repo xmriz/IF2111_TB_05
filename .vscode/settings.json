@@ -3,6 +3,7 @@
         "array.h": "c",
         "console.h": "c",
         "stdio.h": "c",
-        "queuedinnerdash.h": "c"
+        "queuedinnerdash.h": "c",
+        "mesin_kalimat.h": "c"
     }
 }

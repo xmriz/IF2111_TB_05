@@ -25,6 +25,21 @@ void menu(){
     printf("---------------------------------------------\n");
 }
 
+int scanint(){
+    int masukan;
+    STARTKALIMAT();
+    char *string = (char*)malloc(sizeof(char)* CKalimat.Length+1);
+    KalimatToString(CKalimat, string);
+    masukan = strToInt(string);
+    return masukan;
+}
+
+char *scanstring(){
+    STARTKALIMAT();
+    char *string = (char*)malloc(sizeof(char)* CKalimat.Length+1);
+    KalimatToString(CKalimat, string);
+    return string;
+}
 
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
@@ -120,7 +135,7 @@ void deleteGame(int n_game, TabGame listgame) {
     printf("Berikut adalah daftar game yang tersedia\n");
     listofgame(n_game, listgame);
     printf("Masukkan nomor game yang akan dihapus: ");
-    scanf("%d", &input);
+    input = scanint();
     printf("\n\n");
     if ((input > 5) && (input <= n_game)) {
         if (input != n_game) {
@@ -149,10 +164,10 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     printf("Berikut adalah daftar game yang tersedia\n");
     listofgame(n_game, listgame);
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
-    scanf("%d", &input);
+    input = scanint();
     while (input < 1 || input > n_game) {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
-        scanf("%d", &input);
+        input = scanint();
     }
     if (isFullGame(*q)) {
         // asumsi daftar antrian mungkin penuh (sudah 100)

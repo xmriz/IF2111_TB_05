@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include "../console.h"
 
 void tebakan (int x, int random){
     if (x<random){
@@ -21,12 +22,12 @@ int main(){
     printf("Uji keberuntungan Anda dengan menebak X (0 <= X <= 100)\n");
     int x=0;//inisiasi awal
     printf("Tebakan: ");
-    scanf("%d",&x);
+    x = scanint();
     int random=(rand()%100)+1;//batasan X 100
     tebakan(x,random);
     while (random!=x){
         printf("Tebakan: ");
-        scanf("%d",&x);
+        x = scanint();
         tebakan(x,random);
     }    
     return 0;

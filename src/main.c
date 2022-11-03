@@ -9,6 +9,9 @@ int main(){
     // display menu
     menu();
     // start BNMO
+    char *nama = scanstring();
+    printf("%s", nama);
+    quit();
     TabGame listgame;
     QueueGame history;
     QueueGame QGame;
@@ -20,7 +23,6 @@ int main(){
     load("../data/savefile1.txt", &listgame, &n_game, &history);
     displayQueueGame(history);
     help();
-    quit();
     return 0;
 }
 

@@ -13,6 +13,10 @@ void welcoming(FILE *ff);
 
 void display_welcoming();
 
+int scanint();
+
+char *scanstring();
+
 void menu();
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game);
@@ -26,8 +30,6 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history);
 void listofgame(int n_game, TabGame listgame);
 
 void deleteGame(int n_game, TabGame listgame);
-
-
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame); 
  
