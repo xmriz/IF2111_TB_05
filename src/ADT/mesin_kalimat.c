@@ -55,6 +55,15 @@ void ADVKALIMAT () {
     }
 }
 
+void ADVKALIMATFILE () {
+    IgnoreNewLine();
+    if (CC == MARK) {
+        EndKalimat = true;
+    } else {
+        SalinKalimat();
+    }
+}
+
 void KalimatToString (Kalimat K, char *S) {
     for (int i = 1; i <= K.Length; i++)
     {

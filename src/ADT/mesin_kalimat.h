@@ -30,6 +30,8 @@ void STARTKALIMATFILE(char filename[]);
 
 void ADVKALIMAT();
 
+void ADVKALIMATFILE();
+
 void KalimatToString (Kalimat K, char *S);
 
 int strToInt(char s[]);

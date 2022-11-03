@@ -39,10 +39,10 @@ int scanint(){
     return val;
 }
 
-void scanParser(char *sInput, int *valInput){
+void scanParser(char* *sInput, int *valInput){
     STARTINPUT2();
-    sInput = (char*)malloc(sizeof(char)* CInput.Length);
-    InputToString(CInput,sInput);
+    *sInput = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput);
     ADVINPUT2();
     *valInput=InputtoInt(CInput);
 }
@@ -51,10 +51,10 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
-    ADVKALIMAT();
+    ADVKALIMATFILE();
     for (int i = 0; i < listgame->Neff; i++){
         listgame->TG[i] = CKalimat;
-        ADVKALIMAT();
+        ADVKALIMATFILE();
         }
     
 }
@@ -63,16 +63,16 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, QueueGame *hi
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
-    ADVKALIMAT();
+    ADVKALIMATFILE();
     for (int i = 0; i < listgame->Neff; i++){
         listgame->TG[i] = CKalimat;
-        ADVKALIMAT();
+        ADVKALIMATFILE();
         }
     int lenHistory=strToInt(CKalimat.TabKalimat);
-    ADVKALIMAT(); // skip jumlah history
+    ADVKALIMATFILE(); // skip jumlah history
     for (int i = 0; i < lenHistory; i++){
         enqueueGame(history,CKalimat);
-        ADVKALIMAT();
+        ADVKALIMATFILE();
         }
     
 }

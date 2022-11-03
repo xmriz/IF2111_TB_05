@@ -32,3 +32,10 @@ void ADV() {
        fclose(pita);
     }
 }
+
+void ADVFILE() {
+    retval = fscanf(pita,"%c",&CC);
+    if (feof(pita)) {
+       fclose(pita);
+    }
+}

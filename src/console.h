@@ -18,7 +18,7 @@ char *scanstring();
 
 int scanint();
 
-void scanParser(char *sInput, int *valInput);
+void scanParser(char* *sInput, int *valInput);
 
 void menu();
 
