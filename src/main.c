@@ -9,10 +9,12 @@ int main(){
     // display menu
     menu();
     char *nama = scanstring();
-    printf("%s\n", nama);
-    int x = scanint();
-    printf("%d\n", x);
+    // printf("%s\n", nama);
+    // int x = scanint();
+    // printf("%d\n", x);
     // start BNMO
+
+    // JANGAN PAKE SCANINT DLU GES ERROR
     TabGame listgame;
     QueueGame history;
     QueueGame QGame;

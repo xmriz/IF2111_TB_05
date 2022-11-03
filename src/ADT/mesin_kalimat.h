@@ -36,6 +36,6 @@ int strToInt(char s[]);
 
 int strToInt2(char s[]);
 
-
+int KalimattoInt(Kalimat K);
 
 #endif
