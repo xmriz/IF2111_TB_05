@@ -32,9 +32,31 @@ int main(){
         scanParser2Str(&input1,&input2);
         if (isSameString(input1,"START")){
             start(&listgame,&n_game);
-        } 
+        }
         else if (isSameString(input1,"LOAD")) {
             load(input2, &listgame, &n_game, &history);
+        } else if (isSameString(input1, "SAVE")){
+            save(input2,listgame,n_game,history);
+        } else if (isSameString(input1,"CREATE")){
+            createGame(&n_game, &listgame);
+        } else if (isSameString(input1, "LIST")){
+            listofgame(n_game,listgame);
+        } else if (isSameString(input1,"DELETE")){
+            deleteGame(&n_game,&listgame);
+        } else if (isSameString(input1,"QUEUE")){
+            queuegame(&QGame, n_game,listgame);
+        } else if (isSameString(input1,"PLAY GAME")){
+            printf("Blm bikin play game");
+        } else if (isSameString(input1,"SKIPGAME")){
+            int n = strToInt2(input2);
+            skipgame(&QGame,n);
+        } else if (isSameString(input1,"QUIT")){
+            quit();
+        } else if (isSameString(input1,"HELP")){
+            help();
+        } else { // command lain
+            printf("ntar ae ngantuk banh");
+
         }
     }
     listofgame(n_game,listgame);

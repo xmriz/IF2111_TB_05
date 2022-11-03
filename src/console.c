@@ -81,7 +81,7 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     
 }
 
-void readSavefile(char filepath[], TabGame *listgame, int *n_game, QueueGame *history) {
+void readSavefile(char *filepath, TabGame *listgame, int *n_game, QueueGame *history) {
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
@@ -107,7 +107,7 @@ void start(TabGame *listgame, int *n_game){
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char filename[], TabGame *listgame, int *n_game, QueueGame *history){
+void load(char* filename, TabGame *listgame, int *n_game, QueueGame *history){
     MakeEmptyGame(listgame);
     CreateQueueGame(history);
     readSavefile(filename, listgame, n_game, history); //state listgame sm n_game ngikutin file yg di load
@@ -145,12 +145,12 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
     }
 }
 
-void createGame(int n_game, TabGame listgame) {
+void createGame(int *n_game, TabGame *listgame) {
     printf("Masukkan nama game yang akan ditambahkan: ");
     STARTKALIMAT();
-    listgame.TG[n_game] = CKalimat;
-    n_game++;
-    (listgame.Neff)++;
+    (*listgame).TG[*n_game] = CKalimat;
+    (*n_game)++;
+    ((*listgame).Neff)++;
     printf("\nGame berhasil ditambahkan\n");
 }
 
@@ -166,23 +166,23 @@ void listofgame(int n_game, TabGame listgame){
     }
 }
 
-void deleteGame(int n_game, TabGame listgame) {
+void deleteGame(int *n_game, TabGame *listgame) {
     int input, i;
     printf("Berikut adalah daftar game yang tersedia\n");
-    listofgame(n_game, listgame);
+    listofgame(*n_game, *listgame);
     printf("Masukkan nomor game yang akan dihapus: ");
     input = scanint();
     printf("\n\n");
-    if ((input > 5) && (input <= n_game)) {
-        if (input != n_game) {
-            for (i = input - 1; i < n_game; i++) {
-                listgame.TG[i] = listgame.TG[i + 1];
+    if ((input > 5) && (input <= *n_game)) {
+        if (input != *n_game) {
+            for (i = input - 1; i < *n_game; i++) {
+                (*listgame).TG[i] = (*listgame).TG[i + 1];
             }
-            (listgame.Neff)--;
-            n_game--;
+            ((*listgame).Neff)--;
+            (*n_game)--;
         } else {
-            (listgame.Neff)--;
-            n_game--;
+            ((*listgame).Neff)--;
+            (*n_game)--;
         }
         printf("Game berhasil dihapus\n");
     } else if ((input >= 0) && (input <= 5)) {
@@ -212,13 +212,13 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
         printf("Daftar antrian sudah penuh");
     }
     else if (input <= n_game) {
-        enqueueGame(q, listgame.TG[input] );
+        enqueueGame(q, listgame.TG[input-1] );
         printf("Game berhasil ditambahkan kedalam daftar antrian.\n");
 }
 }
 
-void skipgame(QueueGame *q, int masukan[9]){
-    for(int i=0;i<masukan[9];i++){
+void skipgame(QueueGame *q, int masukan){
+    for(int i=0;i<masukan;i++){
         ElTypeG val;
         dequeueGame(q,&val);
     }
