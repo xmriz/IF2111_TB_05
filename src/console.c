@@ -26,19 +26,27 @@ void menu(){
 }
 
 char *scanstring(){
-    STARTKALIMAT();
+    STARTKATA();
     char *string = (char*)malloc(sizeof(char)* CKalimat.Length);
-    KalimatToString(CKalimat, string);
+    KataToString(CKata, string);
     return string;
 }
 
 // SCANINT MASIH BUG DI STARTKALIMAT()
 int scanint(){
     int val;
-    char *string = scanstring();
-    KalimatToString(CKalimat, string);
-    val = strToInt2(string);
+    STARTKATA();
+    val=KatatoInt(CKata);
     return val;
+}
+
+void scanParser(char *sInput, int *valInput){
+    // inputnya berupa 1 kata spasi 1 integer --> contoh skipgame 5
+    STARTKATA();
+    sInput = (char*)malloc(sizeof(char)* CKalimat.Length);
+    KataToString(CKata,sInput);
+    ADVKATA();
+    *valInput=KatatoInt(CKata);
 }
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
@@ -122,7 +130,7 @@ void listofgame(int n_game, TabGame listgame){
     // print list game
     for (int i = 0; i < n_game; i++){
         printf("%d. ",(i+1));
-        for (int j = 0; j < listgame.TG[i].Length+1; j++){
+        for (int j = 0; j <= listgame.TG[i].Length; j++){
             printf("%c", listgame.TG[i].TabKalimat[j]);
         }
         printf("\n");

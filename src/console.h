@@ -7,6 +7,7 @@
 #include "ADT\boolean.h"
 #include "ADT\arrayGame.h"
 #include "ADT\mesin_kalimat.h"
+#include "ADT\mesin_kata.h"
 #include "ADT\queueGame.h"
 
 void welcoming(FILE *ff);
@@ -16,6 +17,8 @@ void display_welcoming();
 char *scanstring();
 
 int scanint();
+
+void scanParser(char *sInput, int *valInput);
 
 void menu();
 
