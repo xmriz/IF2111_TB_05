@@ -179,9 +179,11 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     listofgame(n_game, listgame);
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
     input = scanint();
+    printf("\n\n");
     while (input < 1 || input > n_game) {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
         input = scanint();
+        printf("\n\n");
     }
     if (isFullGame(*q)) {
         // asumsi daftar antrian mungkin penuh (sudah 100)
