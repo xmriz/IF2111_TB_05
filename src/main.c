@@ -45,7 +45,7 @@ int main(){
             deleteGame(&n_game,&listgame);
         } else if (isSameString(input1,"QUEUE")){
             queuegame(&QGame, n_game,listgame);
-        } else if (isSameString(input1,"PLAY GAME")){
+        } else if (isSameString(input1,"PLAY")){
             printf("Blm bikin play game");
         } else if (isSameString(input1,"SKIPGAME")){
             int n = strToInt2(input2);
