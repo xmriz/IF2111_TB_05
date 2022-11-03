@@ -26,19 +26,27 @@ void menu(){
 }
 
 char *scanstring(){
-    STARTKALIMAT();
+    STARTKATA();
     char *string = (char*)malloc(sizeof(char)* CKalimat.Length);
-    KalimatToString(CKalimat, string);
+    KataToString(CKata, string);
     return string;
 }
 
 // SCANINT MASIH BUG DI STARTKALIMAT()
 int scanint(){
     int val;
-    char *string = scanstring();
-    KalimatToString(CKalimat, string);
-    val = strToInt2(string);
+    STARTKATA();
+    val=KatatoInt(CKata);
     return val;
+}
+
+void scanParser(char *sInput, int *valInput){
+    // inputnya berupa 1 kata spasi 1 integer --> contoh skipgame 5
+    STARTKATA();
+    sInput = (char*)malloc(sizeof(char)* CKalimat.Length);
+    KataToString(CKata,sInput);
+    ADVKATA();
+    *valInput=KatatoInt(CKata);
 }
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
@@ -117,12 +125,21 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
     }
 }
 
+void createGame(int n_game, TabGame listgame) {
+    printf("Masukkan nama game yang akan ditambahkan: ");
+    STARTKALIMAT();
+    listgame.TG[n_game] = CKalimat;
+    n_game++;
+    (listgame.Neff)++;
+    printf("\nGame berhasil ditambahkan\n");
+}
+
 void listofgame(int n_game, TabGame listgame){
     printf("JUMLAH GAME: %d\n", n_game);
     // print list game
     for (int i = 0; i < n_game; i++){
         printf("%d. ",(i+1));
-        for (int j = 0; j < listgame.TG[i].Length+1; j++){
+        for (int j = 0; j <= listgame.TG[i].Length; j++){
             printf("%c", listgame.TG[i].TabKalimat[j]);
         }
         printf("\n");

@@ -68,14 +68,14 @@ void displayQueueGame(QueueGame q){
     } else {
         printf("Berikut adalah daftar antrian game-mu\n");
         for (i=IDX_HEADG(q); i!=IDX_TAILG(q); i=(i+1)%CAPACITY){
-            printf("%d. ", i);
-            for (j=0;j<q.bufferG[i].Length;j++){
+            printf("%d. ", i+1);
+            for (j=0;j<=q.bufferG[i].Length;j++){
                 printf("%c", q.bufferG[i].TabKalimat[j]);
             }
             printf("\n");
         }
-        printf("%d. ", i);
-        for (j=0;j<q.bufferG[i].Length;j++){
+        printf("%d. ", i+1);
+        for (j=0;j<=q.bufferG[i].Length;j++){
                 printf("%c", q.bufferG[i].TabKalimat[j]);
             }
         printf("\n");

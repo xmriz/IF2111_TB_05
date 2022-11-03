@@ -4,7 +4,7 @@
 
 
 int main(){
-    // display welcoming message
+// display welcoming message
     display_welcoming();
     // display menu
     menu();
@@ -13,6 +13,8 @@ int main(){
     int x = scanint();
     printf("%d\n", x);
     // start BNMO
+
+    // JANGAN PAKE SCANINT DLU GES ERROR
     TabGame listgame;
     QueueGame history;
     QueueGame QGame;

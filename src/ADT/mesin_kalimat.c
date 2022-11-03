@@ -84,3 +84,10 @@ int strToInt2(char s[]){
     return n;
 }
 
+int KalimattoInt(Kalimat K){
+    int val=0;
+    for (int i = 0; i < CKalimat.Length; i++){
+        val=10*val + (CKalimat.TabKalimat[i] - '0');
+    }
+    return(val);
+}

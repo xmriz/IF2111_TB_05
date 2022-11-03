@@ -7,6 +7,7 @@
 #include "ADT\boolean.h"
 #include "ADT\arrayGame.h"
 #include "ADT\mesin_kalimat.h"
+#include "ADT\mesin_kata.h"
 #include "ADT\queueGame.h"
 
 void welcoming(FILE *ff);
@@ -17,6 +18,8 @@ char *scanstring();
 
 int scanint();
 
+void scanParser(char *sInput, int *valInput);
+
 void menu();
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game);
@@ -26,6 +29,8 @@ void start(TabGame *listgame, int *n_game);
 void load(char filename[], TabGame *listgame, int *n_game, QueueGame *history);
 
 void save(char* filename, TabGame listgame, int n_game, QueueGame history);
+
+void createGame(int n_game, TabGame listgame);
 
 void listofgame(int n_game, TabGame listgame);
 
