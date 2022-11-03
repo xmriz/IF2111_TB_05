@@ -34,15 +34,11 @@ char *scanstring(){
 
 // SCANINT MASIH BUG DI STARTKALIMAT()
 int scanint(){
-    int x;
-    scanf("%d", &x);
-    return x;
-
-    // int val;
-    // char *string = scanstring();
-    // KalimatToString(CKalimat, string);
-    // val = strToInt2(string);
-    // return val;
+    int val;
+    char *string = scanstring();
+    KalimatToString(CKalimat, string);
+    val = strToInt2(string);
+    return val;
 }
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
