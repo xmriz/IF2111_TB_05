@@ -34,6 +34,8 @@ void KalimatToString (Kalimat K, char *S);
 
 int strToInt(char s[]);
 
+int strToInt2(char s[]);
+
 
 
 #endif

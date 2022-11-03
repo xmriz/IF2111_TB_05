@@ -8,21 +8,22 @@ int main(){
     display_welcoming();
     // display menu
     menu();
-    // start BNMO
     char *nama = scanstring();
-    printf("%s", nama);
-    quit();
+    printf("%s\n", nama);
+    int x = scanint();
+    printf("%d\n", x);
+    // start BNMO
     TabGame listgame;
     QueueGame history;
     QueueGame QGame;
     CreateQueueGame(&QGame);
-    char *s;
     int n_game;
     start(&listgame, &n_game);
     listofgame(n_game,listgame);
     load("../data/savefile1.txt", &listgame, &n_game, &history);
     displayQueueGame(history);
     help();
+    quit();
     return 0;
 }
 

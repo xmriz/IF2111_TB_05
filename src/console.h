@@ -13,9 +13,9 @@ void welcoming(FILE *ff);
 
 void display_welcoming();
 
-int scanint();
-
 char *scanstring();
+
+int scanint();
 
 void menu();
 

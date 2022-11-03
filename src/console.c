@@ -25,22 +25,25 @@ void menu(){
     printf("---------------------------------------------\n");
 }
 
-int scanint(){
-    int masukan;
-    STARTKALIMAT();
-    char *string = (char*)malloc(sizeof(char)* CKalimat.Length+1);
-    KalimatToString(CKalimat, string);
-    masukan = strToInt(string);
-    return masukan;
-}
-
 char *scanstring(){
     STARTKALIMAT();
-    char *string = (char*)malloc(sizeof(char)* CKalimat.Length+1);
+    char *string = (char*)malloc(sizeof(char)* CKalimat.Length);
     KalimatToString(CKalimat, string);
     return string;
 }
 
+// SCANINT MASIH BUG DI STARTKALIMAT()
+int scanint(){
+    int x;
+    scanf("%d", &x);
+    return x;
+
+    // int val;
+    // char *string = scanstring();
+    // KalimatToString(CKalimat, string);
+    // val = strToInt2(string);
+    // return val;
+}
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
