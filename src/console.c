@@ -78,7 +78,6 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
         listgame->TG[i] = CKalimat;
         ADVKALIMATFILE();
         }
-    
 }
 
 void readSavefile(char *filepath, TabGame *listgame, int *n_game, QueueGame *history) {
@@ -123,24 +122,25 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
     } else{
         // masukin  listgame ke file
         char c=n_game + '0';
-        fputc(c, savePtr);
-        fputc('\n', savePtr);
+        fprintf(savePtr,"%c",c);
+        fprintf(savePtr,"%c",'\n');
         for (i=0;i<n_game;i++){
-            for (j=0;i<listgame.TG[i].Length;j++){
-                fputc(listgame.TG[i].TabKalimat[j], savePtr);
-                fputc('\n',savePtr);
+            for (j=1;j<=listgame.TG[i].Length;j++){
+                fprintf(savePtr,"%c",listgame.TG[i].TabKalimat[j]);
             } 
+            fprintf(savePtr,"%c",'\n');
         }
         // masukin queue history ke game
         char c2=lengthGame(history)+'0';
-        fputc(c2, savePtr);
-        fputc('\n', savePtr);
+        fprintf(savePtr,"%c",c2);
+        fprintf(savePtr,"%c",'\n');
         for (i=0;i<lengthGame(history);i++){
-            for (j=0;j<history.bufferG[i].Length;j++){
-                fputc(history.bufferG[i].TabKalimat[j],savePtr);
-                fputc('\n',savePtr);
+            for (j=1;j<=history.bufferG[i].Length;j++){
+                fprintf(savePtr,"%c",history.bufferG[i].TabKalimat[j]);
             }
+            fprintf(savePtr,"%c",'\n');
         }
+        fprintf(savePtr,"%c",';');
         fclose(savePtr);
     }
 }
