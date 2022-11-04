@@ -217,6 +217,22 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 }
 }
 
+void playgame(int n_game, QueueGame *Q ){
+    printf("Berikut adalah daftar game-mu: \n");
+    displayQueueGame(*Q);
+    ElTypeG val;
+    dequeueGame(Q, &val);
+    char *stringval = (char*)malloc(sizeof(char)* val.Length);
+    KalimatToString(val,stringval);
+    if (isSameString(stringval,"RISEWOMAN")){
+        printf("Maintenance");
+    } else if (isSameString(stringval,"DINER DASH")){
+        printf("mainin diner dash");
+    }
+
+
+}
+
 void skipgame(QueueGame *q, int masukan){
     for(int i=0;i<masukan;i++){
         ElTypeG val;

@@ -75,10 +75,10 @@ void ADVKALIMATFILE () {
     }
 }
 
-void KalimatToString (Kalimat K, char *S) {
-    for (int i = 1; i <= K.Length; i++)
+void KalimatToString (Kalimat K, char *S){
+    for (int i = 0; i < K.Length; i++)
     {
-        S[i-1] = K.TabKalimat[i];
+        S[i] = K.TabKalimat[i];
     }
     for (int i = K.Length; i < strlen(S); i++) 
     {
