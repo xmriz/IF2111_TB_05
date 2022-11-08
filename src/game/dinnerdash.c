@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../ADT/queueDinnerDash.h"
-#include <time.h>
-#include "../console.h"
+#include "dinnerdash.h"
 
 void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
 {
@@ -40,7 +38,7 @@ void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
     printf("\n\n");
 }
 
-int main()
+void mainDinerDash()
 {
     /* KAMUS */
     Queue antrian, memasak, makanan_siap, served;
@@ -318,6 +316,4 @@ int main()
     }
     printf("Permainan selesai! Kamu berhasil memperoleh uang sebanyak %d\n", saldo);
     printf("==========================================================\n\n");
-
-    return 0;
 }

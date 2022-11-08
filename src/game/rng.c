@@ -16,7 +16,7 @@ void tebakan (int x, int random){
         }  
 }
 
-int main(){
+void mainRNG(){
     srand(time(NULL));
     printf("RNG Telah dimulai.\n");
     printf("Uji keberuntungan Anda dengan menebak X (0 <= X <= 100)\n");
@@ -30,5 +30,4 @@ int main(){
         x = scanint();
         tebakan(x,random);
     }    
-    return 0;
 }
