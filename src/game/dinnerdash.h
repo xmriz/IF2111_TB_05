@@ -4,6 +4,7 @@
 #include "../ADT/queueDinnerDash.h"
 #include <time.h>
 #include "../console.h"
+#include <stdlib.h>
 
 
 void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap);
