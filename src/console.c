@@ -225,7 +225,7 @@ void playgame(int n_game, QueueGame *Q ){
     dequeueGame(Q, &val);
     char *stringval = (char*)malloc(sizeof(char)* val.Length);
     KalimatToString(val,stringval);
-    if (isSameString(stringval,"DINER DASH")){
+    if (isSameString(stringval,"DINER DA")){
         mainDinerDash();
     } else if (isSameString(stringval,"RNG")){
         mainRNG();

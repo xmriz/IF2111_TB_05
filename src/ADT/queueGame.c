@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "queueGame.h"
 
+// alt 1 --> saat di-dequeue auto geser
+
 /* *** Kreator *** */
 void CreateQueueGame(QueueGame *q){
     IDX_HEADG(*q) = IDX_UNDEF;
@@ -18,7 +20,7 @@ boolean isEmptyGame(QueueGame q){
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
 boolean isFullGame(QueueGame q){
-    return (IDX_TAILG(q)+1)%CAPACITY == IDX_HEADG(q);
+    return (IDX_TAILG(q)+1==CAPACITY);
 }
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
@@ -27,7 +29,7 @@ int lengthGame(QueueGame q){
     if (isEmptyGame(q)){
         return 0;
     } else {
-        return (IDX_TAILG(q)-IDX_HEADG(q)+CAPACITY)%CAPACITY + 1;
+        return (IDX_TAILG(q)-IDX_HEADG(q));
     }
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
@@ -38,7 +40,7 @@ void enqueueGame(QueueGame *q, ElTypeG val){
         IDX_HEADG(*q) = 0;
         IDX_TAILG(*q) = 0;
     } else {
-        IDX_TAILG(*q) = (IDX_TAILG(*q)+1)%CAPACITY;
+        IDX_TAILG(*q)++;
     }
     TAILG(*q) = val;
 }
@@ -52,7 +54,10 @@ void dequeueGame(QueueGame *q, ElTypeG *val){
         IDX_HEADG(*q) = IDX_UNDEF;
         IDX_TAILG(*q) = IDX_UNDEF;
     } else {
-        IDX_HEADG(*q) = (IDX_HEADG(*q)+1)%CAPACITY;
+        for (int i=0;i<=IDX_TAILG(*q);i++){
+            q->bufferG[i]=q->bufferG[i+1];
+        }
+        IDX_TAILG(*q)--;
     }
 }
 /* Proses: Menghapus val pada q dengan aturan FIFO */
