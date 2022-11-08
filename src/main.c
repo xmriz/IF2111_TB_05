@@ -16,14 +16,13 @@ int main(){
 
     // JANGAN PAKE SCANINT DLU GES ERROR
     TabGame listgame;
-    QueueGame history;
     QueueGame QGame;
     CreateQueueGame(&QGame);
     int n_game;
     start(&listgame, &n_game);
     listofgame(n_game,listgame);
-    load("../data/savefile1.txt", &listgame, &n_game, &history);
-    displayQueueGame(history);
+    load("../data/savefile1.txt", &listgame, &n_game);
+    displayQueueGame(QGame);
     help();
     quit();
     return 0;

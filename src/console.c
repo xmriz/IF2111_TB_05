@@ -59,7 +59,7 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     
 }
 
-void readSavefile(char filepath[], TabGame *listgame, int *n_game, QueueGame *history) {
+void readSavefile(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
@@ -68,13 +68,6 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, QueueGame *hi
         listgame->TG[i] = CKalimat;
         ADVKALIMAT();
         }
-    int lenHistory=strToInt(CKalimat.TabKalimat);
-    ADVKALIMAT(); // skip jumlah history
-    for (int i = 0; i < lenHistory; i++){
-        enqueueGame(history,CKalimat);
-        ADVKALIMAT();
-        }
-    
 }
 
 void start(TabGame *listgame, int *n_game){
@@ -85,14 +78,13 @@ void start(TabGame *listgame, int *n_game){
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char filename[], TabGame *listgame, int *n_game, QueueGame *history){
+void load(char filename[], TabGame *listgame, int *n_game){
     MakeEmptyGame(listgame);
-    CreateQueueGame(history);
-    readSavefile(filename, listgame, n_game, history); //state listgame sm n_game ngikutin file yg di load
+    readSavefile(filename, listgame, n_game); //state listgame sm n_game ngikutin file yg di load
     printf("Load file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void save(char* filename, TabGame listgame, int n_game, QueueGame history){
+void save(char* filename, TabGame listgame, int n_game){
     FILE * savePtr;
     int i,j;
     savePtr =  fopen(filename, "w");
@@ -108,16 +100,6 @@ void save(char* filename, TabGame listgame, int n_game, QueueGame history){
                 fputc(listgame.TG[i].TabKalimat[j], savePtr);
                 fputc('\n',savePtr);
             } 
-        }
-        // masukin queue history ke game
-        char c2=lengthGame(history)+'0';
-        fputc(c2, savePtr);
-        fputc('\n', savePtr);
-        for (i=0;i<lengthGame(history);i++){
-            for (j=0;j<history.bufferG[i].Length;j++){
-                fputc(history.bufferG[i].TabKalimat[j],savePtr);
-                fputc('\n',savePtr);
-            }
         }
         fclose(savePtr);
     }

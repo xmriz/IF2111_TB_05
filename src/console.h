@@ -26,9 +26,9 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game);
 
 void start(TabGame *listgame, int *n_game);
 
-void load(char filename[], TabGame *listgame, int *n_game, QueueGame *history);
+void load(char filename[], TabGame *listgame, int *n_game);
 
-void save(char* filename, TabGame listgame, int n_game, QueueGame history);
+void save(char* filename, TabGame listgame, int n_game);
 
 void createGame(int n_game, TabGame listgame);
 
