@@ -111,3 +111,34 @@ void CopyInput (Input K1, Input *K2){
         K2->TabInput[i]=K1.TabInput[i];
     }
 }
+
+
+int strlength(char *s){
+    int i = 0;
+    while (s[i] != '\0')
+    {
+        i++;
+    }
+    return i;
+}
+
+
+char *strconcat(char *dest, char *src){
+    char *ret;
+    ret = (char *) malloc((strlength(dest) + strlength(src) + 1) * sizeof(char));
+    int i = 0;
+    while (dest[i] != '\0')
+    {
+        ret[i] = dest[i];
+        i++;
+    }
+    int j = 0;
+    while (src[j] != '\0')
+    {
+        ret[i] = src[j];
+        i++;
+        j++;
+    }
+    ret[i] = '\0';
+    return ret;
+}

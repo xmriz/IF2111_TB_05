@@ -37,4 +37,8 @@ int InputtoInt(Input K);
 
 void CopyInput (Input K1, Input *K2);
 
+int strlength(char *s);
+
+char * strconcat(char *dest, char *src);
+
 #endif

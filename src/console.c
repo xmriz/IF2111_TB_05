@@ -47,13 +47,15 @@ void scanParserStrInt(char* *sInput, int *valInput){
     *valInput=InputtoInt(CInput);
 }
 
-void scanParser2Str(char* *sInput1, char* *sInput2){
+void scanParserStr(char* *sInput1, char* *sInput2){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
-    ADVINPUT2();
-    *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
-    InputToString(CInput,*sInput2);
+    if (isSameString(*sInput1, "LOAD")){
+        ADVINPUT2();
+        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+        InputToString(CInput,*sInput2);
+    }
 }
 
 boolean isSameString(char* a, char* b){
@@ -136,7 +138,6 @@ void createGame(int *n_game, TabGame *listgame) {
 }
 
 void listofgame(int n_game, TabGame listgame){
-    printf("JUMLAH GAME: %d\n", n_game);
     // print list game
     for (int i = 0; i < n_game; i++){
         printf("%d. ",(i+1));
@@ -205,8 +206,11 @@ void playgame(int n_game, QueueGame *Q ){
     ElTypeG val;
     dequeueGame(Q, &val);
     char *stringval = (char*)malloc(sizeof(char)* val.Length);
-    KalimatToString(val,stringval);
-    if (isSameString(stringval,"DINER DA")){
+    for (int i = 0; i < val.Length; i++){
+        stringval[i] = val.TabKalimat[i+1];
+    }
+    printf("Game %s dimainkan\n", stringval);
+    if (isSameString(stringval,"DINNER DASH")){
         mainDinerDash();
     } else if (isSameString(stringval,"RNG")){
         mainRNG();

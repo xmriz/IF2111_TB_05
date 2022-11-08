@@ -22,7 +22,7 @@ int scanint();
 
 void scanParserStrInt(char* *sInput, int *valInput);
 
-void scanParser2Str(char* *sInput1, char* *sInput2);
+void scanParserStr(char* *sInput1, char* *sInput2);
 
 void menu();
 

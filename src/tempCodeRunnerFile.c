@@ -1,1 +1,0 @@
-boolean isSameString(char* a, char* b)
