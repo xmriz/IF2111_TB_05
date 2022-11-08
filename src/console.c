@@ -225,13 +225,13 @@ void playgame(int n_game, QueueGame *Q ){
     dequeueGame(Q, &val);
     char *stringval = (char*)malloc(sizeof(char)* val.Length);
     KalimatToString(val,stringval);
-    if (isSameString(stringval,"RISEWOMAN")){
-        printf("Maintenance");
-    } else if (isSameString(stringval,"DINER DASH")){
-        printf("mainin diner dash");
+    if (isSameString(stringval,"DINER DASH")){
+        mainDinerDash();
+    } else if (isSameString(stringval,"RNG")){
+        mainRNG();
+    } else{
+        printf("Game masih berada di tahap maintenance\n");
     }
-
-
 }
 
 void skipgame(QueueGame *q, int masukan){

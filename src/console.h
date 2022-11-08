@@ -9,6 +9,8 @@
 #include "ADT\mesin_kalimat.h"
 #include "ADT\mesin_input.h"
 #include "ADT\queueGame.h"
+#include "game\dinnerdash.h"
+#include "game\rng.h"
 
 void welcoming(FILE *ff);
 
