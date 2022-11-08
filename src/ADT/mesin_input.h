@@ -5,7 +5,7 @@
 #include "mesin_kar.h"
 
 #define NMax 450
-// #define BLANK ' '
+#define BLANK ' '
 #define NEWLINE '\n'
 
 typedef struct {
@@ -20,12 +20,16 @@ extern Input CInput;
 void IgnoreBlank();
 
 void SalinInput();
-          
+
 void STARTINPUT();
+          
+void STARTINPUT2();
 
 void STARTINPUTFILE(char filename[]);
 
 void ADVINPUT();
+
+void ADVINPUT2();
 
 void InputToString (Input K, char *S);
 

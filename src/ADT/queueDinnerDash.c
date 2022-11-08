@@ -18,7 +18,7 @@ boolean isEmpty(Queue q){
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
 boolean isFull(Queue q){
-    return (IDX_TAIL(q)+1)%CAPACITY == IDX_HEAD(q);
+    return (IDX_TAIL(q)+1)%DCAPACITY == IDX_HEAD(q);
 }
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
@@ -27,7 +27,7 @@ int length(Queue q){
     if (isEmpty(q)){
         return 0;
     } else {
-        return (IDX_TAIL(q)-IDX_HEAD(q)+CAPACITY)%CAPACITY + 1;
+        return (IDX_TAIL(q)-IDX_HEAD(q)+DCAPACITY)%DCAPACITY + 1;
     }
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
@@ -38,7 +38,7 @@ void enqueue(Queue *q, ElType val){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
     } else {
-        IDX_TAIL(*q) = (IDX_TAIL(*q)+1)%CAPACITY;
+        IDX_TAIL(*q) = (IDX_TAIL(*q)+1)%DCAPACITY;
     }
     TAIL(*q) = val;
 }
@@ -52,7 +52,7 @@ void dequeue(Queue *q, ElType *val){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     } else {
-        IDX_HEAD(*q) = (IDX_HEAD(*q)+1)%CAPACITY;
+        IDX_HEAD(*q) = (IDX_HEAD(*q)+1)%DCAPACITY;
     }
 }
 /* Proses: Menghapus val pada q dengan aturan FIFO */
@@ -67,7 +67,7 @@ void displayQueue(Queue q){
         printf("[]\n");
     } else {
         printf("[");
-        for (i=IDX_HEAD(q); i!=IDX_TAIL(q); i=(i+1)%CAPACITY){
+        for (i=IDX_HEAD(q); i!=IDX_TAIL(q); i=(i+1)%DCAPACITY){
             printf("%d,", q.buffer[i]);
         }
         printf("%d", q.buffer[i]);

@@ -6,8 +6,15 @@
 boolean EndInput;
 Input CInput;
 
-void IgnoreBlank(){
+void IgnoreNewline(){
         while (CC == NEWLINE)
+    {
+        ADV();
+    }
+}
+
+void IgnoreBlank(){
+        while (CC==BLANK || CC == NEWLINE)
     {
         ADV();
     }
@@ -23,10 +30,21 @@ void SalinInput(){
     }
     CInput.Length = i;
 }
+
+void SalinInput2(){
+    int i = 0;
+    while ((CC != MARK) && (CC!=NEWLINE) && (CC!=BLANK))
+    {
+        CInput.TabInput[i] = CC;
+        ADV();
+        i++;
+    }
+    CInput.Length = i;
+}
           
 void STARTINPUT(){
     START();
-    IgnoreBlank();
+    IgnoreNewline();
     if (CC == MARK) {
         EndInput = true;
     } else {
@@ -36,9 +54,8 @@ void STARTINPUT(){
 }
 
 
-    
 void ADVINPUT(){
-    IgnoreBlank();
+    IgnoreNewline();
     if (CC == MARK) {
         EndInput = true;
     } else {
@@ -46,6 +63,25 @@ void ADVINPUT(){
     }
 }
 
+void STARTINPUT2(){
+    START();
+    IgnoreBlank();
+    if (CC == MARK) {
+        EndInput = true;
+    } else {
+        EndInput = false;
+        SalinInput2();
+    }
+}
+
+void ADVINPUT2(){
+    IgnoreBlank();
+    if (CC == MARK) {
+        EndInput = true;
+    } else {
+        SalinInput2();
+    }
+}
 
 
 void InputToString (Input K, char *S){

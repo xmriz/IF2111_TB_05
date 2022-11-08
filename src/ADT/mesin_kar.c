@@ -19,7 +19,7 @@ void START() {
 void STARTFILE (char filename[]) {
     pita = fopen(filename, "r");
     if (pita != NULL) {
-        ADV();
+        ADVFILE();
     } else {
         printf("PATH TO FILE DOES NOT EXIST\n");
     }
@@ -29,6 +29,13 @@ void ADV() {
     retval = fscanf(pita,"%c",&CC);
     EOP = (CC == MARK);
     if (EOP) {
+       fclose(pita);
+    }
+}
+
+void ADVFILE() {
+    retval = fscanf(pita,"%c",&CC);
+    if (feof(pita)) {
        fclose(pita);
     }
 }

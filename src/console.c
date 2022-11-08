@@ -39,34 +39,55 @@ int scanint(){
     return val;
 }
 
-void scanParser(char *sInput, int *valInput){
-    STARTINPUT();
-    sInput = (char*)malloc(sizeof(char)* CKalimat.Length);
-    InputToString(CInput,sInput);
-    ADVINPUT();
+void scanParserStrInt(char* *sInput, int *valInput){
+    STARTINPUT2();
+    *sInput = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput);
+    ADVINPUT2();
     *valInput=InputtoInt(CInput);
+}
+
+void scanParser2Str(char* *sInput1, char* *sInput2){
+    STARTINPUT2();
+    *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput1);
+    ADVINPUT2();
+    *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput2);
+}
+
+boolean isSameString(char* a, char* b){
+    boolean isSame=true;
+    while (isSame==true && (*a!='\0' || *b!='\0')){
+        if (*a!=*b){
+            isSame=false;
+        } else{
+            a++;
+            b++;
+        }
+    }
+    return(isSame);
 }
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
-    ADVKALIMAT();
+    ADVKALIMATFILE();
     for (int i = 0; i < listgame->Neff; i++){
         listgame->TG[i] = CKalimat;
-        ADVKALIMAT();
+        ADVKALIMATFILE();
         }
-    
 }
 
 void readSavefile(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
-    ADVKALIMAT();
+    ADVKALIMATFILE();
     for (int i = 0; i < listgame->Neff; i++){
         listgame->TG[i] = CKalimat;
-        ADVKALIMAT();
+        ADVKALIMATFILE();
         }
 }
 
@@ -93,24 +114,24 @@ void save(char* filename, TabGame listgame, int n_game){
     } else{
         // masukin  listgame ke file
         char c=n_game + '0';
-        fputc(c, savePtr);
-        fputc('\n', savePtr);
+        fprintf(savePtr,"%c",c);
+        fprintf(savePtr,"%c",'\n');
         for (i=0;i<n_game;i++){
-            for (j=0;i<listgame.TG[i].Length;j++){
-                fputc(listgame.TG[i].TabKalimat[j], savePtr);
-                fputc('\n',savePtr);
+            for (j=1;j<=listgame.TG[i].Length;j++){
+                fprintf(savePtr,"%c",listgame.TG[i].TabKalimat[j]);
             } 
+            fprintf(savePtr,"%c",'\n');
         }
         fclose(savePtr);
     }
 }
 
-void createGame(int n_game, TabGame listgame) {
+void createGame(int *n_game, TabGame *listgame) {
     printf("Masukkan nama game yang akan ditambahkan: ");
     STARTKALIMAT();
-    listgame.TG[n_game] = CKalimat;
-    n_game++;
-    (listgame.Neff)++;
+    (*listgame).TG[*n_game] = CKalimat;
+    (*n_game)++;
+    ((*listgame).Neff)++;
     printf("\nGame berhasil ditambahkan\n");
 }
 
@@ -126,23 +147,23 @@ void listofgame(int n_game, TabGame listgame){
     }
 }
 
-void deleteGame(int n_game, TabGame listgame) {
+void deleteGame(int *n_game, TabGame *listgame) {
     int input, i;
     printf("Berikut adalah daftar game yang tersedia\n");
-    listofgame(n_game, listgame);
+    listofgame(*n_game, *listgame);
     printf("Masukkan nomor game yang akan dihapus: ");
     input = scanint();
     printf("\n\n");
-    if ((input > 5) && (input <= n_game)) {
-        if (input != n_game) {
-            for (i = input - 1; i < n_game; i++) {
-                listgame.TG[i] = listgame.TG[i + 1];
+    if ((input > 5) && (input <= *n_game)) {
+        if (input != *n_game) {
+            for (i = input - 1; i < *n_game; i++) {
+                (*listgame).TG[i] = (*listgame).TG[i + 1];
             }
-            (listgame.Neff)--;
-            n_game--;
+            ((*listgame).Neff)--;
+            (*n_game)--;
         } else {
-            (listgame.Neff)--;
-            n_game--;
+            ((*listgame).Neff)--;
+            (*n_game)--;
         }
         printf("Game berhasil dihapus\n");
     } else if ((input >= 0) && (input <= 5)) {
@@ -154,6 +175,7 @@ void deleteGame(int n_game, TabGame listgame) {
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     // menampilkan daftar antrian 
+    printf("Berikut adalah daftar antrian game-mu\n");
     displayQueueGame(*q);
     // menampilkan daftar game yang tersedia
     int input;
@@ -161,22 +183,40 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     listofgame(n_game, listgame);
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
     input = scanint();
+    printf("\n\n");
     while (input < 1 || input > n_game) {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
         input = scanint();
+        printf("\n\n");
     }
     if (isFullGame(*q)) {
         // asumsi daftar antrian mungkin penuh (sudah 100)
         printf("Daftar antrian sudah penuh");
     }
     else if (input <= n_game) {
-        enqueueGame(q, listgame.TG[input] );
+        enqueueGame(q, listgame.TG[input-1] );
         printf("Game berhasil ditambahkan kedalam daftar antrian.\n");
 }
 }
 
-void skipgame(QueueGame *q, int masukan[9]){
-    for(int i=0;i<masukan[9];i++){
+void playgame(int n_game, QueueGame *Q ){
+    printf("Berikut adalah daftar game-mu: \n");
+    displayQueueGame(*Q);
+    ElTypeG val;
+    dequeueGame(Q, &val);
+    char *stringval = (char*)malloc(sizeof(char)* val.Length);
+    KalimatToString(val,stringval);
+    if (isSameString(stringval,"DINER DA")){
+        mainDinerDash();
+    } else if (isSameString(stringval,"RNG")){
+        mainRNG();
+    } else{
+        printf("Game masih berada di tahap maintenance\n");
+    }
+}
+
+void skipgame(QueueGame *q, int masukan){
+    for(int i=0;i<masukan;i++){
         ElTypeG val;
         dequeueGame(q,&val);
     }

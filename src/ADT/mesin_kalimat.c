@@ -23,6 +23,17 @@ void SalinKalimat () {
     CKalimat.Length = i - 1;
 }
 
+void SalinKalimatFile () {
+    int i = 1;
+    while ((CC != EOF) && (CC != NEWLINE))
+    {
+        CKalimat.TabKalimat[i] = CC;
+        ADVFILE();
+        i++;
+    }
+    CKalimat.Length = i - 1;
+}
+
 void STARTKALIMAT () {
     START();
     IgnoreNewLine();
@@ -38,7 +49,7 @@ void STARTKALIMATFILE (char filename[]) {
     // seperti prosedur startKalimat tetapi dengan input namafile
     STARTFILE(filename);
     IgnoreNewLine();
-    if (CC == MARK) {
+    if (CC == EOF) {
         EndKalimat = true;
     } else {
         EndKalimat = false;
@@ -55,10 +66,19 @@ void ADVKALIMAT () {
     }
 }
 
-void KalimatToString (Kalimat K, char *S) {
-    for (int i = 1; i <= K.Length; i++)
+void ADVKALIMATFILE () {
+    IgnoreNewLine();
+    if (CC == EOF) {
+        EndKalimat = true;
+    } else {
+        SalinKalimat();
+    }
+}
+
+void KalimatToString (Kalimat K, char *S){
+    for (int i = 0; i < K.Length; i++)
     {
-        S[i-1] = K.TabKalimat[i];
+        S[i] = K.TabKalimat[i];
     }
     for (int i = K.Length; i < strlen(S); i++) 
     {

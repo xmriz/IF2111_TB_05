@@ -23,12 +23,16 @@ extern Kalimat CKalimat;
 void IgnoreNewLine();
 
 void SalinKalimat();
-          
+
+void SalinKalimatFile ();
+
 void STARTKALIMAT();
 
 void STARTKALIMATFILE(char filename[]);
 
 void ADVKALIMAT();
+
+void ADVKALIMATFILE();
 
 void KalimatToString (Kalimat K, char *S);
 

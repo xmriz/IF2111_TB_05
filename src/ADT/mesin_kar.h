@@ -21,4 +21,6 @@ void STARTFILE(char filename[]);
 void ADV();
 /* Pita dimajukan satu karakter */
 
+void ADVFILE();
+
 #endif
