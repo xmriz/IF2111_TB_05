@@ -194,6 +194,7 @@ void deleteGame(int *n_game, TabGame *listgame) {
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     // menampilkan daftar antrian 
+    printf("Berikut adalah daftar antrian game-mu\n");
     displayQueueGame(*q);
     // menampilkan daftar game yang tersedia
     int input;
