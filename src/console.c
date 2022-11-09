@@ -248,12 +248,12 @@ void playgame(int n_game, QueueGame *Q ){
             printf("Loading %s ...\n", stringval);
             delay(1);
             mainDinerDash();
-            printf("\nTerima kasih telah bermain %s\n", stringval);
+            printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else if (isSameString(stringval,"RNG")){
             printf("Loading %s ...\n", stringval);
             delay(1);
             mainRNG();
-            printf("\nTerima kasih telah bermain %s\n", stringval);
+            printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
         }
