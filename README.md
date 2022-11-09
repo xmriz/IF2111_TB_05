@@ -44,10 +44,10 @@ Kelompok 05
 Write the code below in your terminal, but make sure you're in main.c directory.
 ```
 {main} : directory (cd "D:\Coding\git-repo\Tubes_IF2111_Alstrukdat\IF2111_TB_05\src\")
-gcc -o main main.c console.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c ADT/mesin_input.c
+gcc -o main main.c console.c game/dinnerdash.c game/RNG.c ADT/queueDinnerDash.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c ADT/mesin_input.c
 
 {dinner dash} directory (cd "D:\Coding\git-repo\Tubes_IF2111_Alstrukdat\IF2111_TB_05\src\game\")
-gcc -o dinnerdash dinnerdash.c ../ADT/queueDinnerDash.c
+gcc -o dinnerdash dinnerdash.c ../console.c rng.c ../ADT/queueDinnerDash.c ../ADT/arrayGame.c ../ADT/mesin_kalimat.c ../ADT/mesin_kar.c ../ADT/queueGame.c ../ADT/mesin_input.c
 
 {RNG} directory (cd "D:\Coding\git-repo\Tubes_IF2111_Alstrukdat\IF2111_TB_05\src\game\")
 gcc -o RNG RNG.c ../console.c ../ADT/arrayGame.c ../ADT/mesin_kalimat.c ../ADT/mesin_kar.c ../ADT/queueGame.c
