@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "dinnerdash.h"
+#include "dinerdash.h"
 
 void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
 {

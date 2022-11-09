@@ -244,7 +244,7 @@ void playgame(int n_game, QueueGame *Q ){
         }
         stringval[i]='\0';
         printf("\n");
-        if (isSameString(stringval,"DINNER DASH")){
+        if (isSameString(stringval,"Diner DASH")){
             printf("Loading %s ...\n", stringval);
             delay(1);
             mainDinerDash();

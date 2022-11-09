@@ -1,7 +1,7 @@
-#ifndef DINNERDASH_H
-#define DINNERDASH_H
+#ifndef DINERDASH_H
+#define DINERDASH_H
 
-#include "../ADT/queueDinnerDash.h"
+#include "../ADT/queueDinerDash.h"
 #include <time.h>
 #include "../console.h"
 #include <stdlib.h>
