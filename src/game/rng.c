@@ -40,6 +40,6 @@ void mainRNG(){
         printf("Skor anda = 0 \n");
     }
     else{
-        printf("Skor anda = %d ", 1000-(count*100));
+        printf("Skor anda = %d ", 1000-((count-1)*100));
     }
 }
