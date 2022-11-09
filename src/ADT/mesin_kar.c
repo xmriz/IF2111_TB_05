@@ -22,6 +22,7 @@ void STARTFILE (char filename[]) {
         ADVFILE();
     } else {
         printf("\nFile tidak ditemukan!\n");
+        printf("---------------------------------------------\n");
         exit(0);
     }
 }

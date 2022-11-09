@@ -77,15 +77,40 @@ int main(){
             char *filename = strconcat(inputload, input2);
             save(filename, listgame, n_game);
         } else if (isSameString(input1,"CREATE")){
-            createGame(&n_game, &listgame);
+            input1 = strconcat(input1, input2);
+            if (isSameString(input1, "CREATEGAME")){
+                createGame(&n_game, &listgame);
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1, "LIST")){
-            listofgame(n_game,listgame);
+            input1 = strconcat(input1, input2);
+            if (isSameString(input1, "LISTGAME")){
+                listofgame(n_game, listgame);
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"DELETE")){
-            deleteGame(&n_game,&listgame);
+            input1 = strconcat(input1, input2);
+            if (isSameString(input1, "DELETEGAME")){
+                deleteGame(&n_game, &listgame);
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"QUEUE")){
-            queuegame(&QGame, n_game,listgame);
+            input1 = strconcat(input1, input2);
+            if (isSameString(input1, "QUEUEGAME")){
+                queuegame(&QGame, n_game, listgame);
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"PLAY")){
-            playgame(n_game, &QGame);
+            input1 = strconcat(input1, input2);
+            if (isSameString(input1, "PLAYGAME")){
+                playgame(n_game, &QGame);
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"SKIPGAME")){
             skipgame(&QGame,strToInt2(input2),n_game);
         } else if (isSameString(input1,"QUIT")){

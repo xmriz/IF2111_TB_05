@@ -25,7 +25,7 @@ void mainmenu(){
     printf("2. LOAD [file name]\n");
     printf("3. HELP\n");
     printf("0. QUIT\n");
-    printf("---------------------------------------------\n");
+    printf("---------------------------------------------");
 }
 
 void menu(){
@@ -74,7 +74,7 @@ void scanParserStartStr(char* *sInput1, char* *sInput2){
         ADVINPUT2();
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
-    }
+    } 
 }
 
 void scanParserStr(char* *sInput1, char* *sInput2){
@@ -142,7 +142,7 @@ void save(char* filename, TabGame listgame, int n_game){
     int i,j;
     savePtr =  fopen(filename, "w");
     if ((savePtr)==NULL){
-        printf("Tidak bisa membuka file. ");
+        printf("\nTidak bisa membuka file.\n");
     } else{
         // masukin  listgame ke file
         char c=n_game + '0';
@@ -156,7 +156,7 @@ void save(char* filename, TabGame listgame, int n_game){
         }
         fprintf(savePtr,"%c",';');
         fclose(savePtr);
-        printf("Berhasil menyimpan state ke path %s.\n", filename);
+        printf("\nBerhasil menyimpan state ke path %s.\n", filename);
     }
 }
 
@@ -186,7 +186,7 @@ void deleteGame(int *n_game, TabGame *listgame) {
     listofgame(*n_game, *listgame);
     printf("Masukkan nomor game yang akan dihapus: ");
     input = scanint();
-    printf("\n\n");
+    printf("\n");
     if ((input > 5) && (input <= *n_game)) {
         if (input != *n_game) {
             for (i = input - 1; i < *n_game; i++) {
@@ -198,11 +198,11 @@ void deleteGame(int *n_game, TabGame *listgame) {
             ((*listgame).Neff)--;
             (*n_game)--;
         }
-        printf("Game berhasil dihapus\n");
+        printf("Game berhasil dihapus.\n");
     } else if ((input >= 0) && (input <= 5)) {
-        printf("Game gagal dihapus\n");
+        printf("Game gagal dihapus!\n");
     } else {
-        printf("Nomor game tidak valid\n");
+        printf("Nomor game tidak valid!\n");
     }
 }
 
@@ -232,7 +232,6 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 }
 
 void playgame(int n_game, QueueGame *Q ){
-    printf("Berikut adalah daftar game-mu: \n");
     displayQueueGame(*Q);
     if (!isEmptyGame(*Q)){
         ElTypeG val;
@@ -257,6 +256,8 @@ void playgame(int n_game, QueueGame *Q ){
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
         }
+    } else {
+        printf("\nTidak ada game yang dapat dimainkan. Queue game terlebih dahulu!\n");
     }
 }
 
@@ -271,6 +272,8 @@ void skipgame(QueueGame *q, int masukan, int n_game){
 void quit(){
     printf("Anda keluar dari game BNMO.\n");
     printf("Bye bye ...\n");
+    printf("--------------- TERIMA KASIH ---------------\n");
+    printf("---------- TELAH MENGGUNAKAN BNMO ----------\n");
     exit(0);
 }
 
@@ -279,6 +282,7 @@ void helpstart() {
     printf("LOAD -> Pilih filename yang berisi list game yang ingin dimainkan.\n");
     printf("QUIT -> Memungkinkanmu keluar dari program.\n");
     printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
+    printf("---------------------------------------------");
 }
 
 void help() {
@@ -295,7 +299,8 @@ void help() {
 
 void commandlain(){
     //Command selain yang disebutkan di atas tidak valid. Keluar dari program
-    printf("Command tidak dikenali, silahkan memasukkan command yang valid.\n");
+    printf("\nCommand tidak dikenali, silahkan memasukkan command yang valid.");
+    printf("\n--------------------------------------------");
 }
 
 void delay(int number_of_seconds) {
