@@ -54,7 +54,7 @@ void dequeueGame(QueueGame *q, ElTypeG *val){
         IDX_HEADG(*q) = IDX_UNDEF;
         IDX_TAILG(*q) = IDX_UNDEF;
     } else {
-        for (int i=0;i<=IDX_TAILG(*q);i++){
+        for (int i=0;i<IDX_TAILG(*q);i++){
             q->bufferG[i]=q->bufferG[i+1];
         }
         IDX_TAILG(*q)--;

@@ -51,7 +51,7 @@ void scanParserStr(char* *sInput1, char* *sInput2){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
-    if (isSameString(*sInput1, "LOAD")){
+    if (isSameString(*sInput1, "LOAD") || isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAMEE")){
         ADVINPUT2();
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
@@ -124,7 +124,9 @@ void save(char* filename, TabGame listgame, int n_game){
             } 
             fprintf(savePtr,"%c",'\n');
         }
+        fprintf(savePtr,"%c",';');
         fclose(savePtr);
+        printf("Berhasil menyimpan state ke path %s.\n", filename);
     }
 }
 
@@ -184,7 +186,7 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     listofgame(n_game, listgame);
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
     input = scanint();
-    printf("\n\n");
+    printf("\n");
     while (input < 1 || input > n_game) {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
         input = scanint();
@@ -203,28 +205,32 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 void playgame(int n_game, QueueGame *Q ){
     printf("Berikut adalah daftar game-mu: \n");
     displayQueueGame(*Q);
-    ElTypeG val;
-    dequeueGame(Q, &val);
-    char *stringval = (char*)malloc(sizeof(char)* val.Length);
-    for (int i = 0; i < val.Length; i++){
-        stringval[i] = val.TabKalimat[i+1];
-    }
-    printf("Game %s dimainkan\n", stringval);
-    if (isSameString(stringval,"DINNER DASH")){
-        mainDinerDash();
-    } else if (isSameString(stringval,"RNG")){
-        mainRNG();
-    } else{
-        printf("Game masih berada di tahap maintenance\n");
+    if (!isEmptyGame(*Q)){
+        ElTypeG val;
+        dequeueGame(Q, &val);
+        char *stringval = (char*)malloc(sizeof(char)* val.Length);
+        int i;
+        for (i = 0; i < val.Length; i++){
+            stringval[i] = val.TabKalimat[i+1];
+        }
+        stringval[i]='\0';
+        printf("Game %s dimainkan\n", stringval);
+        if (isSameString(stringval,"DINNER DASH")){
+            mainDinerDash();
+        } else if (isSameString(stringval,"RNG")){
+            mainRNG();
+        } else{
+            printf("Game masih berada di tahap maintenance\n");
+        }
     }
 }
 
-void skipgame(QueueGame *q, int masukan){
-    for(int i=0;i<masukan;i++){
-        ElTypeG val;
-        dequeueGame(q,&val);
+void skipgame(QueueGame *q, int masukan, int n_game){
+    for(int i=1;i<=masukan;i++){
+        ElTypeG v;
+        dequeueGame(q,&v);
     }
-    // playgame();   
+    playgame(n_game, q);   
  }
 
 void quit(){
@@ -249,5 +255,5 @@ void help() {
 
 void commandlain(){
     //Command selain yang disebutkan di atas tidak valid. Keluar dari program
-    printf("Command tidak dikenali, silahkan memasukkan command yang valid.");
+    printf("Command tidak dikenali, silahkan memasukkan command yang valid.\n");
 }
