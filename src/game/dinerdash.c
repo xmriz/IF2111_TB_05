@@ -100,7 +100,7 @@ void mainDinerDash()
         if ((command[0] == 'C') && (command[1] == 'O') && (command[2] == 'O') && (command[3] == 'K'))
         {
             found = false;
-            for (i = IDX_HEAD(antrian); i < (IDX_HEAD(antrian) + length(antrian)) % CAPACITY; i++)
+            for (i = IDX_HEAD(antrian); i < IDX_HEAD(antrian) + length(antrian); i++)
             {
                 if (ref == (antrian.buffer[i]).makanan)
                 {
