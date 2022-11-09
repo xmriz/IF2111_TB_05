@@ -126,13 +126,13 @@ void start(TabGame *listgame, int *n_game){
     MakeEmptyGame(listgame);
     char filepath[] = "..\\data\\config.txt";
     readConfig(filepath, listgame, n_game);
-    printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
+    printf("\nFile konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
 void load(char filename[], TabGame *listgame, int *n_game){
     MakeEmptyGame(listgame);
     readSavefile(filename, listgame, n_game); //state listgame sm n_game ngikutin file yg di load
-    printf("Load file berhasil dibaca. BNMO berhasil dijalankan.\n");
+    printf("\nLoad file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
 void save(char* filename, TabGame listgame, int n_game){

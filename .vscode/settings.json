@@ -4,6 +4,7 @@
         "console.h": "c",
         "stdio.h": "c",
         "queuedinnerdash.h": "c",
-        "mesin_kalimat.h": "c"
+        "mesin_kalimat.h": "c",
+        "_mingw_print_push.h": "c"
     }
 }

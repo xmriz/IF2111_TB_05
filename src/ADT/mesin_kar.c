@@ -21,7 +21,8 @@ void STARTFILE (char filename[]) {
     if (pita != NULL) {
         ADVFILE();
     } else {
-        printf("PATH TO FILE DOES NOT EXIST\n");
+        printf("File tidak ditemukan!\n");
+        exit(0);
     }
 }
 
