@@ -4,10 +4,6 @@
 
 
 int main(){
-// display welcoming message
-    display_welcoming();
-    // display menu
-    menu();
     // char *nama = scanstring();
     // printf("%s\n", nama);
     // int x = scanint();
@@ -28,21 +24,27 @@ int main(){
     // printf("%s", strconcat(nama, nama2));
 
 
+
+// -------------------------------------------------
+    // display welcoming message
+    display_welcoming();
+    // display menu
+    mainmenu();
+
     TabGame listgame;
     QueueGame QGame;
     CreateQueueGame(&QGame);
     int n_game;
     
 
-
-
     boolean isStart = false;
 
     while (!isStart){
+        printf("\n");
         printf("ENTER COMMAND: ");
         char *command;
         char *inputfile;
-        scanParserStr(&command, &inputfile);
+        scanParserStartStr(&command, &inputfile);
         if (isSameString(command,"START")){
             start(&listgame, &n_game);
             isStart = true;
@@ -51,17 +53,24 @@ int main(){
             char *filename = strconcat(inputload, inputfile);
             load(filename, &listgame, &n_game);
             isStart = true;
+        } else if (isSameString(command,"HELP")){
+            helpstart();
+        } else if (isSameString(command,"QUIT")){
+            quit();
         } else {
             commandlain();
         }
     }
 
+    printf("\n");
+    menu();
     boolean state=true;
     
     while (state==true){
+        printf("\n");
         char *input1;
         char *input2;
-        printf("Masukkan command: \n");
+        printf("ENTER COMMAND: ");
         scanParserStr(&input1,&input2);
         if (isSameString(input1, "SAVE")){
             char *inputload = "../data/";
@@ -77,7 +86,7 @@ int main(){
             queuegame(&QGame, n_game,listgame);
         } else if (isSameString(input1,"PLAY")){
             playgame(n_game, &QGame);
-        } else if (isSameString(input1,"SKIPGAMEE")){
+        } else if (isSameString(input1,"SKIPGAME")){
             skipgame(&QGame,strToInt2(input2),n_game);
         } else if (isSameString(input1,"QUIT")){
             quit();
@@ -87,6 +96,8 @@ int main(){
             commandlain();
         }
     }
+// --------------------------------------------------------
+
 
 
 

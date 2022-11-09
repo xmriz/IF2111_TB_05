@@ -18,12 +18,29 @@ void display_welcoming(){
     }
 }
 
-void menu(){
+void mainmenu(){
     printf("----------------- MAIN MENU -----------------\n");
     printf("1. START\n");
-    printf("2. LOAD\n");
+    printf("2. LOAD [file name]\n");
+    printf("3. HELP\n");
+    printf("0. QUIT\n");
     printf("---------------------------------------------\n");
 }
+
+void menu(){
+    printf("------------------- MENU -------------------\n");
+    printf("1. SAVE [file name]\n");
+    printf("2. CREATE GAME\n");
+    printf("3. LIST GAME\n");
+    printf("4. DELETE GAME\n");
+    printf("6. QUEUE GAME\n");
+    printf("7. PLAY GAME\n");
+    printf("8. SKIPGAME [jumlah skip]\n");
+    printf("9. HELP\n");
+    printf("0. QUIT\n");
+    printf("---------------------------------------------\n");
+}
+
 
 char *scanstring(){
     STARTINPUT();
@@ -47,11 +64,22 @@ void scanParserStrInt(char* *sInput, int *valInput){
     *valInput=InputtoInt(CInput);
 }
 
+void scanParserStartStr(char* *sInput1, char* *sInput2){
+    STARTINPUT2();
+    *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput1);
+    if (isSameString(*sInput1, "LOAD")){
+        ADVINPUT2();
+        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+        InputToString(CInput,*sInput2);
+    }
+}
+
 void scanParserStr(char* *sInput1, char* *sInput2){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
-    if (isSameString(*sInput1, "LOAD") || isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAMEE")){
+    if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAMEE")){
         ADVINPUT2();
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
@@ -239,18 +267,23 @@ void quit(){
     exit(0);
 }
 
+void helpstart() {
+    printf("START -> Untuk memulai petualanganmu bersama BNMO! Memungkinkan file konfigurasi default yang berisi list game dimainkan\n");
+    printf("LOAD -> Pilih filename yang berisi list game yang ingin dimainkan.\n");
+    printf("QUIT -> Memungkinkanmu keluar dari program.\n");
+    printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
+}
+
 void help() {
-    printf("START - Untuk memulai petualanganmu bersama BNMO! Memungkinkan file konfigurasi default yang berisi list game dimainkan\n");
-    printf("LOAD - Pilih filename yang berisi list game yang ingin dimainkan.\n");
-    printf("SAVE - Simpan state game-mu dengan command ini!\n");
-    printf("CREATEGAME - Ingin menambahkan game baru? Command ini jawabannya.\n");
-    printf("LISTGAME - Untuk melihat daftar game yang tersedia.\n");
-    printf("DELETEGAME - Hapus game yang kamu tidak suka dengan command ini.\n");
-    printf("QUEUEGAME - Lihat dan tambahkan permainan yang ingin kamu mainkan ke dalam list!\n");
-    printf("PLAYGAME - Mulai memainkan game sesukamu dengan command ini!\n");
-    printf("SKIPGAME - Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
-    printf("QUIT - Memungkinkanmu keluar dari program.\n");
-    printf("HELP - Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
+    printf("SAVE -> Simpan state game-mu dengan command ini!\n");
+    printf("CREATE GAME -> Ingin menambahkan game baru? Command ini jawabannya.\n");
+    printf("LIST GAME -> Untuk melihat daftar game yang tersedia.\n");
+    printf("DELETE GAME -> Hapus game yang kamu tidak suka dengan command ini.\n");
+    printf("QUEUE GAME -> Lihat dan tambahkan permainan yang ingin kamu mainkan ke dalam list!\n");
+    printf("PLAY GAME -> Mulai memainkan game sesukamu dengan command ini!\n");
+    printf("SKIP GAME -> Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
+    printf("QUIT -> Memungkinkanmu keluar dari program.\n");
+    printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
 }
 
 void commandlain(){

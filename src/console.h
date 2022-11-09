@@ -22,7 +22,11 @@ int scanint();
 
 void scanParserStrInt(char* *sInput, int *valInput);
 
+void scanParserStartStr(char* *sInput1, char* *sInput2);
+
 void scanParserStr(char* *sInput1, char* *sInput2);
+
+void mainmenu();
 
 void menu();
 
@@ -47,6 +51,8 @@ void playgame(int n_game, QueueGame *Q );
 void skipgame(QueueGame *q, int masukan, int n_game);
 
 void quit();
+
+void helpstart();
 
 void help();
 
