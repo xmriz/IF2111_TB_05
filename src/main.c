@@ -4,27 +4,6 @@
 
 
 int main(){
-    // char *nama = scanstring();
-    // printf("%s\n", nama);
-    // int x = scanint();
-    // printf("%d\n", x);
-    // // start BNMO
-    // char* nama;
-    // char *nama2;
-    // scanParserStr(&nama,&nama2);
-    // printf("%s\n%s", nama, nama2);
-    // printf("%d\n", x);
-
-    // printf("%d", isSameString(nama,"tes"));
-
-    // char *nama = "rizki";
-    // char *nama2 = "ahmad";
-    // printf("%s\n%s\n", nama, nama2);
-    // printf("%d", strlength(nama));
-    // printf("%s", strconcat(nama, nama2));
-
-
-
 // -------------------------------------------------
     // display welcoming message
     display_welcoming();
@@ -122,25 +101,5 @@ int main(){
         }
     }
 // --------------------------------------------------------
-
-
-
-
-    // start(&listgame, &n_game);
-    // load("../data/savefile1.txt", &listgame, &n_game);
-    // queuegame(&QGame, n_game, listgame);
-    // playgame(n_game, &QGame);
-    // playgame(n_game, &QGame);
-    
-
-
-    //     }
-    // }
-    // listofgame(n_game,listgame);
-    // load("../data/savefile1.txt", &listgame, &n_game);
-    // displayQueueGame(QGame);
-    // help();
-    // quit();
     return 0;
 }
-
