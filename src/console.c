@@ -217,8 +217,7 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     printf("\n");
     while (input < 1 || input > n_game) {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
-        input = scanint();
-        printf("\n\n");
+        break;
     }
     if (isFullGame(*q)) {
         // asumsi daftar antrian mungkin penuh (sudah 100)
@@ -242,13 +241,15 @@ void playgame(int n_game, QueueGame *Q ){
             stringval[i] = val.TabKalimat[i+1];
         }
         stringval[i]='\0';
-        printf("Game %s dimainkan\n", stringval);
+        printf("\n");
         if (isSameString(stringval,"DINNER DASH")){
+            printf("Loading %s ...\n", stringval);
             mainDinerDash();
         } else if (isSameString(stringval,"RNG")){
+            printf("Loading %s ...\n", stringval);
             mainRNG();
         } else{
-            printf("Game masih berada di tahap maintenance\n");
+            printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
         }
     }
 }
