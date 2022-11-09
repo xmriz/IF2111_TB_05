@@ -69,7 +69,7 @@ void dequeueGame(QueueGame *q, ElTypeG *val){
 void displayQueueGame(QueueGame q){
     int i,j;
     if (isEmptyGame(q)){
-        printf("Antrian game kosong\n");
+        printf(" -> Antrian game kosong\n");
     } else {
         printf("Berikut adalah daftar antrian game-mu\n");
         for (i=IDX_HEADG(q); i!=IDX_TAILG(q); i=(i+1)%CAPACITY){
