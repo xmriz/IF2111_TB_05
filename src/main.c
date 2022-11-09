@@ -67,7 +67,7 @@ int main(){
     boolean state=true;
     
     while (state==true){
-        printf("\n");
+        printf("---------------------------------------------\n");
         char *input1;
         char *input2;
         printf("ENTER COMMAND: ");
