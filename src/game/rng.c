@@ -12,7 +12,7 @@ void tebakan (int x, int random){
         printf("Lebih kecil\n");
     }
     else{
-        printf("Ya, X adalah %d",x);
+        printf("Ya, X adalah %d\n",x);
         }  
 }
 

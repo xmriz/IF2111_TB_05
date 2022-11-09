@@ -59,3 +59,5 @@ void help();
 void commandlain();
 
 boolean isSameString(char* a, char* b);
+
+void delay(int number_of_seconds);

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "console.h"
 
 void welcoming(FILE *ff) {
@@ -28,6 +29,7 @@ void mainmenu(){
 }
 
 void menu(){
+    printf("--------------------------------------------\n");
     printf("------------------- MENU -------------------\n");
     printf("1. SAVE [file name]\n");
     printf("2. CREATE GAME\n");
@@ -79,7 +81,7 @@ void scanParserStr(char* *sInput1, char* *sInput2){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
-    if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAMEE")){
+    if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAME")){
         ADVINPUT2();
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
@@ -244,10 +246,14 @@ void playgame(int n_game, QueueGame *Q ){
         printf("\n");
         if (isSameString(stringval,"DINNER DASH")){
             printf("Loading %s ...\n", stringval);
+            delay(1);
             mainDinerDash();
+            printf("\nTerima kasih telah bermain %s\n", stringval);
         } else if (isSameString(stringval,"RNG")){
             printf("Loading %s ...\n", stringval);
+            delay(1);
             mainRNG();
+            printf("\nTerima kasih telah bermain %s\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
         }
@@ -290,4 +296,13 @@ void help() {
 void commandlain(){
     //Command selain yang disebutkan di atas tidak valid. Keluar dari program
     printf("Command tidak dikenali, silahkan memasukkan command yang valid.\n");
+}
+
+void delay(int number_of_seconds) {
+    // Converting time into milli_seconds
+    int milli_seconds = 1000 * number_of_seconds;
+    // Storing start time
+    clock_t start_time = clock();
+    // looping till required time is not achieved
+    while (clock() < start_time + milli_seconds);
 }
