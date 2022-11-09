@@ -42,7 +42,7 @@ void mainDinerDash()
 {
     /* KAMUS */
     Queue antrian, memasak, makanan_siap, served;
-    int saldo, pelanggan, i, ref, count;
+    int saldo, pelanggan, i, j, ref, count;
     char *command;
     ElType val;
     boolean found, check;
@@ -105,24 +105,24 @@ void mainDinerDash()
                 if (ref == (antrian.buffer[i]).makanan)
                 {
                     printf("Berhasil memasak M%d\n", (antrian.buffer[i]).makanan);
-                    for (i = 0; i < length(makanan_siap); i++)
+                    for (j = 0; j < length(makanan_siap); j++)
                     {
-                        ((makanan_siap.buffer[i]).ketahanan)--;
-                        if ((makanan_siap.buffer[i]).ketahanan == 0)
+                        ((makanan_siap.buffer[j]).ketahanan)--;
+                        if ((makanan_siap.buffer[j]).ketahanan == 0)
                         {
-                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[j]).makanan);
                         }
                     }
                     count = 0;
-                    for (i = 0; i < length(makanan_siap); i++)
+                    for (j = 0; j < length(makanan_siap); j++)
                     {
-                        if ((makanan_siap.buffer[i]).ketahanan == 0)
+                        if ((makanan_siap.buffer[j]).ketahanan == 0)
                         {
                             count++;
                         }
-                        if ((count != 0) && (i != length(makanan_siap) - 1))
+                        if ((count != 0) && (j != length(makanan_siap) - 1))
                         {
-                            makanan_siap.buffer[i - count + 1] = makanan_siap.buffer[i + 1];
+                            makanan_siap.buffer[j - count + 1] = makanan_siap.buffer[j + 1];
                         }
                     }
                     if (length(makanan_siap) == count)
@@ -135,15 +135,15 @@ void mainDinerDash()
                         IDX_TAIL(makanan_siap) = (IDX_TAIL(makanan_siap) - count) % CAPACITY;
                     }
 
-                    for (i = 0; i < length(memasak); i++)
+                    for (j = 0; j < length(memasak); j++)
                     {
-                        if (i < 5)
+                        if (j < 5)
                         {
-                            ((memasak.buffer[i]).durasi)--;
-                            if ((memasak.buffer[i]).durasi == 0)
+                            ((memasak.buffer[j]).durasi)--;
+                            if ((memasak.buffer[j]).durasi == 0)
                             {
-                                enqueue(&makanan_siap, memasak.buffer[i]);
-                                printf("Makanan M%d telah selesai dimasak\n", (memasak.buffer[i]).makanan);
+                                enqueue(&makanan_siap, memasak.buffer[j]);
+                                printf("Makanan M%d telah selesai dimasak\n", (memasak.buffer[j]).makanan);
                             }
                         }
                         else
@@ -152,15 +152,15 @@ void mainDinerDash()
                         }
                     }
                     count = 0;
-                    for (i = 0; i < length(memasak); i++)
+                    for (j = 0; j < length(memasak); j++)
                     {
-                        if ((memasak.buffer[i]).durasi == 0)
+                        if ((memasak.buffer[j]).durasi == 0)
                         {
                             count++;
                         }
-                        if ((count != 0) && (i != length(memasak) - 1))
+                        if ((count != 0) && (j != length(memasak) - 1))
                         {
-                            memasak.buffer[i - count + 1] = memasak.buffer[i + 1];
+                            memasak.buffer[j - count + 1] = memasak.buffer[j + 1];
                         }
                     }
                     if (length(memasak) == count)
@@ -309,6 +309,7 @@ void mainDinerDash()
         }
         else if ((command[0] == 'S') && (command[1] == 'K') && (command[2] == 'I') && (command[3] == 'P'))
         {
+            printf("Kamu tidak melakukan apa-apa di putaran ini!\n");
             printf("==========================================================\n\n");
             for (i = 0; i < length(makanan_siap); i++)
             {
