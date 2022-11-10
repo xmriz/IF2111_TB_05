@@ -51,9 +51,9 @@ int main(){
         char *input2;
         printf("ENTER COMMAND: ");
         scanParserStr(&input1,&input2);
-        // if (!isSameString(input1,"SAVE") && !isSameString(input1,"HELP") && !isSameString(input1,"QUIT") && !isSameString(input1,"SKIPGAME")){
-        //     input1=strconcat(input1,input2);
-        // }
+        if (!isSameString(input1,"SAVE") && !isSameString(input1,"HELP") && !isSameString(input1,"QUIT") && !isSameString(input1,"SKIPGAME")){
+            input1=strconcat(input1,input2);
+        }
         if (isSameString(input1, "SAVE")){
             char *inputload = "../data/";
             char *filename = strconcat(inputload, input2);
