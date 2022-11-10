@@ -58,7 +58,7 @@ int main(){
     menu();
     boolean state=true;
     
-    while (state==true){
+ while (state==true){
         printf("---------------------------------------------\n");
         char *input1;
         char *input2;

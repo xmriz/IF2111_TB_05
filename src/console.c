@@ -104,7 +104,7 @@ void scanParserStr(char* *sInput1, char* *sInput2, char* *sInput3){
         }
     } else {
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
-        InputToString(CInput,*sInput3);
+        InputToString(CInput,*sInput2);
     }
     while (CInput.Length != 0){
         ADVINPUT2();

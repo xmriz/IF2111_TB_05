@@ -27,21 +27,22 @@ void mainjodoh(){
     printf ("Masukkan jenis kelamin kamu (cowo/cewe): ");
     char *jk = scanstring();
     if (isSameString(jk,"cowo")){
-        startcowo(&listjodoh, &n_jodoh);
-    }
+            startcowo(&listjodoh, &n_jodoh);
+        }
     else if (isSameString(jk,"cewe")){
-        startcewe(&listjodoh, &n_jodoh);
-    }
+            startcewe(&listjodoh, &n_jodoh);
+        }
     else{
-        printf("Masukkan jenis kelamin yang benar!\n");
-    }
+            printf("Masukkan jenis kelamin yang benar!\n");
+        }
+    
     printf("Selamat datang %s!\n", nama);
     int random=(rand()%n_jodoh)+1;
     printf("Mencari jodohmu ....\n");
-    delay(10);
+    delay(3);
     printf("Jodohmu adalah ");
     for (int j = 0; j <= listjodoh.TG[random].Length; j++){
         printf("%c", listjodoh.TG[random].TabKalimat[j]);
-    }
+        }
     printf("\n");
-}
+    }
