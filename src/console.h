@@ -26,6 +26,8 @@ void scanParserStartStr(char* *sInput1, char* *sInput2);
 
 void scanParserStr(char* *sInput1, char* *sInput2);
 
+void scanParserStr2(char* *sInput1, char* *sInput2);
+
 void mainmenu();
 
 void menu();
