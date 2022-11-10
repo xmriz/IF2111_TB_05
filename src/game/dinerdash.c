@@ -97,7 +97,7 @@ void mainDinerDash()
         }
         printf("\n\n");
 
-        if ((command[0] == 'C') && (command[1] == 'O') && (command[2] == 'O') && (command[3] == 'K'))
+        if ((command[0] == 'C') && (command[1] == 'O') && (command[2] == 'O') && (command[3] == 'K') && (command[4] == ' ') && (command[5] == 'M'))
         {
             found = false;
             for (i = IDX_HEAD(antrian); i < IDX_HEAD(antrian) + length(antrian); i++)
@@ -110,7 +110,7 @@ void mainDinerDash()
                         ((makanan_siap.buffer[j]).ketahanan)--;
                         if ((makanan_siap.buffer[j]).ketahanan == 0)
                         {
-                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[j]).makanan);
+                            printf("Makanan M%d telah hangus, segera ulangi memasak!\n", (makanan_siap.buffer[j]).makanan);
                         }
                     }
                     count = 0;
@@ -190,7 +190,7 @@ void mainDinerDash()
             }
             printf("==========================================================\n\n");
         }
-        else if ((command[0] == 'S') && (command[1] == 'E') && (command[2] == 'R') && (command[3] == 'V') && (command[4] == 'E'))
+        else if ((command[0] == 'S') && (command[1] == 'E') && (command[2] == 'R') && (command[3] == 'V') && (command[4] == 'E') && (command[5] == ' ') && (command[6] == 'M'))
         {
             if (ref == HEAD(antrian).makanan)
             {
@@ -226,7 +226,7 @@ void mainDinerDash()
                         ((makanan_siap.buffer[i]).ketahanan)--;
                         if ((makanan_siap.buffer[i]).ketahanan == 0)
                         {
-                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                            printf("Makanan M%d telah hangus, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
                         }
                     }
                     count = 0;
@@ -307,7 +307,7 @@ void mainDinerDash()
             }
             printf("==========================================================\n\n");
         }
-        else if ((command[0] == 'S') && (command[1] == 'K') && (command[2] == 'I') && (command[3] == 'P'))
+        else if ((command[0] == 'S') && (command[1] == 'K') && (command[2] == 'I') && (command[3] == 'P') && (command[4] == '\0'))
         {
             printf("Kamu tidak melakukan apa-apa di putaran ini!\n");
             printf("==========================================================\n\n");
@@ -316,7 +316,7 @@ void mainDinerDash()
                 ((makanan_siap.buffer[i]).ketahanan)--;
                 if ((makanan_siap.buffer[i]).ketahanan == 0)
                 {
-                    printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                    printf("Makanan M%d telah hangus, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
                 }
             }
             count = 0;
