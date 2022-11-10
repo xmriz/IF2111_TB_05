@@ -14,7 +14,7 @@ void IgnoreNewline(){
 }
 
 void IgnoreBlank(){
-        while (CC==BLANK || CC == NEWLINE)
+        while (CC==BLANK)
     {
         ADV();
     }
@@ -22,7 +22,7 @@ void IgnoreBlank(){
 
 void SalinInput(){
     int i = 0;
-    while ((CC != MARK) && (CC!=NEWLINE))
+    while ((CC != NEWLINE) && (CC!=NEWLINE))
     {
         CInput.TabInput[i] = CC;
         ADV();
@@ -33,7 +33,7 @@ void SalinInput(){
 
 void SalinInput2(){
     int i = 0;
-    while ((CC != MARK) && (CC!=NEWLINE) && (CC!=BLANK))
+    while ((CC != NEWLINE) && (CC!=NEWLINE) && (CC!=BLANK))
     {
         CInput.TabInput[i] = CC;
         ADV();
@@ -45,7 +45,7 @@ void SalinInput2(){
 void STARTINPUT(){
     START();
     IgnoreNewline();
-    if (CC == MARK) {
+    if (CC == NEWLINE) {
         EndInput = true;
     } else {
         EndInput = false;
@@ -56,7 +56,7 @@ void STARTINPUT(){
 
 void ADVINPUT(){
     IgnoreNewline();
-    if (CC == MARK) {
+    if (CC == NEWLINE) {
         EndInput = true;
     } else {
         SalinInput();
@@ -66,7 +66,7 @@ void ADVINPUT(){
 void STARTINPUT2(){
     START();
     IgnoreBlank();
-    if (CC == MARK) {
+    if (CC == NEWLINE) {
         EndInput = true;
     } else {
         EndInput = false;
@@ -76,8 +76,9 @@ void STARTINPUT2(){
 
 void ADVINPUT2(){
     IgnoreBlank();
-    if (CC == MARK) {
+    if (CC == NEWLINE) {
         EndInput = true;
+        CInput.Length = 0;
     } else {
         SalinInput2();
     }

@@ -24,18 +24,31 @@ int main(){
         char *command;
         char *inputfile;
         scanParserStartStr(&command, &inputfile);
+
         if (isSameString(command,"START")){
-            start(&listgame, &n_game);
-            isStart = true;
+            if (*inputfile  == '\0'){
+                start(&listgame, &n_game);
+                isStart = true;
+            } else {
+                commandlain();
+            }
         } else if (isSameString(command,"LOAD")){
             char *inputload = "../data/";
             char *filename = strconcat(inputload, inputfile);
             load(filename, &listgame, &n_game);
             isStart = true;
         } else if (isSameString(command,"HELP")){
-            helpstart();
+            if (*inputfile  == '\0'){
+                helpstart();
+            } else {
+                commandlain();
+            }
         } else if (isSameString(command,"QUIT")){
-            quit();
+            if (*inputfile  == '\0'){
+                quit();
+            } else {
+                commandlain();
+            }
         } else {
             commandlain();
         }
@@ -49,53 +62,95 @@ int main(){
         printf("---------------------------------------------\n");
         char *input1;
         char *input2;
+        char *input3;
         printf("ENTER COMMAND: ");
-        scanParserStr(&input1,&input2);
+        scanParserStr(&input1,&input2,&input3);
+
         if (isSameString(input1, "SAVE")){
-            char *inputload = "../data/";
-            char *filename = strconcat(inputload, input2);
-            save(filename, listgame, n_game);
+            if (*input3 == '\0'){
+                char *inputsave = "../data/";
+                char *filename = strconcat(inputsave, input2);
+                save(filename, listgame, n_game);
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"CREATE")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "CREATEGAME")){
-                createGame(&n_game, &listgame);
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "CREATEGAME")){
+                    createGame(&n_game, &listgame);
+                } else {
+                    commandlain();
+                }
             } else {
                 commandlain();
             }
         } else if (isSameString(input1, "LIST")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "LISTGAME")){
-                listofgame(n_game, listgame);
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "LISTGAME")){
+                    listofgame(n_game, listgame);
+                } else {
+                    commandlain();
+                }
             } else {
                 commandlain();
             }
         } else if (isSameString(input1,"DELETE")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "DELETEGAME")){
-                deleteGame(&n_game, &listgame);
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "DELETEGAME")){
+                    deleteGame(&n_game, &listgame);
+                } else {
+                    commandlain();
+                }
             } else {
                 commandlain();
             }
         } else if (isSameString(input1,"QUEUE")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "QUEUEGAME")){
-                queuegame(&QGame, n_game, listgame);
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "QUEUEGAME")){
+                    queuegame(&QGame, n_game, listgame);
+                } else {
+                    commandlain();
+                }
             } else {
                 commandlain();
             }
         } else if (isSameString(input1,"PLAY")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "PLAYGAME")){
-                playgame(n_game, &QGame);
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "PLAYGAME")){
+                    playgame(n_game, &QGame);
+                } else {
+                    commandlain();
+                }
             } else {
                 commandlain();
             }
         } else if (isSameString(input1,"SKIPGAME")){
-            skipgame(&QGame,strToInt2(input2),n_game);
+            if (*input3 == '\0'){
+                if (*input2 > '0' && *input2 < '9'){
+                    skipgame(&QGame,strToInt2(input2),n_game);
+                } else {
+                    commandlain();
+                }
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"QUIT")){
-            quit();
+            if (*input2 == '\0'){
+                quit();
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"HELP")){
-            help();
+            if (*input2 == '\0'){
+                help();
+            } else {
+                commandlain();
+            }
         } else { // command lain
             commandlain();
         }

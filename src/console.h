@@ -25,7 +25,7 @@ void scanParserStrInt(char* *sInput, int *valInput);
 
 void scanParserStartStr(char* *sInput1, char* *sInput2);
 
-void scanParserStr(char* *sInput1, char* *sInput2);
+void scanParserStr(char* *sInput1, char* *sInput2, char* *sInput3);
 
 void scanParserStr2(char* *sInput1, char* *sInput2);
 

@@ -70,21 +70,44 @@ void scanParserStartStr(char* *sInput1, char* *sInput2){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
+    ADVINPUT2();
     if (isSameString(*sInput1, "LOAD")){
-        ADVINPUT2();
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
-    } 
+        ADVINPUT2();
+        if (CInput.Length != 0){
+            *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+            InputToString(CInput,*sInput2);
+        }
+    } else  {
+        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+        InputToString(CInput,*sInput2);
+        
+    }
+    while (CInput.Length != 0){
+        ADVINPUT2();
+    }
 }
 
-void scanParserStr(char* *sInput1, char* *sInput2){
+void scanParserStr(char* *sInput1, char* *sInput2, char* *sInput3){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
+    ADVINPUT2();
     if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAME")){
-        ADVINPUT2();
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
+        if (CInput.Length != 0){
+            ADVINPUT2();
+            *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
+            InputToString(CInput,*sInput3);
+        }
+    } else {
+        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+        InputToString(CInput,*sInput3);
+    }
+    while (CInput.Length != 0){
+        ADVINPUT2();
     }
 }
 
