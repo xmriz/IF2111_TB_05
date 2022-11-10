@@ -17,6 +17,7 @@ int main()
     STARTKALIMAT();
     enqueueGame(&q, CKalimat);
     printf("Banyaknya elemen queue: %d\n", lengthGame(q) + 1);
+    printf("Melakukan dequeue\n");
     dequeueGame(&q, &val);
     printf("Banyaknya elemen queue setelah dequeue: %d\n", lengthGame(q));
     printf("Isi queue: ");
