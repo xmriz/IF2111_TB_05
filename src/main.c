@@ -45,7 +45,7 @@ int main(){
     menu();
     boolean state=true;
     
-    while (state==true){
+ while (state==true){
         printf("---------------------------------------------\n");
         char *input1;
         char *input2;
@@ -58,41 +58,16 @@ int main(){
             char *inputload = "../data/";
             char *filename = strconcat(inputload, input2);
             save(filename, listgame, n_game);
-        } else if (isSameString(input1,"CREATE")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "CREATEGAME")){
-                createGame(&n_game, &listgame);
-            } else {
-                commandlain();
-            }
-        } else if (isSameString(input1, "LIST")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "LISTGAME")){
+        } else if (isSameString(input1,"CREATEGAME")){
+            createGame(&n_game, &listgame);
+        } else if (isSameString(input1, "LISTGAME")){
                 listofgame(n_game, listgame);
-            } else {
-                commandlain();
-            }
-        } else if (isSameString(input1,"DELETE")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "DELETEGAME")){
+        } else if (isSameString(input1,"DELETEGAME")){
                 deleteGame(&n_game, &listgame);
-            } else {
-                commandlain();
-            }
-        } else if (isSameString(input1,"QUEUE")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "QUEUEGAME")){
+        } else if (isSameString(input1,"QUEUEGAME")){
                 queuegame(&QGame, n_game, listgame);
-            } else {
-                commandlain();
-            }
-        } else if (isSameString(input1,"PLAY")){
-            input1 = strconcat(input1, input2);
-            if (isSameString(input1, "PLAYGAME")){
+        } else if (isSameString(input1,"PLAYGAME")){
                 playgame(n_game, &QGame);
-            } else {
-                commandlain();
-            }
         } else if (isSameString(input1,"SKIPGAME")){
             skipgame(&QGame,strToInt2(input2),n_game);
         } else if (isSameString(input1,"QUIT")){
