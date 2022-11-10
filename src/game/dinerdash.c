@@ -110,7 +110,7 @@ void mainDinerDash()
                         ((makanan_siap.buffer[j]).ketahanan)--;
                         if ((makanan_siap.buffer[j]).ketahanan == 0)
                         {
-                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[j]).makanan);
+                            printf("Makanan M%d telah hangus, segera ulangi memasak!\n", (makanan_siap.buffer[j]).makanan);
                         }
                     }
                     count = 0;
@@ -226,7 +226,7 @@ void mainDinerDash()
                         ((makanan_siap.buffer[i]).ketahanan)--;
                         if ((makanan_siap.buffer[i]).ketahanan == 0)
                         {
-                            printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                            printf("Makanan M%d telah hangus, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
                         }
                     }
                     count = 0;
@@ -316,7 +316,7 @@ void mainDinerDash()
                 ((makanan_siap.buffer[i]).ketahanan)--;
                 if ((makanan_siap.buffer[i]).ketahanan == 0)
                 {
-                    printf("Makanan M%d telah basi, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
+                    printf("Makanan M%d telah hangus, segera ulangi memasak!\n", (makanan_siap.buffer[i]).makanan);
                 }
             }
             count = 0;
