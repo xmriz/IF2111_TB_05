@@ -22,7 +22,7 @@ void display_welcoming(){
 void mainmenu(){
     printf("----------------- MAIN MENU -----------------\n");
     printf("1. START\n");
-    printf("2. LOAD [file name]\n");
+    printf("2. LOAD [filename.txt]\n");
     printf("3. HELP\n");
     printf("0. QUIT\n");
     printf("---------------------------------------------");
@@ -31,13 +31,13 @@ void mainmenu(){
 void menu(){
     printf("--------------------------------------------\n");
     printf("------------------- MENU -------------------\n");
-    printf("1. SAVE [file name]\n");
+    printf("1. SAVE [filename.txt]\n");
     printf("2. CREATE GAME\n");
     printf("3. LIST GAME\n");
     printf("4. DELETE GAME\n");
     printf("6. QUEUE GAME\n");
     printf("7. PLAY GAME\n");
-    printf("8. SKIPGAME [jumlah skip]\n");
+    printf("8. SKIPGAME [n]\n");
     printf("9. HELP\n");
     printf("0. QUIT\n");
     printf("---------------------------------------------\n");
@@ -294,20 +294,20 @@ void quit(){
 
 void helpstart() {
     printf("START -> Untuk memulai petualanganmu bersama BNMO! Memungkinkan file konfigurasi default yang berisi list game dimainkan\n");
-    printf("LOAD -> Pilih filename yang berisi list game yang ingin dimainkan.\n");
+    printf("LOAD [filename.txt] -> Pilih filename yang berisi list game yang ingin dimainkan.\n");
     printf("QUIT -> Memungkinkanmu keluar dari program.\n");
     printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
     printf("---------------------------------------------");
 }
 
 void help() {
-    printf("SAVE -> Simpan state game-mu dengan command ini!\n");
+    printf("SAVE [filename.txt] -> Simpan state game-mu dengan command ini!\n");
     printf("CREATE GAME -> Ingin menambahkan game baru? Command ini jawabannya.\n");
     printf("LIST GAME -> Untuk melihat daftar game yang tersedia.\n");
     printf("DELETE GAME -> Hapus game yang kamu tidak suka dengan command ini.\n");
     printf("QUEUE GAME -> Lihat dan tambahkan permainan yang ingin kamu mainkan ke dalam list!\n");
     printf("PLAY GAME -> Mulai memainkan game sesukamu dengan command ini!\n");
-    printf("SKIP GAME -> Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
+    printf("SKIPGAME [n] -> Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
     printf("QUIT -> Memungkinkanmu keluar dari program.\n");
     printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
 }
