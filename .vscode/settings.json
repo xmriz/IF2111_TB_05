@@ -5,6 +5,7 @@
         "stdio.h": "c",
         "queuedinerdash.h": "c",
         "mesin_kalimat.h": "c",
-        "_mingw_print_push.h": "c"
+        "_mingw_print_push.h": "c",
+        "stimencarijodoh.h": "c"
     }
 }

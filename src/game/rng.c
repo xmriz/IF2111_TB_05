@@ -1,7 +1,5 @@
 /*Game RNG*/
 #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
 #include "../console.h"
 //limit percobaan 10 kali
 //skor awal 1000, tiap percobaan yang salah skor akan berkurang 100

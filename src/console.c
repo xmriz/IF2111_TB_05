@@ -187,7 +187,7 @@ void deleteGame(int *n_game, TabGame *listgame) {
     printf("Masukkan nomor game yang akan dihapus: ");
     input = scanint();
     printf("\n");
-    if ((input > 5) && (input <= *n_game)) {
+    if ((input > 6) && (input <= *n_game)) {
         if (input != *n_game) {
             for (i = input - 1; i < *n_game; i++) {
                 (*listgame).TG[i] = (*listgame).TG[i + 1];
@@ -199,7 +199,7 @@ void deleteGame(int *n_game, TabGame *listgame) {
             (*n_game)--;
         }
         printf("Game berhasil dihapus.\n");
-    } else if ((input >= 0) && (input <= 5)) {
+    } else if ((input >= 0) && (input <= 6)) {
         printf("Game gagal dihapus!\n");
     } else {
         printf("Nomor game tidak valid!\n");
@@ -252,6 +252,11 @@ void playgame(int n_game, QueueGame *Q ){
             printf("Loading %s ...\n", stringval);
             delay(1);
             mainRNG();
+            printf("\nTerima kasih telah bermain %s!\n", stringval);
+        } else if (isSameString(stringval, "STI MENCARI JODOH")){
+            printf("Loading %s ...\n", stringval);
+            delay(1);
+            mainjodoh();
             printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);

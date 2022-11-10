@@ -11,6 +11,7 @@
 #include "ADT\queueGame.h"
 #include "game\dinerdash.h"
 #include "game\rng.h"
+#include "game\stimencarijodoh.h"
 
 void welcoming(FILE *ff);
 
