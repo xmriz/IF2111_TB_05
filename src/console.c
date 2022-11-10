@@ -88,6 +88,15 @@ void scanParserStr(char* *sInput1, char* *sInput2){
     }
 }
 
+void scanParserStr2(char* *sInput1, char* *sInput2){
+    STARTINPUT2();
+    *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput1);
+    ADVINPUT2();
+    *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+    InputToString(CInput,*sInput2);    
+}
+
 boolean isSameString(char* a, char* b){
     boolean isSame=true;
     while (isSame==true && (*a!='\0' || *b!='\0')){
@@ -214,12 +223,13 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     int input;
     printf("Berikut adalah daftar game yang tersedia\n");
     listofgame(n_game, listgame);
-    printf("Nomor Game yang mau ditambahkan ke antrian: ");
+    printf("Nomor Game yang ingin ditambahkan ke antrian: ");
     input = scanint();
     printf("\n");
     while (input < 1 || input > n_game) {
         printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
-        break;
+        printf("Nomor Game yang ingin ditambahkan ke antrian: ");
+        input = scanint();
     }
     if (isFullGame(*q)) {
         // asumsi daftar antrian mungkin penuh (sudah 100)
