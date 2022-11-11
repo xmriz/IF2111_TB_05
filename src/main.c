@@ -63,8 +63,9 @@ int main(){
         char *input1;
         char *input2;
         char *input3;
+        char *input4;
         printf("ENTER COMMAND: ");
-        scanParserStr(&input1,&input2,&input3);
+        scanParserStr(&input1,&input2,&input3,&input4);
 
         if (isSameString(input1, "SAVE")){
             if (*input3 == '\0'){
@@ -129,10 +130,15 @@ int main(){
             } else {
                 commandlain();
             }
-        } else if (isSameString(input1,"SKIPGAME")){
-            if (*input3 == '\0'){
-                if (*input2 > '0' && *input2 < '9'){
-                    skipgame(&QGame,strToInt2(input2),n_game);
+        } else if (isSameString(input1,"SKIP")){
+            if (*input4 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "SKIPGAME")){
+                    if (strToInt2(input3) >= 0){
+                        skipgame(&QGame,strToInt2(input3),n_game);
+                    } else {
+                        commandlain();
+                    }
                 } else {
                     commandlain();
                 }

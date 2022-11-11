@@ -89,18 +89,31 @@ void scanParserStartStr(char* *sInput1, char* *sInput2){
     }
 }
 
-void scanParserStr(char* *sInput1, char* *sInput2, char* *sInput3){
+void scanParserStr(char* *sInput1, char* *sInput2, char* *sInput3, char* *sInput4){
     STARTINPUT2();
     *sInput1 = (char*)malloc(sizeof(char)* CInput.Length);
     InputToString(CInput,*sInput1);
     ADVINPUT2();
-    if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "SKIPGAME")){
+    if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY")){
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
         InputToString(CInput,*sInput2);
         if (CInput.Length != 0){
             ADVINPUT2();
             *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
             InputToString(CInput,*sInput3);
+        }
+    } else if (isSameString(*sInput1, "SKIP")){
+        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+        InputToString(CInput,*sInput2);
+        if (CInput.Length != 0){
+            ADVINPUT2();
+            *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
+            InputToString(CInput,*sInput3);
+            if (CInput.Length != 0){
+                ADVINPUT2();
+                *sInput4 = (char*)malloc(sizeof(char)* CInput.Length);
+                InputToString(CInput,*sInput4);
+            }
         }
     } else {
         *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
@@ -317,20 +330,20 @@ void quit(){
 
 void helpstart() {
     printf("START -> Untuk memulai petualanganmu bersama BNMO! Memungkinkan file konfigurasi default yang berisi list game dimainkan\n");
-    printf("LOAD [filename.txt] -> Pilih filename yang berisi list game yang ingin dimainkan.\n");
+    printf("LOAD <filename.txt> -> Pilih filename yang berisi list game yang ingin dimainkan.\n");
     printf("QUIT -> Memungkinkanmu keluar dari program.\n");
     printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
     printf("---------------------------------------------");
 }
 
 void help() {
-    printf("SAVE [filename.txt] -> Simpan state game-mu dengan command ini!\n");
+    printf("SAVE <filename.txt> -> Simpan state game-mu dengan command ini!\n");
     printf("CREATE GAME -> Ingin menambahkan game baru? Command ini jawabannya.\n");
     printf("LIST GAME -> Untuk melihat daftar game yang tersedia.\n");
     printf("DELETE GAME -> Hapus game yang kamu tidak suka dengan command ini.\n");
     printf("QUEUE GAME -> Lihat dan tambahkan permainan yang ingin kamu mainkan ke dalam list!\n");
     printf("PLAY GAME -> Mulai memainkan game sesukamu dengan command ini!\n");
-    printf("SKIPGAME [n] -> Gunakan command ini untuk melewatkan permainan sebanyak n kali.\n");
+    printf("SKIP GAME <n> -> Gunakan command ini untuk melewatkan permainan sebanyak n kali, dengan n harus positif.\n");
     printf("QUIT -> Memungkinkanmu keluar dari program.\n");
     printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
 }
@@ -348,4 +361,13 @@ void delay(int number_of_seconds) {
     clock_t start_time = clock();
     // looping till required time is not achieved
     while (clock() < start_time + milli_seconds);
+}
+
+void tolowercase(char *s) {
+    int i;
+    for (i = 0; s[i]!='\0'; i++) {
+      if(s[i] >= 'A' && s[i] <= 'Z') {
+         s[i] = s[i] + 32;
+      }
+    }
 }
