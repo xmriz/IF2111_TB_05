@@ -123,6 +123,7 @@ int main(){
             if (*input3 == '\0'){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "PLAYGAME")){
+                    displayQueueGame(QGame);
                     playgame(n_game, &QGame);
                 } else {
                     commandlain();

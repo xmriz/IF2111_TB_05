@@ -253,7 +253,6 @@ void deleteGame(int *n_game, TabGame *listgame) {
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     // menampilkan daftar antrian 
-    printf("Berikut adalah daftar antrian game-mu\n");
     displayQueueGame(*q);
     // menampilkan daftar game yang tersedia
     int input;
@@ -278,7 +277,6 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 }
 
 void playgame(int n_game, QueueGame *Q ){
-    displayQueueGame(*Q);
     if (!isEmptyGame(*Q)){
         ElTypeG val;
         dequeueGame(Q, &val);
@@ -313,6 +311,7 @@ void playgame(int n_game, QueueGame *Q ){
 }
 
 void skipgame(QueueGame *q, int masukan, int n_game){
+    displayQueueGame(*q);
     for(int i=1;i<=masukan;i++){
         ElTypeG v;
         dequeueGame(q,&v);
