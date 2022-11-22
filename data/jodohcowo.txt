@@ -6,7 +6,6 @@ Gyan Maiziko
 Farchan Martha Adji Chandra
 Harits Afiq Nugroho
 Fahreza Yunanda
-Raden Sjora Okalani
 Fariz Putra Hanggara
 Justin Yusuf Abidjoko
 Ahmad Rivai Yahya
@@ -111,4 +110,4 @@ Ferdinand Refrandt
 Amjad Adhie Prasetyo
 Hans Stephano Edbert N
 Aditya Inas Hamidah
-;
+Vincent Winarta;
