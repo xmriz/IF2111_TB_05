@@ -1,7 +1,7 @@
 CC = gcc
 
 main: 
-	$(CC) -o main main.c console.c game/dinerdash.c game/RNG.c  game/stimencarijodoh.c ADT/queueDinerDash.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c ADT/mesin_input.c
+	$(CC) -o main main.c console.c game/dinerdash.c game/RNG.c game/stimencarijodoh.c ADT/queueDinerDash.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c ADT/mesin_input.c
 
 # main: console.o main.o
 # 	$(CC) main.o console.o -o main

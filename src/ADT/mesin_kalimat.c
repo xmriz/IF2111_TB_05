@@ -97,12 +97,15 @@ int strToInt(char s[]){
 }
 
 int strToInt2(char* s){
-    int sum=0;
-    while (*s!='\0'){
-        sum = 10*sum + (*s - '0');
-        s++;
+    if ((*s >= '0') && (*s <= '9')) {
+        int sum=0;
+        while (*s!='\0'){
+            sum = 10*sum + (*s - '0');
+            s++;
+        }
+        return sum;
     }
-    return sum;
+    return -1;
 }
 
 int KalimattoInt(Kalimat K){
