@@ -115,3 +115,27 @@ int KalimattoInt(Kalimat K){
     }
     return(val);
 }
+
+boolean isKalimatSame(Kalimat K1,Kalimat K2){
+    boolean isSame=true;
+    int i=0;
+    if (K1.Length==K2.Length){
+        while (isSame && i<K1.Length){
+            if (K1.TabKalimat[i]!=K2.TabKalimat[i]){
+                isSame=false;
+            } else{
+                i++;
+            }
+        }
+    } else{
+        return false;
+    }
+    return (isSame);
+}
+
+void copyKalimat (Kalimat k1, Kalimat *k2){
+    k2->Length=k1.Length;
+    for (int i=0;i<k1.Length;i++){
+        k2->TabKalimat[i] = k1.TabKalimat[i];
+    }
+}

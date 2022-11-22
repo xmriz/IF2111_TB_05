@@ -42,4 +42,8 @@ int strToInt2(char *s);
 
 int KalimattoInt(Kalimat K);
 
+boolean isKalimatSame(Kalimat K1,Kalimat K2);
+
+void copyKalimat (Kalimat k1, Kalimat *k2);
+
 #endif
