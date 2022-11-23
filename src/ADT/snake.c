@@ -51,7 +51,7 @@ void CreateSnake(Snake *Q){
 /* F.S. Sebuah Q kosong terbentuk */
 
 /*** Primitif Add/Delete ***/
-void Enqueue(Snake *Q, infotype X){
+address Enqueue(Snake *Q, infotype X){
 	// Kamus Lokal
 	address P;
 	// Algoritma
@@ -65,6 +65,7 @@ void Enqueue(Snake *Q, infotype X){
 			Tail(*Q) = P;
 		}
 	}
+	return(Tail(*Q));
 }
 /* Proses: Mengalokasi X dan menambahkan X pada bagian TAIL dari Q
    jika alokasi berhasil; jika alokasi gagal Q tetap */

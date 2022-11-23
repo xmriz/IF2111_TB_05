@@ -5,8 +5,9 @@
 void generateSnake(Snake *S){
     address Head;
     AlokasiSnake(&Head);
-    InfoHead(*S)=-999
-	Tail(*S) = Nil;
+    InfoHead(*S)=-999;
+    address B=Enqueue(S,1);
+	Tail(*S) = Enqueue(S,2);
 }
 
 void geserSnake(char input,POINT *p){
@@ -21,7 +22,8 @@ void geserSnake(char input,POINT *p){
     }
     else if (input=='d'){
         Geser(p,1,0);
-    } else{
-        r
     }
+    // } else{
+        
+    // }
 }
