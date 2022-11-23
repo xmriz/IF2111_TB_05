@@ -1,8 +1,3 @@
-// Nama      : Naura Valda Prameswari
-// NIM       : 18221173
-// Tanggal   : 19-9-2022
-// Deskripsi : Praktikum point.c
-
 #include <stdio.h>
 #include "point.h"
 #include "math.h"

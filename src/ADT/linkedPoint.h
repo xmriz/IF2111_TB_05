@@ -25,8 +25,8 @@ typedef struct {
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
-#define InfoY(P) (P)->info.Y
-#define InfoX(P) (P)->info.X
+#define InfoY(P) (P)->Ordinat(info)
+#define InfoX(P) (P)->Absis(info)
 #define Next(P) (P)->next
 #define First(L) ((L).First)
 

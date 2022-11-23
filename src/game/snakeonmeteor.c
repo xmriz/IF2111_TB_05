@@ -29,11 +29,11 @@ void geserSnake(char input,POINT *p){
     // }
 }
 
-// void randomPoint(POINT *p){
-//     srand(time(NULL));
-//     p->X=(rand()%4)+1;
-//     p->Y=(rand()%4)+1;
-// }
+void randomPoint(POINT *p){
+    srand(time(NULL));
+    p->X=(rand()%4)+1;
+    p->Y=(rand()%4)+1;
+}
 
 void generatePeta(List *Peta){
     CreateEmpty(Peta);

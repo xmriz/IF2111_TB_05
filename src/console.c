@@ -302,6 +302,11 @@ void playgame(int n_game, QueueGame *Q ){
             delay(1);
             mainjodoh();
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+        } else if (isSameString(stringval, "SNAKE ON METEOR")){
+            printf("Loading %s ...\n", stringval);
+            delay(1);
+            mainSnake();
+            printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
         }

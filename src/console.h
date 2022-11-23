@@ -12,6 +12,7 @@
 #include "game\dinerdash.h"
 #include "game\rng.h"
 #include "game\stimencarijodoh.h"
+#include "game\snakeonmeteor.h"
 
 void welcoming(FILE *ff);
 
