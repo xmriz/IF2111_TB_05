@@ -10,7 +10,12 @@
         "snake.h": "c",
         "boolean.h": "c",
         "linkedpoint.h": "c",
-        "point.h": "c"
+        "point.h": "c",
+        "linkedlistpoint.h": "c",
+        "math.h": "c",
+        "time.h": "c",
+        "conio.h": "c",
+        "snakeonmeteor.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -2,10 +2,10 @@
 #include <conio.h>
 
 char map[20][20];
-char player = '^', food = 'O';
-char tail[10] = {'*','*','*','*','*','*','*','*','*','*'};
+char player = 'H', food = 'O';
+char tail[10] = {'1','2','3','4','5','6','7','8','9','0'};
 int y = 12;
-int x = 3;
+int x = 9;
 int a[10];
 int b[10];
 char walk;
@@ -104,7 +104,7 @@ void moveUp(){
 					score++;
 					R++;
 				}
-				player = '^';
+				player = 'H';
 				for(i=0; i<R; i++){
 					for(j=0; j<R; j++){
 						map[a[i]][b[j]] = tail[n];
@@ -124,7 +124,7 @@ void moveDown(){
 					score++;
 					R++;
 				}
-				player = 'v';
+				player = 'H';
 				for(i=0; i<R; i++){
 					for(j=0; j<R; j++){
 						map[a[i]][b[j]] = tail[n];
@@ -144,7 +144,7 @@ void moveLeft(){
 					score++;
 					R++;
 				}
-				player = '<';
+				player ='H';
 				for(i=0; i<R; i++){
 					for(j=0; j<R; j++){
 						map[a[i]][b[j]] = tail[n];
@@ -164,7 +164,7 @@ void moveRight(){
 					score++;
 					R++;
 				}
-				player = '>';
+				player = 'H';
 				for(i=0; i<R; i++){
 						for(j=0; j<R; j++){
 							map[a[i]][b[j]] = tail[n];
