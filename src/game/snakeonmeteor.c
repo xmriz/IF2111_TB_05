@@ -7,42 +7,59 @@ List L;
 
 
 void mainSnake(){
-    POINT makananP, meteorP, obstacleP;
-    List S;
-    srand(time(NULL));
-    infotype pfood = randomPoint();
-    infotype pmeteor = randomPoint();
+    POINT makananP, meteorP, obstacle1, obstacle2;
+    List Snake;
+    obstacle1=MakePOINT(1,1);
+    obstacle2=MakePOINT(3,3);
     boolean gameOver = false;
     printf("Selamat datang di Snake on Meteor!\n\n");
-    printf("Mengenerate peta, snake, dan makanan...\n\n");
+    printf("Mengenerate peta, snake, dan makanan.");
+    delay(0.5);
+    printf(".");
+    delay(0.5);
+    printf(".\n\n");
+    generateFood(&makananP);
+    generateMeteor(&meteorP);
+    generateSnake(List &Snake);
     printf("Berhasil digenerate!\n\n");
     printf("Berikut merupakan peta permainan :\n");
-    delay(1);
-    generateSnake(List *S);
-    outputMap();
+    generateFood(&makananP);
+    generateMeteor(&meteorP);
+    displayMap(Snake, makananP, meteorP, obstacle1, obstacle2);
     while (!gameOver){
-        printf("Masukkan perintah untuk menggerakkan snake (w, a, s, d) : ");
+        do{
         char command;
-        scanf(" %c", &command);
-        while (command != 'w' && command != 'a' && command != 's' && command != 'd'){
-            printf("Masukkan perintah untuk menggerakkan snake (w, a, s, d) : ");
-            scanf(" %c", &command);
-        }
-        moveSnake(command, &S);
-        if (gameOver) {
-            printf("Game Over!\n");
-            break;
-        }
-    }
+        printf("Masukkan perintah (a, w, s, d): ");
+        scanf("%c",command);
+        } while (command!='a' && command!='w' && command!='s' && command!='d');
+        moveSnake(command,&Snake);
+        // belooooooooommmmmmmmmmmmmmmmmm
     return;
 }
 
 infotype randomPoint(){
     infotype p;
+    srand(time(NULL));
     Absis(p) = (rand()%5)+1;
     Ordinat(p) = (rand()%5)+1;
     return p;
 }
+
+void generateFood(POINT *food, POINT meteor, POINT obstacle){
+    *food = randomPoint();
+    while (!EQ(*food, meteor) && !EQ(*food, obstacle) && Search(L, *food)==Nil){
+        *food = randomPoint();
+    }
+}
+
+void generateMeteor(POINT *meteor, POINT food, POINT obstacle){
+    *meteor = randomPoint();
+    while (!EQ(*meteor, food) && !EQ(*meteor, obstacle)){
+        *meteor = randomPoint();
+    }
+}
+
+
 
 boolean isSnakeNabrakObstacle(List Snake, POINT obstacle){
     address P=First(Snake);
@@ -103,7 +120,61 @@ void moveSnake(char command, List *Snake){
 }
 }
 
-void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle){
+boolean isTidakTerhalang(POINT posisiPenambahan, List Snake, POINT obstacle, POINT makanan){
+    boolean isTidakTerhalang=true;
+    // check apakah terhalang obstacle
+    if (EQ(posisiPenambahan,obstacle)){
+        return false;
+    // check apakah terhalang makanan
+    } else if (EQ(posisiPenambahan,makanan)){
+        return false;
+    // check apakah terhalang badan sendiri
+    } else{
+        address P = Search(Snake,posisiPenambahan);
+        if (P!=Nil){
+            return false;
+        }
+    }
+    return isTidakTerhalang=true;   
+}
+
+void snakeMemanjang(List *Snake, POINT obstacle, POINT makanan, boolean *gameover){
+    address P = First(*Snake);
+    gameover=false;
+    while (P!=Nil){
+        P=P->next; // nyari tail
+    }
+    boolean done=false;
+    while (!done){
+        POINT tail;
+        tail.X=InfoX(P);
+        tail.Y=InfoY(P);
+        // add ke kiri kalo bisa
+        POINT left=Geser(tail,-1,0);
+        if (isTidakTerhalang(left,*Snake,obstacle,makanan)){
+            InsVLast(Snake,left);
+        } else {
+            POINT below=Geser(tail,0,-1);
+            if (isTidakTerhalang(below,*Snake,obstacle,makanan)){
+                InsVLast(Snake,below);
+            } else{
+                POINT above=Geser(tail,0,1);
+                if (isTidakTerhalang(above,*Snake,obstacle,makanan)){
+                    InsVLast(Snake,above);
+                } else {
+                    POINT right=Geser(tail,1,0);
+                    if (isTidakTerhalang(right,*Snake,obstacle,makanan)){
+                        InsVLast(Snake,right);
+                    } else{
+                        *gameover=true;
+                    }
+                }
+            }
+        }
+    }
+}
+
+void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle){ // beloommm
     int i,j;
     printf("+-----+\n");
     for(i=0; i<5; i++){
@@ -152,7 +223,7 @@ void generateSnake(List *Snake){
     int i=1;
     InsVLast(Snake, p);
     while (i<=3){
-        growSnake(Snake);
+        snakeMemanjang(Snake);
         i++;
     }
 }
