@@ -7,11 +7,11 @@ List L;
 
 
 void mainSnake(){
-    POINT makananP, meteorP, obstacleP;
     List S;
     srand(time(NULL));
     infotype pfood = randomPoint();
     infotype pmeteor = randomPoint();
+    infotype pobstacle = randomPoint();
     boolean gameOver = false;
     printf("Selamat datang di Snake on Meteor!\n\n");
     printf("Mengenerate peta, snake, dan makanan...\n\n");
@@ -39,14 +39,25 @@ void mainSnake(){
 
 infotype randomPoint(){
     infotype p;
-    Absis(p) = (rand()%5)+1;
-    Ordinat(p) = (rand()%5)+1;
+    Absis(p) = (rand()%5);
+    Ordinat(p) = (rand()%5);
     return p;
 }
 
-boolean isSnakeNabrakObstacle(List Snake, POINT obstacle){
+void generateSnake(List *Snake){
+    CreateEmpty(Snake);
+    infotype p= randomPoint();
+    int i=1;
+    InsVLast(Snake, p);
+    while (i<=3){
+        snakeMemanjang(Snake);
+        i++;
+    }
+}
+
+boolean isSnakeOnObstacle(List Snake, POINT obstacle){
     address P=First(Snake);
-    If (Info(P).X == obstacle.X && Ordinat(Info(P)) == obstacle.Y){
+    If (Absis(Info(P)) == obstacle.X && Ordinat(Info(P)) == obstacle.Y){
         return true;
     } else {
         return false;
@@ -67,7 +78,7 @@ void moveSnake(char command, List *Snake){
             Info(P)=Info(Next(P));
             P=Next(P);
         }
-        Info(P).X=Info(P).X+1;
+        Absis(Info(P))=Absis(Info(P))+1;
     } else if (command=='w'){
         address P=First(*Snake);
         while (Next(P)!=Nil){
@@ -114,14 +125,5 @@ void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle){
 // }
 
 
-void generateSnake(List *Snake){
-    CreateEmpty(Snake);
-    infotype p= randomPoint();
-    int i=1;
-    InsVLast(Snake, p);
-    while (i<=3){
-        growSnake(Snake);
-        i++;
-    }
-}
+
 

@@ -17,21 +17,11 @@ void generateMeteor(POINT *meteor);
 
 void generateObstacle(POINT *obstacle);
 
-void snakeMemanjang(List *Snake);
-
 void moveSnake(char command, List *Snake);
 
-boolean isSnakeOnFood(List Snake, POINT makanan);
+void snakeMemanjang(List *Snake);
 
-boolean isSnakeOnMeteor(List Snake, POINT meteor);
-
-boolean isSnakeOnObstacle(List Snake, POINT obstacle);
-
-
-
-
-
-void outputMap();
+void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle);
 
 // void randomPoint(POINT *p);
 
