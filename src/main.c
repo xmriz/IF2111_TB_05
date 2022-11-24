@@ -12,8 +12,10 @@ int main(){
 
     TabGame listgame;
     QueueGame QGame;
+    Stack History;
     CreateQueueGame(&QGame);
     int n_game;
+    int n_history;
     
 
     boolean isStart = false;
@@ -158,7 +160,15 @@ int main(){
             } else {
                 commandlain();
             }
-        } else { // command lain
+        } else if (isSameString(input1,"HISTORY")){
+            if (strToInt2(input2) >= 0){
+                history(History,strToInt2(input2), n_history);
+            } else {
+                commandlain();
+                }
+        }
+        
+        else { // command lain
             commandlain();
         }
     }

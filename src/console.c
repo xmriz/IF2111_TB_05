@@ -146,6 +146,23 @@ boolean isSameString(char* a, char* b){
     return(isSame);
 }
 
+void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history) {
+    STARTKALIMATFILE(filepath);
+    *n_game = strToInt(CKalimat.TabKalimat);
+    listgame->Neff = *n_game;
+    ADVKALIMATFILE();
+    for (int i = 0; i < listgame->Neff; i++){
+        listgame->TG[i] = CKalimat;
+        ADVKALIMATFILE();
+        }
+    *n_history = strToInt(CKalimat.TabKalimat);
+    ADVKALIMATFILE();
+    for (int i = 0; i < *n_history; i++){
+        Push(&History, CKalimat);
+        ADVKALIMATFILE();
+        }
+}
+
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
@@ -168,11 +185,11 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game) {
         }
 }
 
-void start(TabGame *listgame, int *n_game){
+void start(TabGame *listgame, Stack *History, int *n_game, int *n_history){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
     MakeEmptyGame(listgame);
     char filepath[] = "..\\data\\config.txt";
-    readConfig(filepath, listgame, n_game);
+    readConfigGame(filepath, listgame, History, n_game, n_history);
     printf("\nFile konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
@@ -276,7 +293,7 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 }
 }
 
-void playgame(int n_game, QueueGame *Q ){
+void playgame(int n_game, QueueGame *Q, Stack *S){
     if (!isEmptyGame(*Q)){
         ElTypeG val;
         dequeueGame(Q, &val);
@@ -309,7 +326,9 @@ void playgame(int n_game, QueueGame *Q ){
             printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
+            return;
         }
+        Push(S, stringval);
     } else {
         printf("\nTidak ada game yang dapat dimainkan. Queue game terlebih dahulu!\n");
     }
@@ -374,4 +393,43 @@ void tolowercase(char *s) {
          s[i] = s[i] + 32;
       }
     }
+}
+
+void history(Stack S, int n, int n_history){
+    Stack temp;
+    Kalimat baca;
+    printf("Berikut adalah daftar Game yang telah dimainkan\n");
+
+    int i = 0;
+
+    while (i<n && !isEmpty(S)){
+        Pop(&S, &baca);
+        printf("%d. %s\n", i+1, baca);
+
+        Push(&temp, baca);
+        i++;
+    }
+    for (int i=0; i<n; i++){
+        Pop(&S, &baca);
+        Push (&S, hist[i]);
+    }
+}
+
+void reset_history(Stack *S, int *n_history){
+    char *masukan;
+    printf("Apakah kamu yakin ingin melakukan reset history? ");
+    masukan = scanstring();
+    if (isSameString(masukan, "YA")){
+        CreateEmptyStack(S);
+        *n_history = 0;
+
+        printf("\n\nHistory berhasil di-reset.\n");
+    }
+    else if (isSameString(masukan, "N")){
+        printf("\n\nHistory tidak jadi di-reset. ");
+        history(*S, *n_history, n_history);
+    }
+    
+
+
 }

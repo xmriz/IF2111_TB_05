@@ -8,6 +8,7 @@
 #include "ADT\arrayGame.h"
 #include "ADT\mesin_kalimat.h"
 #include "ADT\mesin_input.h"
+#include "ADT\stackGame.h"
 #include "ADT\queueGame.h"
 #include "game\dinerdash.h"
 #include "game\rng.h"
@@ -34,6 +35,8 @@ void mainmenu();
 
 void menu();
 
+void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history);
+
 void readConfig(char *filepath, TabGame *listgame, int *n_game);
 
 void start(TabGame *listgame, int *n_game);
@@ -50,7 +53,7 @@ void deleteGame(int *n_game, TabGame *listgame);
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame); 
 
-void playgame(int n_game, QueueGame *Q );
+void playgame(int n_game, QueueGame *Q, Stack *S);
  
 void skipgame(QueueGame *q, int masukan, int n_game);
 
@@ -67,3 +70,7 @@ boolean isSameString(char* a, char* b);
 void delay(int number_of_seconds);
 
 void tolowercase(char* s);
+
+void history(Stack S, int n, int n_history);
+
+void reset_history(Stack *S, int *n_history);
