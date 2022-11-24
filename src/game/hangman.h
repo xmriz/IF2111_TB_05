@@ -8,6 +8,6 @@
 #include <time.h>
 #include <string.h>
 
-void hangman();
+void mainHangman();
 
 #endif
