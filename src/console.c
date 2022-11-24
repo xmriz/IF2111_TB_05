@@ -324,6 +324,11 @@ void playgame(int n_game, QueueGame *Q, Stack *S){
             delay(1);
             mainSnake();
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+        } else if (isSameString(stringval, "HANGMAN")){
+            printf("Loading %s ...\n", stringval);
+            delay(1);
+            mainHangman();
+            printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
             return;

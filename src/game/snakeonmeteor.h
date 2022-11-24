@@ -23,13 +23,4 @@ void snakeMemanjang(List *Snake);
 
 void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle);
 
-// void randomPoint(POINT *p);
-
-
-// void generateSnake(Snake *S);
-
-// // void mainSnake();
-
-// void randomPoint(POINT *p);
-
 #endif
