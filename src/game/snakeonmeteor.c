@@ -58,8 +58,11 @@ void moveSnake(char command, List *Snake){
     POINT headSnake = P->info;
     if (command=='a'){
         P=P->next;
-        if (headSnake.X==P->info.X-1 && headSnake.X==Y->info.Y){
+        if (headSnake.X==P->info.X-1 && headSnake.Y==P->info.Y){
             printf("Tidak bisa bergerak ke arah tersebut!\n");
+        } else{
+            
+            InsVLast(Snake,)
         }
     } else if (command=='d'){
         address P=First(*Snake);
