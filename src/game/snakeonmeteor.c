@@ -46,7 +46,7 @@ infotype randomPoint(){
 
 boolean isSnakeNabrakObstacle(List Snake, POINT obstacle){
     address P=First(Snake);
-    If (P->info.X == obstacle.X && P->info.Y == obstacle.Y){
+    If (Info(P).X == obstacle.X && Ordinat(Info(P)) == obstacle.Y){
         return true;
     } else {
         return false;
@@ -55,10 +55,10 @@ boolean isSnakeNabrakObstacle(List Snake, POINT obstacle){
 
 void moveSnake(char command, List *Snake){
     address P = First(*Snake);
-    POINT headSnake = P->info;
+    POINT headSnake = Info(P);
     if (command=='a'){
-        P=P->next;
-        if (headSnake.X==P->info.X-1 && headSnake.Y==P->info.Y){
+        P=Next(P);
+        if (Absis(headSnake)==InfoX(P)-1 && Ordinat(headSnake)==InfoY(P)){
             printf("Tidak bisa bergerak ke arah tersebut!\n");
         } else{
             
@@ -66,25 +66,25 @@ void moveSnake(char command, List *Snake){
         }
     } else if (command=='d'){
         address P=First(*Snake);
-        while (P->next!=Nil){
-            P->info=P->next->info;
-            P=P->next;
+        while (Next(P)!=Nil){
+            Info(P)=Info(Next(P));
+            P=Next(P);
         }
-        P->info.X=P->info.X+1;
+        Info(P).X=Info(P).X+1;
     } else if (command=='w'){
         address P=First(*Snake);
-        while (P->next!=Nil){
-            P->info=P->next->info;
-            P=P->next;
+        while (Next(P)!=Nil){
+            Info(P)=Info(Next(P));
+            P=Next(P);
         }
-        P->info.Y=P->info.Y-1;
+        Ordinat(Info(P))=Ordinat(Info(P))-1;
     } else if (command=='s'){
         address P=First(*Snake);
-        while (P->next!=Nil){
-            P->info=P->next->info;
-            P=P->next;
+        while (Next(P)!=Nil){
+            Info(P)=Info(Next(P));
+            P=Next(P);
         }
-        P->info.Y=P->info.Y+1;
+        Ordinat(Info(P))=Ordinat(Info(P))+1;
     }
 }
 
