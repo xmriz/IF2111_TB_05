@@ -2,22 +2,37 @@
 #define snakeonmeteor_H
 #include <stdio.h>
 
-#include "../ADT/linkedPoint.h"
+#include "../ADT/linkedlistPoint.h"
 
-typedef struct {
-	address Head;
-    address Tail;
-    int Length;
-} Snake;
+int main();
 
-void generateSnake(Snake *S, address P);
 
-void geserSnake(char input,POINT *p);
 
-void randomPoint(POINT *p);
 
-void generatePeta(List *Peta);
+// typedef int infosnake;
 
-void mainSnake();
+// typedef struct tElmtSnake *addressSnake;
+// typedef struct tElmtSnake
+// {
+//     infosnake Info;
+//     addressSnake Next;
+// } ElmtSnake;
+
+// typedef struct {
+// 	addressSnake Head;
+//     addressSnake Tail;
+// } Snake;
+
+// void generateSnake(Snake *S, addressSnake P);
+
+// void geserSnake(char input,POINT *p);
+
+// void randomPoint(POINT *p);
+
+// void generatePeta(List *Peta);
+
+// void DisplayPeta (List Peta, Snake S, POINT makanan, POINT meteor);
+
+// void mainSnake();
 
 #endif
