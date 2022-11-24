@@ -61,50 +61,79 @@ void moveSnake(char command, List *Snake){
         if (Absis(headSnake)==InfoX(P)-1 && Ordinat(headSnake)==InfoY(P)){
             printf("Tidak bisa bergerak ke arah tersebut!\n");
         } else{
-            
-            InsVLast(Snake,)
+            POINT val;
+            val.X=InfoX(P)-1;
+            val.Y=InfoY(P);
+            InsVLast(Snake, val);
+            DelVLast(Snake, &val);
         }
     } else if (command=='d'){
-        address P=First(*Snake);
-        while (Next(P)!=Nil){
-            Info(P)=Info(Next(P));
-            P=Next(P);
+        P=Next(P);
+        if (Absis(headSnake)==InfoX(P)+1 && Ordinat(headSnake)==InfoY(P)){
+            printf("Tidak bisa bergerak ke arah tersebut!\n");
+        } else{
+            POINT val;
+            val.X=InfoX(P)+1;
+            val.Y=InfoY(P);
+            InsVLast(Snake, val);
+            DelVLast(Snake, &val);
         }
-        Info(P).X=Info(P).X+1;
     } else if (command=='w'){
-        address P=First(*Snake);
-        while (Next(P)!=Nil){
-            Info(P)=Info(Next(P));
-            P=Next(P);
+        P=Next(P);
+        if (Absis(headSnake)==InfoX(P) && Ordinat(headSnake)==InfoY(P)+1){
+            printf("Tidak bisa bergerak ke arah tersebut!\n");
+        } else{
+            POINT val;
+            val.X=InfoX(P);
+            val.Y=InfoY(P)+1;
+            InsVLast(Snake, val);
+            DelVLast(Snake, &val);
         }
-        Ordinat(Info(P))=Ordinat(Info(P))-1;
     } else if (command=='s'){
-        address P=First(*Snake);
-        while (Next(P)!=Nil){
-            Info(P)=Info(Next(P));
-            P=Next(P);
+        P=Next(P);
+        if (Absis(headSnake)==InfoX(P) && Ordinat(headSnake)==InfoY(P)-1){
+            printf("Tidak bisa bergerak ke arah tersebut!\n");
+        } else{
+            POINT val;
+            val.X=InfoX(P);
+            val.Y=InfoY(P)-1;
+            InsVLast(Snake, val);
+            DelVLast(Snake, &val);
         }
-        Ordinat(Info(P))=Ordinat(Info(P))+1;
-    }
+}
 }
 
 void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle){
     int i,j;
-    for(i=0; i<7; i++){
-        for(j=0; j<7; j++){
-            peta[i][j] = ' ';
+    printf("+-----+\n");
+    for(i=0; i<5; i++){
+        printf("|");
+        for(j=0; j<5; j++){
+            if (i==InfoX(makanan) && j==InfoY(makanan)){
+                printf("%c", food);
+            } else if (i==InfoX(meteor) && j==InfoY(meteor)){
+                printf("%c", meteor);
+            } else if (i==InfoX(obstacle) && j==InfoY(obstacle)){
+                printf("%c", obstacle);
+            } else {
+                address P = First(S);
+                boolean found = false;
+                while (P!=Nil && !found){
+                    if (InfoX(Info(P))==i && InfoY(Info(P))==j){
+                        printf("%c", headSnake);
+                        found = true;
+                    }
+                    P=Next(P);
+                }
+                if (!found){
+                    printf(" ");
+                }
+            }
         }
-    }
-    peta[0][0] = peta[0][6] = peta[6][0] = peta[6][6] = '+';
-    for(i=1; i<6; i++){
-        peta[0][i] = peta[6][i] = '-';
-        peta[i][0] = peta[i][6] = '|';
-    }
-    peta[Absis(pfood)][Ordinat(pfood)] = food;
-    peta[Absis(pmeteor)][Ordinat(pmeteor)] = meteor;
+        printf("|\n");
+    }            
     return;
 }
-
 // void outputMap(){
 //     int i,j;
 //     for(i=0; i<5; i++){
