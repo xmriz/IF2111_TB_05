@@ -158,7 +158,7 @@ void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_g
     *n_history = strToInt(CKalimat.TabKalimat);
     ADVKALIMATFILE();
     for (int i = 0; i < *n_history; i++){
-        Push(&History, CKalimat);
+        Push(History, CKalimat);
         ADVKALIMATFILE();
         }
 }
@@ -327,25 +327,25 @@ void playgame(int n_game, QueueGame *Q, Stack *S){
         } else if (isSameString(stringval, "HANGMAN")){
             printf("Loading %s ...\n", stringval);
             delay(1);
-            mainHangman();
+            // mainHangman();
             printf("\nTerima kasih telah bermain %s!\n", stringval);
         } else{
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
             return;
         }
-        Push(S, stringval);
+        Push(S, val);
     } else {
         printf("\nTidak ada game yang dapat dimainkan. Queue game terlebih dahulu!\n");
     }
 }
 
-void skipgame(QueueGame *q, int masukan, int n_game){
+void skipgame(QueueGame *q, int masukan, int n_game, Stack *S){
     displayQueueGame(*q);
     for(int i=1;i<=masukan;i++){
         ElTypeG v;
         dequeueGame(q,&v);
     }
-    playgame(n_game, q);   
+    playgame(n_game, q, S);  
  }
 
 void quit(){
@@ -400,14 +400,14 @@ void tolowercase(char *s) {
     }
 }
 
-void history(Stack S, int n, int n_history){
+void displayhistory(Stack S, int n, int n_history){
     Stack temp;
     Kalimat baca;
     printf("Berikut adalah daftar Game yang telah dimainkan\n");
 
     int i = 0;
 
-    while (i<n && !isEmpty(S)){
+    while (i<n && !IsEmptyStack(S)){
         Pop(&S, &baca);
         printf("%d. %s\n", i+1, baca);
 
@@ -415,8 +415,8 @@ void history(Stack S, int n, int n_history){
         i++;
     }
     for (int i=0; i<n; i++){
-        Pop(&S, &baca);
-        Push (&S, hist[i]);
+        Pop(&temp, &baca);
+        Push(&S, baca);
     }
 }
 
@@ -432,9 +432,6 @@ void reset_history(Stack *S, int *n_history){
     }
     else if (isSameString(masukan, "N")){
         printf("\n\nHistory tidak jadi di-reset. ");
-        history(*S, *n_history, n_history);
+        displayhistory(*S, *n_history, *n_history);
     }
-    
-
-
 }

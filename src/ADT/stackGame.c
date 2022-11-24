@@ -22,7 +22,7 @@ void CreateEmptyStack(Stack *S){
     Top(*S) = NilStack;
 }
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty(Stack S){
+boolean IsEmptyStack(Stack S){
 /* Mengirim true jika Stack kosong*/
 // KAMUS LOKAL
 // ALGORITMA
@@ -56,3 +56,4 @@ void Pop(Stack * S, infotype* X){
         Top(*S) -= 1;
     }
 }
+

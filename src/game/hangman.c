@@ -6,13 +6,17 @@
 
 #include "../console.h"
 
-void mainHangman(TabGame *listgame, int *n_game){
-	// Inisiasi berupa pembacaan file konfigurasi default
+void startHangman(TabGame *listgame, int *n_game){
+// Inisiasi berupa pembacaan file konfigurasi default
 	MakeEmptyGame(listgame);
 	char filepath[] = "..\\data\\country.txt";
 	readConfig(filepath, listgame, n_game);
+}
 
+void mainHangman(){
 	TabGame countrylist;
+	int n_country;
+	startHangman(&countrylist, &n_country);
 	int chance = 10;
 	printf("Selamat Datang di Permainan Hangman\n");
 	printf("Edisi : World's Country!\n");
@@ -25,5 +29,5 @@ void mainHangman(TabGame *listgame, int *n_game){
 	char *cc;
 	printf("Masukkan tebakan: ");
 	scanf("%c", &cc);
-
+	return;
 }

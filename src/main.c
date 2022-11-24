@@ -29,7 +29,7 @@ int main(){
 
         if (isSameString(command,"START")){
             if (*inputfile  == '\0'){
-                start(&listgame, &n_game);
+                start(&listgame, &History, &n_game, &n_history);
                 isStart = true;
             } else {
                 commandlain();
@@ -126,7 +126,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "PLAYGAME")){
                     displayQueueGame(QGame);
-                    playgame(n_game, &QGame);
+                    playgame(n_game, &QGame, &History);
                 } else {
                     commandlain();
                 }
@@ -138,7 +138,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "SKIPGAME")){
                     if (strToInt2(input3) >= 0){
-                        skipgame(&QGame,strToInt2(input3),n_game);
+                        skipgame(&QGame,strToInt2(input3),n_game, &History);
                     } else {
                         commandlain();
                     }
@@ -162,7 +162,7 @@ int main(){
             }
         } else if (isSameString(input1,"HISTORY")){
             if (strToInt2(input2) >= 0){
-                history(History,strToInt2(input2), n_history);
+                displayhistory(History,strToInt2(input2), n_history);
             } else {
                 commandlain();
                 }

@@ -8,6 +8,8 @@
 #include <time.h>
 #include <string.h>
 
+void startHangman(TabGame *listgame, int *n_game);
+
 void mainHangman();
 
 #endif
