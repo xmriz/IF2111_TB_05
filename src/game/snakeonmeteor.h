@@ -15,12 +15,10 @@ void generateFood(POINT *food);
 
 void generateMeteor(POINT *meteor);
 
-void generateObstacle(POINT *obstacle);
+void snakeMemanjang(List *Snake);
 
 void moveSnake(char command, List *Snake);
 
-void snakeMemanjang(List *Snake);
-
-void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle);
+void outputMap();
 
 #endif

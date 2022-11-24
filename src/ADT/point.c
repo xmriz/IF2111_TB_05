@@ -54,9 +54,11 @@ POINT PlusDelta (POINT titik, int deltaX, int deltaY){
     MakePOINT(Absis(titik)+deltaX,Ordinat(titik)+deltaY);
 }
 
-void Geser (POINT *titik, int deltaX, int deltaY){
-    Absis(*titik) += deltaX;
-    Ordinat(*titik) += deltaY;
+POINT Geser (POINT titik, int deltaX, int deltaY){
+    POINT new;
+    new.X = Absis(titik) + deltaX;
+    new.Y = Ordinat(titik) + deltaY;
+    return new;
 }
 
 float Jarak0 (POINT titik){
