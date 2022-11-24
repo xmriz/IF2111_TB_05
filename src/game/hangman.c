@@ -6,7 +6,7 @@
 
 #include "../console.h"
 
-void hangman(TabGame *listgame, int *n_game){
+void mainHangman(TabGame *listgame, int *n_game){
 	// Inisiasi berupa pembacaan file konfigurasi default
 	MakeEmptyGame(listgame);
 	char filepath[] = "..\\data\\country.txt";
