@@ -17,7 +17,6 @@ void startcewe(TabGame *listgame, int *n_game){
 }
 
 void mainjodoh(){
-    srand(time(NULL));
     TabGame listjodoh;
     int n_jodoh;
     printf("Cari Jodohmu disini!!\n");
@@ -37,6 +36,7 @@ void mainjodoh(){
         }
     
     printf("Selamat datang %s!\n", nama);
+    srand(time(NULL));
     int random=(rand()%n_jodoh)+1;
     printf("Mencari jodohmu ....\n");
     delay(3);

@@ -6,8 +6,8 @@
 #include "boolean.h"
 
 typedef struct { 
-	float X; /* absis   */
-	float Y; /* ordinat */
+	int X; /* absis   */
+	int Y; /* ordinat */
 } POINT;
 
 /* *** Notasi Akses: Selektor POINT *** */
@@ -16,7 +16,7 @@ typedef struct {
         
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk POINT *** */
-POINT MakePOINT (float X, float Y);
+POINT MakePOINT (int X, int Y);
 /* Membentuk sebuah POINT dari komponen-komponennya */
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */                                                 
@@ -54,9 +54,9 @@ int Kuadran (POINT titik);
 /*              dan P tidak terletak di salah satu sumbu */
 
 /* *** KELOMPOK OPERASI LAIN TERHADAP TYPE *** */
-POINT PlusDelta (POINT titik, float deltaX, float deltaY);
+POINT PlusDelta (POINT titik, int deltaX, int deltaY);
 /* Mengirim salinan P yang absisnya adalah Absis(P) + deltaX dan ordinatnya adalah Ordinat(P) + deltaY */
-void Geser (POINT *titik, float deltaX, float deltaY);
+void Geser (POINT *titik, int deltaX, int deltaY);
 /* I.S. P terdefinisi */
 /* F.S. P digeser, absisnya sebesar deltaX dan ordinatnya sebesar deltaY */
 float Jarak0 (POINT titik);

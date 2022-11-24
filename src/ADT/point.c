@@ -2,7 +2,7 @@
 #include "point.h"
 #include "math.h"
 
-POINT MakePOINT (float X, float Y){
+POINT MakePOINT (int X, int Y){
     POINT titik;
     Absis(titik) = X;
     Ordinat(titik) = Y;
@@ -10,12 +10,12 @@ POINT MakePOINT (float X, float Y){
 }
 
 void BacaPOINT (POINT * titik){
-    float X,Y;
+    int X,Y;
     scanf("%f %f",&X,&Y);
     *titik = MakePOINT(X,Y);
 }
 void TulisPOINT (POINT titik){
-    printf("(%.2f,%.2f)",Absis(titik),Ordinat(titik));
+    printf("(%d,%d)",Absis(titik),Ordinat(titik));
 }
 
 boolean EQ (POINT titik1, POINT titik2){
@@ -50,11 +50,11 @@ int Kuadran (POINT titik){
     }
 }
 
-POINT PlusDelta (POINT titik, float deltaX, float deltaY){
+POINT PlusDelta (POINT titik, int deltaX, int deltaY){
     MakePOINT(Absis(titik)+deltaX,Ordinat(titik)+deltaY);
 }
 
-void Geser (POINT *titik, float deltaX, float deltaY){
+void Geser (POINT *titik, int deltaX, int deltaY){
     Absis(*titik) += deltaX;
     Ordinat(*titik) += deltaY;
 }

@@ -1,15 +1,85 @@
 
 #include <stdio.h>
 #include "snakeonmeteor.h"
-#include <time.h>
 
-void generateSnake(Snake *S, address P){
-    S->Head=P;
-    P=Next(P);
-    P=Next(P);
-    S->Tail=P;
-    S->Length=3;
+char peta[7][7];
+char headSnake = 'H', food = 'o', meteor = 'm';
+
+void mainSnake(){
+    srand(time(NULL));
+    printf("Selamat datang di Snake on Meteor!\n\n");
+    printf("Mengenerate peta, snake, dan makanan...\n\n");
+    printf("Berhasil digenerate!\n\n");
+    printf("Berikut merupakan peta permainan :\n");
+    delay(1);
+    generateMap();
+    outputMap();
+    return;
 }
+
+infotype randomPoint(){
+    infotype p;
+    Absis(p) = (rand()%5)+1;
+    Ordinat(p) = (rand()%5)+1;
+    return p;
+}
+
+void generateMap(){
+    int i,j;
+    for(i=0; i<7; i++){
+        for(j=0; j<7; j++){
+            peta[i][j] = ' ';
+        }
+    }
+    peta[0][0] = peta[0][6] = peta[6][0] = peta[6][6] = '+';
+    for(i=1; i<6; i++){
+        peta[0][i] = peta[6][i] = '-';
+        peta[i][0] = peta[i][6] = '|';
+    }
+
+    infotype pfood = randomPoint();
+    infotype pmeteor = randomPoint();
+    while(Absis(pfood) == Absis(pmeteor) && Ordinat(pfood) == Ordinat(pmeteor)){
+        pmeteor = randomPoint();
+    }
+    peta[Absis(pfood)][Ordinat(pfood)] = food;
+    peta[Absis(pmeteor)][Ordinat(pmeteor)] = meteor;
+    return;
+}
+
+void outputMap(){
+    int i,j;
+    for(i=0; i<7; i++){
+        for(j=0; j<7; j++){
+            printf("%c", peta[i][j]);
+        }
+        printf("\n");
+    }
+    return;
+}
+
+// void generateMap(){
+//     int i,j;
+//     for(i=0;i<7;i++){
+//         for(j=0;j<7;j++){
+//             if(i==0 || i==6 || j==0 || j==6){
+//                 peta[i][j] = '#';
+//             }else{
+//                 peta[i][j] = ' ';
+//             }
+//         }
+//     }
+//     peta[randomx][y] = food;
+//     return;
+// }
+
+// void generateSnake(Snake *S, address P){
+//     S->Head=P;
+//     P=Next(P);
+//     P=Next(P);
+//     S->Tail=P;
+//     S->Length=3;
+// }
 
 // void generateSnake(Snake *S, addressSnake P){
 //     return;
@@ -72,15 +142,15 @@ void generateSnake(Snake *S, address P){
 //     printf("▂▂▂▂▂▂▂▂▂");
 // }
 
-void mainSnake(){
-    printf("Selamat datang di Snake on Meteor!\n\n");
-    printf("Mengenerate peta, snake, dan makanan...\n");
-    Snake S;
-    List Peta;
-    generatePeta(&Peta);
-    POINT PosisiHead;
-    randomPoint(&PosisiHead);
-    address PHead=Search(Peta,InfoX(PosisiHead),InfoY(PosisiHead));
-    generateSnake(&S,PHead);
-    printf("Berhasil digenerate!");
-}
+// void mainSnake(){
+//     printf("Selamat datang di Snake on Meteor!\n\n");
+//     printf("Mengenerate peta, snake, dan makanan...\n");
+//     Snake S;
+//     List Peta;
+//     generatePeta(&Peta);
+//     POINT PosisiHead;
+//     randomPoint(&PosisiHead);
+//     address PHead=Search(Peta,InfoX(PosisiHead),InfoY(PosisiHead));
+//     generateSnake(&S,PHead);
+//     printf("Berhasil digenerate!");
+// }
