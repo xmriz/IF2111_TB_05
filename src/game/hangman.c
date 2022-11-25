@@ -22,7 +22,7 @@ void hangman(){
 	while (chance != 0) {
 		srand(time(NULL));
 		int random;
-		random = (rand()%n_country)+1;
+		random = (rand()%countrylist.Neff)+1;
 		delay(2);
 
 		int panjangkata, stripnum;
@@ -38,11 +38,14 @@ void hangman(){
 				printf("-");
 			} else {
 				for (int x=0; x <= listtebakan.Neff; x++) {
-					printf("%c", listtebakan.TG[i].TabKalimat[0]);
+					printf(" %c", listtebakan.TG[x].TabKalimat[0]);
 				}
 			}
-
+			
+			printf("\n");
 			printf("Kata:");
+			int copystripnum;
+			copystripnum = stripnum;
 			if (nebak = 0) {
 				for (int i = 0; i <= panjangkata; i++) {
 					printf("_");
@@ -50,20 +53,27 @@ void hangman(){
 			} else {
 				for (int j=0; j<panjangkata; j++){
 				if (cc==countrylist.TG[random].TabKalimat[j]){
-					printf('%c',cc);
-					stripnum -= 1;
+					printf(" %c",cc);
+					copystripnum -= 1;
 				} else{
 					printf('_');
 					}
 				}
 			}
+
+			if (copystripnum == stripnum){
+				chance -= 1;
+			}
+
 			
 			printf("\n");
 			printf("Kesempatan: %d", chance);
 			printf("Masukkan tebakan: ");
-			scanf("%c",&cc);
+			scanf(" %c",&cc);
 			listtebakan.TG[nebak].TabKalimat[0] = cc;
 			nebak += 1;
+			stripnum = copystripnum;
+
+			
+			}
 		}
-	}	
-}
