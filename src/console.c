@@ -441,7 +441,7 @@ void scoreboard(){
     //Skor tertinggi urutan pertama
 }
 
-void reset_scoreboard(){
+void reset_scoreboard(Map *skor, int *n_skor){
     //Menghapus semua informasi pada setiap permainan
     //Memilih salah satu permainan untuk di-reset
     int input;
@@ -449,9 +449,20 @@ void reset_scoreboard(){
     printf("DAFTAR SCOREBOARD: \n");
     printf("SCOREBOARD YANG INGIN DIHAPUS: ")
     input=scanint();
-    printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ..... (YA/TIDAK)? ");
+    if (input==0){
+        printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL? (YA/TIDAK) ");
+    }
+    else{//input selain 0
+    printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD .....? (YA/TIDAK) ");
+    }
     if(isSameString(masukan, "YA")){
-        //
+        if (input==0){
+            CreateEmptymap(skor);
+            *n_skor=0;
+        }
+        else{
+
+        }
         //
         printf("Scoreboard berhasil di-reset.\n");
     }
