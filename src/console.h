@@ -14,7 +14,7 @@
 #include "ADT\mapGame.h"
 #include "ADT\stackGame.h"
 #include "game\stimencarijodoh.h"
-#include "game\hangman.h"
+// #include "game\hangman.h"
 #include "game\snakeonmeteor.h"
 
 void welcoming(FILE *ff);
