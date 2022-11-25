@@ -180,9 +180,20 @@ int main(){
             } else {
                 commandlain();
                 }
-        }
-        
-        else { // command lain
+        } else if (isSameString(input1,"RESET")){
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "RESETHISTORY")){
+                    reset_history(&History, &n_history);
+                } else if(isSameString(input1, "RESETGAME")){
+                    // resetscoreboard(&QGame, n_game, listgame);
+                } else {
+                    commandlain();
+                }
+            } else {
+                commandlain();
+            }  
+        } else { // command lain
             commandlain();
         }
     }
