@@ -2,8 +2,8 @@
 /* deklarasi stack yang diimplementasi dengan tabel kontigu dan ukuran sama */
 /* TOP adalah alamat elemen puncak */
 /* Implementasi dalam bahasa C dengan alokasi statik */
-#ifndef stackt_H
-#define stackt_H
+#ifndef stackgame_H
+#define stackgame_H
 
 #include "boolean.h"
 #include "mesin_kalimat.h"
@@ -13,13 +13,13 @@
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef Kalimat infostack;
-typedef int address;   /* indeks tabel */
+typedef int addressStack;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
   infostack T[MaxElStack]; /* tabel penyimpan elemen */
-  address TOP;  /* alamat TOP: elemen puncak */
+  addressStack TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */

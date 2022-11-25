@@ -1,17 +1,8 @@
-// Naura Valda Prameswari
-// 18221173
-// K-01
-// 21-10-2022
-// PRAPRAKTIKUM 7 - 1
-/* File : stack.c */
-/* deklarasi stack yang diimplementasi dengan tabel kontigu dan ukuran sama */
-/* TOP adalah alamat elemen puncak */
-/* Implementasi dalam bahasa C dengan alokasi statik */
-
 #include <stdio.h>
 #include "stackGame.h"
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
+
 void CreateEmptyStack(Stack *S){
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
@@ -56,4 +47,3 @@ void PopStack(Stack * S, infostack* X){
         Top(*S) -= 1;
     }
 }
-
