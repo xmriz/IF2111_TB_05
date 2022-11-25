@@ -139,3 +139,11 @@ void copyKalimat (Kalimat k1, Kalimat *k2){
         k2->TabKalimat[i] = k1.TabKalimat[i];
     }
 }
+
+void printkalimat (Kalimat K){
+    int i;
+    for (i=0;i<=K.Length;i++){
+        printf("%c",K.TabKalimat[i]);
+    }
+    printf("\n%c",K.TabKalimat[i+1]);
+}

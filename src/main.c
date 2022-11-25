@@ -99,6 +99,17 @@ int main(){
             } else {
                 commandlain();
             }
+        } else if (isSameString(input1, "QUEUE")){
+            if (*input3 == '\0'){
+                input1 = strconcat(input1, input2);
+                if (isSameString(input1, "QUEUEGAME")){
+                    queuegame(&QGame, n_game, listgame);
+                } else {
+                    commandlain();
+                }
+            } else {
+                commandlain();
+            }
         } else if (isSameString(input1,"DELETE")){
             if (*input3 == '\0'){
                 input1 = strconcat(input1, input2);

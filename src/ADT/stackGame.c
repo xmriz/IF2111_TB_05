@@ -46,4 +46,4 @@ void PopStack(Stack * S, infostack* X){
     } else {
         Top(*S) -= 1;
     }
-}
+} 

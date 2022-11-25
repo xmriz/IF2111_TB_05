@@ -422,10 +422,8 @@ void displayhistory(Stack S, int n, int n_history){
     while (i<n && !IsEmptyStack(S)){
         PopStack(&S, &baca);
         printf("%d. ", i+1);
-        for (j = 0; j <= baca.Length; j++){
-            printf("%c", baca.TabKalimat[j]);
-        }
-        
+        printkalimat(baca);
+        printf("\n");
         PushStack(&temp, baca);
         i++;
     }
