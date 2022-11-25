@@ -38,7 +38,7 @@ void hangman(){
 				printf("-");
 			} else {
 				for (int x=0; x <= listtebakan.Neff; x++) {
-					printf(" %c", listtebakan.TG[i].TabKalimat[0]);
+					printf(" %c", listtebakan.TG[x].TabKalimat[0]);
 				}
 			}
 			
@@ -64,7 +64,7 @@ void hangman(){
 			if (copystripnum == stripnum){
 				chance -= 1;
 			}
-			// bingung ini gimana kasus  tebakannya salah
+
 			
 			printf("\n");
 			printf("Kesempatan: %d", chance);
