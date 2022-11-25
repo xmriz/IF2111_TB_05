@@ -146,7 +146,37 @@ boolean isSameString(char* a, char* b){
     return(isSame);
 }
 
-void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history) {
+// void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history) {
+//     STARTKALIMATFILE(filepath);
+//     *n_game = strToInt(CKalimat.TabKalimat);
+//     listgame->Neff = *n_game;
+//     ADVKALIMATFILE();
+//     for (int i = 0; i < listgame->Neff; i++){
+//         listgame->TG[i] = CKalimat;
+//         ADVKALIMATFILE();
+//         }
+//     *n_history = strToInt(CKalimat.TabKalimat);
+//     ADVKALIMATFILE();
+//     for (int i = 0; i < *n_history; i++){
+//         PushStack(History, CKalimat);
+//         ADVKALIMATFILE();
+//         }
+// }
+
+void readConfig(char filepath[], TabGame *listgame, int *n_game) {
+    STARTKALIMATFILE(filepath);
+    *n_game = strToInt(CKalimat.TabKalimat);
+    listgame->Neff = *n_game;
+    ADVKALIMATFILE();
+    for (int i = 0; i < listgame->Neff; i++){
+        listgame->TG[i] = CKalimat;
+        ADVKALIMATFILE();
+        }
+}
+
+void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History) {
+    CreateEmptyStack(History);
+    MakeEmptyGame(listgame);
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
     listgame->Neff = *n_game;
@@ -163,37 +193,17 @@ void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_g
         }
 }
 
-void readConfig(char filepath[], TabGame *listgame, int *n_game) {
-    STARTKALIMATFILE(filepath);
-    *n_game = strToInt(CKalimat.TabKalimat);
-    listgame->Neff = *n_game;
-    ADVKALIMATFILE();
-    for (int i = 0; i < listgame->Neff; i++){
-        listgame->TG[i] = CKalimat;
-        ADVKALIMATFILE();
-        }
-}
-
-void readSavefile(char filepath[], TabGame *listgame, int *n_game) {
-    STARTKALIMATFILE(filepath);
-    *n_game = strToInt(CKalimat.TabKalimat);
-    listgame->Neff = *n_game;
-    ADVKALIMATFILE();
-    for (int i = 0; i < listgame->Neff; i++){
-        listgame->TG[i] = CKalimat;
-        ADVKALIMATFILE();
-        }
-}
-
 void start(TabGame *listgame, Stack *History, int *n_game, int *n_history){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
     MakeEmptyGame(listgame);
     char filepath[] = "..\\data\\config.txt";
-    readConfigGame(filepath, listgame, History, n_game, n_history);
+    readConfig(filepath, listgame, n_game);
+    *History=CreateEmptyStack();
+    *n_history=0;
     printf("\nFile konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char filename[], TabGame *listgame, int *n_game){
+void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history){
     MakeEmptyGame(listgame);
     readSavefile(filename, listgame, n_game); //state listgame sm n_game ngikutin file yg di load
     printf("\nLoad file berhasil dibaca. BNMO berhasil dijalankan.\n");

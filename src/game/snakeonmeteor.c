@@ -214,6 +214,7 @@ void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle1, POINT obst
 }
 
 void generateSnake(List *Snake){
+    // hrs ngecek head di obstacle atau ga
     // CreateEmpty(Snake);
     // infolist p= randomPoint();
     // int i=1;
