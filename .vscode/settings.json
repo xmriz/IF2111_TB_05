@@ -17,6 +17,7 @@
         "conio.h": "c",
         "snakeonmeteor.h": "c",
         "dinerdash.h": "c",
+        "hangman.h": "c",
         "queuegame.h": "c",
         "arraygame.h": "c"
     },
