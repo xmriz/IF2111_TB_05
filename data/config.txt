@@ -6,7 +6,7 @@ TOWER OF HANOI
 SNAKE ON METEOR
 STI MENCARI JODOH
 3
-a
-b
-c
+aku adalah
+bego cokk
+cintai ususmu
 ;
