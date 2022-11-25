@@ -44,8 +44,8 @@ void hangman(){
 			
 			printf("\n");
 			printf("Kata:");
-			// int copystripnum;
-			// copystripnum = stripnum;
+			int copystripnum;
+			copystripnum = stripnum;
 			if (nebak = 0) {
 				for (int i = 0; i <= panjangkata; i++) {
 					printf("_");
@@ -54,16 +54,16 @@ void hangman(){
 				for (int j=0; j<panjangkata; j++){
 				if (cc==countrylist.TG[random].TabKalimat[j]){
 					printf(" %c",cc);
-					stripnum -= 1;
+					copystripnum -= 1;
 				} else{
 					printf('_');
 					}
 				}
 			}
 
-			// if (copystripnum == stripnum){
-			// 	chance -= 1;
-			// }
+			if (copystripnum == stripnum){
+				chance -= 1;
+			}
 			// bingung ini gimana kasus  tebakannya salah
 			
 			printf("\n");
@@ -72,8 +72,8 @@ void hangman(){
 			scanf(" %c",&cc);
 			listtebakan.TG[nebak].TabKalimat[0] = cc;
 			nebak += 1;
+			stripnum = copystripnum;
 
 			
 			}
 		}
-	}	
