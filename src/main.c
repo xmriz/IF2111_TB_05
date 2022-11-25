@@ -185,7 +185,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "RESETHISTORY")){
                     reset_history(&History, &n_history);
-                } else if(isSameString(input1, "RESETGAME")){
+                } else if(isSameString(input1, "RESETSCOREBOARD")){
                     // resetscoreboard(&QGame, n_game, listgame);
                 } else {
                     commandlain();
