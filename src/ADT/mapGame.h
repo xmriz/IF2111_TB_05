@@ -67,7 +67,7 @@ void Deletemap(Map *M, keytype k);
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMembermap(Map M, keytype k);
+boolean IsMemberMap(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
 #endif

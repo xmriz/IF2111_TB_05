@@ -68,4 +68,3 @@ float Panjang (POINT titik1, POINT titik2){
      return (sqrtf(powf(Absis(titik2) - Absis(titik1), 2) + powf(Ordinat(titik2) - Ordinat(titik1), 2)));
 }
 
-

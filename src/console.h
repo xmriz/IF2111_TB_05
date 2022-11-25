@@ -12,6 +12,7 @@
 #include "ADT\queueGame.h"
 #include "game\dinerdash.h"
 #include "game\rng.h"
+#include "ADT\mapGame.h"
 #include "game\stimencarijodoh.h"
 #include "game\hangman.h"
 #include "game\snakeonmeteor.h"
@@ -76,4 +77,4 @@ void displayhistory(Stack S, int n, int n_history);
 
 void reset_history(Stack *S, int *n_history);
 
-void reset_scoreboard(Map *skor, int *n_skor)
+void reset_scoreboard(Map *skor, int *n_skor);

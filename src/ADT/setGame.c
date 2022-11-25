@@ -8,7 +8,7 @@
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Set *S){
+void CreateEmptySet(Set *S){
     S->Count=Nil;
 }
 /* I.S. Sembarang */
@@ -27,13 +27,13 @@ boolean IsEmpty(Set S){
 boolean IsFull(Set S){
     // KAMUS LOKAL
     // ALGORITMA
-    return(S.Count==MaxEl);
+    return(S.Count==MaxElSet);
 }
 /* Mengirim true jika Set S penuh */
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void Insert(Set *S, infotype Elmt){
+void Insert(Set *S, infoset Elmt){
     // KAMUS LOKAL
     // ALGORITMA
     if (!IsMember(*S,Elmt)){
@@ -46,7 +46,7 @@ void Insert(Set *S, infotype Elmt){
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void Delete(Set *S, infotype Elmt){
+void Delete(Set *S, infoset Elmt){
     // KAMUS LOKAL
     int i=0,x;
     boolean found=false;
@@ -70,7 +70,7 @@ void Delete(Set *S, infotype Elmt){
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
 
-boolean IsMember(Set S, infotype Elmt){
+boolean IsMember(Set S, infoset Elmt){
     // KAMUS LOKAL
     int i=0;
     boolean found=false;
@@ -89,7 +89,7 @@ boolean IsMember(Set S, infotype Elmt){
 Set SetUnion(Set s1, Set s2){
 	int i;
 	Set s3; 
-    CreateEmpty(&s3);
+    CreateEmptySet(&s3);
 	for (i = 0; i < s1.Count; i++) {
 		if (!IsMember(s3, s1.Elements[i])){
             Insert(&s3, s1.Elements[i]);
@@ -107,7 +107,7 @@ Set SetUnion(Set s1, Set s2){
 
 Set SetIntersection(Set s1, Set s2){
     Set s3;
-    CreateEmpty(&s3);
+    CreateEmptySet(&s3);
     int i,count;
     if (s1.Count>=s2.Count){
         count=s1.Count;
@@ -127,8 +127,8 @@ Set SetIntersection(Set s1, Set s2){
 Set SetSymmetricDifference(Set s1, Set s2){
     Set s3, sn;
     int i;
-    CreateEmpty(&s3);
-    CreateEmpty(&sn);
+    CreateEmptySet(&s3);
+    CreateEmptySet(&sn);
     sn=SetIntersection(s1,s2);
     for (i=0;i<s1.Count; i++){
         if (!IsMember(sn,s1.Elements[i])){
@@ -148,7 +148,7 @@ Set SetSymmetricDifference(Set s1, Set s2){
 Set SetSubtract(Set s1, Set s2){
     Set min;
     int i,el;
-    CreateEmpty(&min);
+    CreateEmptySet(&min);
 	for (i = 0; i < s1.Count; i++) {
 		if (!IsMember(s2, s1.Elements[i])){
             Insert(&min, s1.Elements[i]);}

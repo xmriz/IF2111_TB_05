@@ -158,7 +158,7 @@ void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_g
     *n_history = strToInt(CKalimat.TabKalimat);
     ADVKALIMATFILE();
     for (int i = 0; i < *n_history; i++){
-        Push(History, CKalimat);
+        PushStack(History, CKalimat);
         ADVKALIMATFILE();
         }
 }
@@ -333,7 +333,7 @@ void playgame(int n_game, QueueGame *Q, Stack *S){
             printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
             return;
         }
-        Push(S, val);
+        PushStack(S, val);
     } else {
         printf("\nTidak ada game yang dapat dimainkan. Queue game terlebih dahulu!\n");
     }
@@ -410,19 +410,19 @@ void displayhistory(Stack S, int n, int n_history){
     int j;
 
     while (i<n && !IsEmptyStack(S)){
-        Pop(&S, &baca);
+        PopStack(&S, &baca);
 
         printf("%d. ", i+1);
         for (j = 0; j <= baca.Length; j++){
             printf("%c", baca.TabKalimat[j]);
         }
         
-        Push(&temp, baca);
+        PushStack(&temp, baca);
         i++;
     }
     for (int i=0; i<n; i++){
-        Pop(&temp, &baca);
-        Push(&S, baca);
+        PopStack(&temp, &baca);
+        PushStack(&S, baca);
     }
 }
 
@@ -441,39 +441,39 @@ void reset_history(Stack *S, int *n_history){
         displayhistory(*S, *n_history, *n_history);
     }
 }
-/*
-void scoreboard(){
-    //Urutan scoreboard sama kayak command listgame
-    //Skor tertinggi urutan pertama
-}
 
-void reset_scoreboard(Map *skor, int *n_skor){
-    //Menghapus semua informasi pada setiap permainan
-    //Memilih salah satu permainan untuk di-reset
-    int input;
-    char* masukan;
-    printf("DAFTAR SCOREBOARD: \n");
-    printf("SCOREBOARD YANG INGIN DIHAPUS: ")
-    input=scanint();
-    if (input==0){
-        printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL? (YA/TIDAK) ");
-    }
-    else{//input selain 0
-    printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD .....? (YA/TIDAK) ");
-    }
-    if(isSameString(masukan, "YA")){
-        if (input==0){
-            CreateEmptymap(skor);
-            *n_skor=0;
-        }
-        else{
+// void scoreboard(){
+//     //Urutan scoreboard sama kayak command listgame
+//     //Skor tertinggi urutan pertama
+// }
 
-        }
-        //
-        printf("Scoreboard berhasil di-reset.\n");
-    }
-    else if (isSameString(masukan, "TIDAK")){
-        printf("Scoreboard gagal di-reset.\n");
-    }
+// void reset_scoreboard(Map *skor, int *n_skor){
+//     //Menghapus semua informasi pada setiap permainan
+//     //Memilih salah satu permainan untuk di-reset
+//     int input;
+//     char* masukan;
+//     printf("DAFTAR SCOREBOARD: \n");
+//     printf("SCOREBOARD YANG INGIN DIHAPUS: ")
+//     input=scanint();
+//     if (input==0){
+//         printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL? (YA/TIDAK) ");
+//     }
+//     else{//input selain 0
+//     printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD .....? (YA/TIDAK) ");
+//     }
+//     if(isSameString(masukan, "YA")){
+//         if (input==0){
+//             CreateEmptymap(skor);
+//             *n_skor=0;
+//         }
+//         else{
+
+//         }
+//         //
+//         printf("Scoreboard berhasil di-reset.\n");
+//     }
+//     else if (isSameString(masukan, "TIDAK")){
+//         printf("Scoreboard gagal di-reset.\n");
+//     }
     
-} */
+// } 

@@ -9,14 +9,14 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
 #define Nil 0
-#define MaxEl 100
+#define MaxElSet 100
 
-typedef Kalimat infotype;
+typedef Kalimat infoset;
 typedef int address;
 
 typedef struct
 {
-    infotype Elements[MaxEl];
+    infoset Elements[MaxElSet];
     address Count;
 } Set;
 
@@ -27,7 +27,7 @@ typedef struct
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Set *S);
+void CreateEmptySet(Set *S);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Set S kosong berkapasitas MaxEl */
 /* Ciri Set kosong : count bernilai Nil */
@@ -42,19 +42,19 @@ boolean IsFull(Set S);
 /* Ciri Set penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Set ********* */
-void Insert(Set *S, infotype Elmt);
+void Insert(Set *S, infoset Elmt);
 /* Menambahkan Elmt sebagai elemen Set S. */
 /* I.S. S mungkin kosong, S tidak penuh
         S mungkin sudah beranggotakan Elmt */
 /* F.S. Elmt menjadi anggota dari S. Jika Elmt sudah merupakan anggota, operasi tidak dilakukan */
 
-void Delete(Set *S, infotype Elmt);
+void Delete(Set *S, infoset Elmt);
 /* Menghapus Elmt dari Set S. */
 /* I.S. S tidak kosong
         Elmt mungkin anggota / bukan anggota dari S */
 /* F.S. Elmt bukan anggota dari S */
 
-boolean IsMember(Set S, infotype Elmt);
+boolean IsMember(Set S, infoset Elmt);
 /* Mengembalikan true jika Elmt adalah member dari S */
 
 Set SetUnion(Set s1, Set s2);

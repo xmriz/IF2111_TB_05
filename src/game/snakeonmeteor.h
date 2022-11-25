@@ -7,7 +7,7 @@
 
 void mainSnake();
 
-infotypel randomPoint();
+infolist randomPoint();
 
 void generateFood(POINT *food, POINT meteor, POINT obstacle);
 

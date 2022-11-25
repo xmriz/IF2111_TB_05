@@ -15,7 +15,7 @@
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M){
+void CreateEmptymap(Map *M){
     M->Count=Nil;
 }
 /* I.S. Sembarang */
@@ -23,26 +23,26 @@ void CreateEmpty(Map *M){
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M){
+boolean IsEmptymap(Map M){
     return(M.Count==Nil);
 }
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsFull(Map M){
+boolean IsFullmap(Map M){
     return(M.Count==MaxEl);
 }
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-valuetype Value(Map M, keytype k){
+valuetype Valuemap(Map M, keytype k){
     // KAMUS LOKAL
     valuetype val;
     int i=0;
     boolean found=false;
     // ALGORITMA
-    if (IsMember(M,k)){
+    if (IsMemberMap(M,k)){
         while (i<M.Count && !found){
             if (isKalimatSame(M.Elements[i].Key,k)){
                 val=M.Elements[i].Value;
@@ -59,10 +59,10 @@ valuetype Value(Map M, keytype k){
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v){
+void Insertmap(Map *M, keytype k, valuetype v){
     //KAMUS LOKAL
     //ALGORITMA
-    if (!IsMember(*M,k)){
+    if (!IsMemberMap(*M,k)){
         M->Count++;
         copyKalimat(k, &((*M).Elements[(*M).Count-1].Key));
         (*M).Elements[(*M).Count-1].Value=v;
@@ -73,12 +73,12 @@ void Insert(Map *M, keytype k, valuetype v){
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k){
+void Deletemap(Map *M, keytype k){
     // KAMUS LOKAL
     int i=0,x;
     boolean found=false;
     // ALGORITMA
-    if (IsMember(*M,k)){
+    if (IsMemberMap(*M,k)){
         while (i<M->Count && !found){
             if (isKalimatSame(M->Elements[i].Key,k)){
                 found=true;
@@ -99,7 +99,7 @@ void Delete(Map *M, keytype k){
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k){
+boolean IsMemberMap(Map M, keytype k){
     // KAMUS LOKAL
     int i=0;
     boolean found=false;

@@ -39,8 +39,8 @@ void mainSnake(){
     return;
 }
 
-infotypel randomPoint(){
-    infotypel p;
+infolist randomPoint(){
+    infolist p;
     srand(time(NULL));
     Absis(p) = (rand()%5)+1;
     Ordinat(p) = (rand()%5)+1;
@@ -215,7 +215,7 @@ void displayMap(List S, POINT makanan, POINT meteor, POINT obstacle1, POINT obst
 
 void generateSnake(List *Snake){
     // CreateEmpty(Snake);
-    // infotypel p= randomPoint();
+    // infolist p= randomPoint();
     // int i=1;
     // InsVLast(Snake, p);
     // while (i<=3){
