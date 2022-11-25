@@ -403,14 +403,20 @@ void tolowercase(char *s) {
 void displayhistory(Stack S, int n, int n_history){
     Stack temp;
     Kalimat baca;
+
     printf("Berikut adalah daftar Game yang telah dimainkan\n");
 
     int i = 0;
+    int j;
 
     while (i<n && !IsEmptyStack(S)){
         Pop(&S, &baca);
-        printf("%d. %s\n", i+1, baca);
 
+        printf("%d. ", i+1);
+        for (j = 0; j <= baca.Length; j++){
+            printf("%c", baca.TabKalimat[j]);
+        }
+        
         Push(&temp, baca);
         i++;
     }
