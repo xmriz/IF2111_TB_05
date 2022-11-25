@@ -435,3 +435,28 @@ void reset_history(Stack *S, int *n_history){
         displayhistory(*S, *n_history, *n_history);
     }
 }
+/*
+void scoreboard(){
+    //Urutan scoreboard sama kayak command listgame
+    //Skor tertinggi urutan pertama
+}
+
+void reset_scoreboard(){
+    //Menghapus semua informasi pada setiap permainan
+    //Memilih salah satu permainan untuk di-reset
+    int input;
+    char* masukan;
+    printf("DAFTAR SCOREBOARD: \n");
+    printf("SCOREBOARD YANG INGIN DIHAPUS: ")
+    input=scanint();
+    printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ..... (YA/TIDAK)? ");
+    if(isSameString(masukan, "YA")){
+        //
+        //
+        printf("Scoreboard berhasil di-reset.\n");
+    }
+    else if (isSameString(masukan, "TIDAK")){
+        printf("Scoreboard gagal di-reset.\n");
+    }
+    
+} */
