@@ -37,7 +37,7 @@ int main(){
         } else if (isSameString(command,"LOAD")){
             char *inputload = "../data/";
             char *filename = strconcat(inputload, inputfile);
-            load(filename, &listgame, &n_game);
+            load(filename, &listgame, &n_game, &History, &n_history);
             isStart = true;
         } else if (isSameString(command,"HELP")){
             if (*inputfile  == '\0'){
@@ -73,7 +73,7 @@ int main(){
             if (*input3 == '\0'){
                 char *inputsave = "../data/";
                 char *filename = strconcat(inputsave, input2);
-                save(filename, listgame, n_game);
+                save(filename, listgame, n_game, History, n_history);
             } else {
                 commandlain();
             }
@@ -110,18 +110,20 @@ int main(){
             } else {
                 commandlain();
             }
-        } else if (isSameString(input1,"QUEUE")){
-            if (*input3 == '\0'){
+        }         else if (isSameString(input1,"SKIP")){
+            if (*input4 == '\0'){
                 input1 = strconcat(input1, input2);
-                if (isSameString(input1, "QUEUEGAME")){
-                    queuegame(&QGame, n_game, listgame);
+                if (isSameString(input1, "SKIPGAME")){
+                    if (strToInt2(input3) >= 0){
+                        skipgame(&QGame,strToInt2(input3),n_game, &History);
+                    } else {
+                        commandlain();
+                    }
                 } else {
                     commandlain();
                 }
-            } else {
-                commandlain();
-            }
-        } else if (isSameString(input1,"PLAY")){
+            } 
+        }    else if (isSameString(input1,"PLAY")){
             if (*input3 == '\0'){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "PLAYGAME")){
@@ -133,7 +135,8 @@ int main(){
             } else {
                 commandlain();
             }
-        } else if (isSameString(input1,"SKIP")){
+        }  
+        else if (isSameString(input1,"SKIP")){
             if (*input4 == '\0'){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "SKIPGAME")){

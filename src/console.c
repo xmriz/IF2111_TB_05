@@ -198,18 +198,18 @@ void start(TabGame *listgame, Stack *History, int *n_game, int *n_history){
     MakeEmptyGame(listgame);
     char filepath[] = "..\\data\\config.txt";
     readConfig(filepath, listgame, n_game);
-    *History=CreateEmptyStack();
+    CreateEmptyStack(History);
     *n_history=0;
     printf("\nFile konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
 void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history){
     MakeEmptyGame(listgame);
-    readSavefile(filename, listgame, n_game); //state listgame sm n_game ngikutin file yg di load
+    readSavefile(filename, listgame, n_game, n_history, history); //state listgame sm n_game ngikutin file yg di load
     printf("\nLoad file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void save(char* filename, TabGame listgame, int n_game){
+void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history){
     FILE * savePtr;
     int i,j;
     savePtr =  fopen(filename, "w");
@@ -421,7 +421,6 @@ void displayhistory(Stack S, int n, int n_history){
 
     while (i<n && !IsEmptyStack(S)){
         PopStack(&S, &baca);
-
         printf("%d. ", i+1);
         for (j = 0; j <= baca.Length; j++){
             printf("%c", baca.TabKalimat[j]);

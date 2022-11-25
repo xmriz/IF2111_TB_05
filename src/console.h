@@ -37,15 +37,15 @@ void mainmenu();
 
 void menu();
 
-void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history);
+// void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game);
 
 void start(TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
-void load(char filename[], TabGame *listgame, int *n_game);
+void load(char filename[], TabGame *listgame, int *n_game, Stack *History, int *n_history);
 
-void save(char* filename, TabGame listgame, int n_game);
+void save(char* filename, TabGame listgame, int n_game, Stack History, int n_history);
 
 void createGame(int *n_game, TabGame *listgame);
 
