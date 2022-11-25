@@ -422,7 +422,7 @@ void displayhistory(Stack S, int n, int n_history){
 
 void reset_history(Stack *S, int *n_history){
     char *masukan;
-    printf("Apakah kamu yakin ingin melakukan reset history? ");
+    printf("Apakah kamu yakin ingin melakukan reset history? (YA/TIDAK) ");
     masukan = scanstring();
     if (isSameString(masukan, "YA")){
         CreateEmptyStack(S);
@@ -430,7 +430,7 @@ void reset_history(Stack *S, int *n_history){
 
         printf("\n\nHistory berhasil di-reset.\n");
     }
-    else if (isSameString(masukan, "N")){
+    else if (isSameString(masukan, "TIDAK")){
         printf("\n\nHistory tidak jadi di-reset. ");
         displayhistory(*S, *n_history, *n_history);
     }
