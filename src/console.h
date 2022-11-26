@@ -77,4 +77,4 @@ void displayhistory(Stack S, int n, int n_history);
 
 void reset_history(Stack *S, int *n_history);
 
-// void reset_scoreboard(Map *skor, int *n_skor);
+void reset_scoreboard(Map *skor, int *n_skor);
