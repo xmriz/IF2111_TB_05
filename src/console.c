@@ -303,7 +303,8 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 }
 }
 
-void playgame(int n_game, QueueGame *Q, Stack *S){
+void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor){
+    // Map udah di create di main paling awal
     if (!isEmptyGame(*Q)){
         ElTypeG val;
         dequeueGame(Q, &val);
@@ -317,30 +318,70 @@ void playgame(int n_game, QueueGame *Q, Stack *S){
         if (isSameString(stringval,"Diner DASH")){
             printf("Loading %s ...\n", stringval);
             delay(1);
-            mainDinerDash();
+            int scoredd;
+            mainDinerDash(&scoredd);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("Skor akhir: %d\n", scoredd);
+            printf("Nama:");
+            char* nama = scanstring();
+            Kalimat n;
+            StringToKalimat(&n,nama);
+            Insertmap(dinerdash, n, scoredd);
+
         } else if (isSameString(stringval,"RNG")){
             printf("Loading %s ...\n", stringval);
             delay(1);
-            mainRNG();
+            int scorerng;
+            mainRNG(&scorerng);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("Skor akhir: %d\n", scorerng);
+            printf("Nama: ");
+            char* nama = scanstring();
+            Kalimat n;
+            StringToKalimat(&n,nama);
+            Insertmap(RNG, n, scorerng);
+
         } else if (isSameString(stringval, "STI MENCARI JODOH")){
             printf("Loading %s ...\n", stringval);
             delay(1);
-            mainjodoh();
+            int scoresmj;
+            mainjodoh(&scoresmj);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("Skor akhir: %d\n", scoresmj);
+            printf("Nama: ");
+            char* nama = scanstring();
+            Kalimat n;
+            StringToKalimat(&n,nama);
+            Insertmap(smj, n, scoresmj);
+
         } else if (isSameString(stringval, "SNAKE ON METEOR")){
             printf("Loading %s ...\n", stringval);
             delay(1);
-            mainSnake();
+            int scoresom;
+            mainSnake(&scoresom);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("Skor akhir: %d\n", scoresom);
+            printf("Nama: ");
+            char* nama = scanstring();
+            Kalimat n;
+            StringToKalimat(&n,nama);
+            Insertmap(RNG, n, scoresom);
+
         } else if (isSameString(stringval, "HANGMAN")){
             printf("Loading %s ...\n", stringval);
             delay(1);
+            int scorehangman;
             // mainHangman();
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("Skor akhir: %d\n", scorehangman);
+            printf("Nama: ");
+            char* nama = scanstring();
+            Kalimat n;
+            StringToKalimat(&n,nama);
+            Insertmap(hangman, n, scorehangman);
+
         } else{
-            printf("Game %s masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n", stringval);
+            printf("Skor akhir: 0\n");
             return;
         }
         PushStack(S, val);
@@ -349,13 +390,13 @@ void playgame(int n_game, QueueGame *Q, Stack *S){
     }
 }
 
-void skipgame(QueueGame *q, int masukan, int n_game, Stack *S){
+void skipgame(QueueGame *q, int masukan, int n_game, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor){
     displayQueueGame(*q);
     for(int i=1;i<=masukan;i++){
         ElTypeG v;
         dequeueGame(q,&v);
     }
-    playgame(n_game, q, S);  
+    playgame(n_game, q, S, RNG, dinerdash, hangman, smj, snakeonmeteor);  
  }
 
 void quit(){
@@ -450,38 +491,131 @@ void reset_history(Stack *S, int *n_history){
     }
 }
 
-// void scoreboard(){
-//     //Urutan scoreboard sama kayak command listgame
-//     //Skor tertinggi urutan pertama
-// }
+void printgamesb(Map x){
+    printf("| NAMA\t\t| SKOR\t\t|\n");
+    if (!IsEmptymap(x)){
+        printf("|-------------------------------|\n");
+        for (int i=0; i<x.Count; i++){
+            printf("| ");
+            printkalimat(x.Elements[i].Key);
+            if (x.Elements[i].Key.Length<=5){
+                printf("\t\t|");
+            } else{
+                printf("\t|");
+            }
+            printf("%d", x.Elements[i].Value);
+            if (x.Elements[i].Value<100000){
+                printf("\t\t|");
+            } else{
+                printf("\t|");
+            }
+            printf("\n");
+        }
+        printf("|-------------------------------|\n\n");
+    } else {
+        printf("--------SCOREBOARD KOSONG--------\n\n");
+    }
+}
 
-// void reset_scoreboard(Map *skor, int *n_skor){
-//     //Menghapus semua informasi pada setiap permainan
-//     //Memilih salah satu permainan untuk di-reset
-//     int input;
-//     char* masukan;
-//     printf("DAFTAR SCOREBOARD: \n");
-//     printf("SCOREBOARD YANG INGIN DIHAPUS: ")
-//     input=scanint();
-//     if (input==0){
-//         printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL? (YA/TIDAK) ");
-//     }
-//     else{//input selain 0
-//     printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD .....? (YA/TIDAK) ");
-//     }
-//     if(isSameString(masukan, "YA")){
-//         if (input==0){
-//             CreateEmptymap(skor);
-//             *n_skor=0;
-//         }
-//         else{
+void scoreboard(Map RNG, Map dinerdash, Map hangman, Map smj, Map snakeonmeteor){
+    printf("\nBerikut adalah scoreboard BNMO!\n\n");
+    printf("1. Random Number Generator\n");
+    printgamesb(RNG);
+    printf("2. Diner Dash\n");
+    printgamesb(dinerdash);
+    printf("3. Hangman\n");
+    printgamesb(hangman);
+    printf("4. Snake on Meteor\n");
+    printgamesb(snakeonmeteor);
+    printf("5. STI Mencari Jodoh\n");
+    printgamesb(smj);
+}
 
-//         }
-//         //
-//         printf("Scoreboard berhasil di-reset.\n");
-//     }
-//     else if (isSameString(masukan, "TIDAK")){
-//         printf("Scoreboard gagal di-reset.\n");
-//     }
+void reset_scoreboard(Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor){
+    //Menghapus semua informasi pada setiap permainan
+    //Memilih salah satu permainan untuk di-reset
+    int input;
+    char* masukan;
+    do {
+        printf("DAFTAR SCOREBOARD: \n");
+        printf("0. ALL\n");
+        printf("1. RNG\n");
+        printf("2. Diner DASH\n");
+        printf("3. HANGMAN\n");
+        printf("4. TOWER OF HANOI\n");
+        printf("5. SNAKE ON METEOR\n");
+        printf("5. STI MENCARI JODOH\n");
+
+        printf("SCOREBOARD YANG INGIN DIHAPUS: ");
+        input=scanint();
+        if (input==0){
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD ALL? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                CreateEmptymap(RNG);
+                CreateEmptymap(dinerdash);
+                CreateEmptymap(hangman);
+                CreateEmptymap(smj);
+                CreateEmptymap(snakeonmeteor);
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        }  else if (input==1){
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD RNG? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                CreateEmptymap(RNG);
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        } else if (input==2){
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD DINERDASH? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                CreateEmptymap(dinerdash);
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        } else if (input==3){
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD HANGMAN? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                CreateEmptymap(hangman);
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        } else if (input==4) {
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD TOWER OF HANOI? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                printf("blom ad tower of hanoi\n");
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        } else if (input==5){
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD SNAKE ON METEOR? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                CreateEmptymap(snakeonmeteor);
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        } else if (input==6){
+            printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD STI MENCARI JODOH? (YA/TIDAK) ");
+            char *strinp=scanstring();
+            if (isSameString("YA",strinp)){
+                CreateEmptymap(smj);
+                printf("\nScoreboard berhasil di-reset.\n");
+            } else{
+                printf("\nScoreboard gagal di-reset.\n");
+            }
+        }
+    } while (input!=0 && input!=1 && input!=2 && input!=3 && input!=4 && input!=5 && input!=6); 
     
-// } 
+} 

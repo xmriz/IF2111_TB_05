@@ -55,11 +55,13 @@ void deleteGame(int *n_game, TabGame *listgame);
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame); 
 
-void playgame(int n_game, QueueGame *Q, Stack *S);
- 
-void skipgame(QueueGame *q, int masukan, int n_game, Stack *S);
+void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor);
+
+void skipgame(QueueGame *q, int masukan, int n_game, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor);
 
 void quit();
+
+void printgamesb(Map x);
 
 void helpstart();
 
@@ -75,6 +77,8 @@ void tolowercase(char* s);
 
 void displayhistory(Stack S, int n, int n_history);
 
+void scoreboard(Map RNG, Map dinerdash, Map hangman, Map smj, Map snakeonmeteor);
+
 void reset_history(Stack *S, int *n_history);
 
-void reset_scoreboard(Map *skor, int *n_skor);
+void reset_scoreboard(Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor);

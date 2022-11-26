@@ -88,6 +88,16 @@ void KalimatToString (Kalimat K, char *S){
     }
 }
 
+void StringToKalimat (Kalimat *K, char* str){
+    int i=0;
+    while (*str != '\0'){
+        K->TabKalimat[i]=*str;
+        str++;
+        i++;
+    }
+    K->Length=i;
+}
+
 int strToInt(char s[]){
     int i, n=0;
     for(i=1; s[i]>='0' && s[i]<='9'; i++){

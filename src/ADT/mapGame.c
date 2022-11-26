@@ -66,6 +66,11 @@ void Insertmap(Map *M, keytype k, valuetype v){
         M->Count++;
         copyKalimat(k, &((*M).Elements[(*M).Count-1].Key));
         (*M).Elements[(*M).Count-1].Value=v;
+    } else{
+        int i = SearchIdxKey(*M,k);
+        if ((*M).Elements[i].Value<v){
+            M->Elements[i].Value=v;
+        }
     }
 }
 /* Menambahkan Elmt sebagai elemen Map M. */
@@ -114,4 +119,22 @@ boolean IsMemberMap(Map M, keytype k){
     return(found);
     }
 /* Mengembalikan true jika k adalah member dari M */
+
+int SearchIdxKey(Map M, keytype k){
+    int i=0;
+    boolean found=false;
+    // ALGORITMA
+    while (i<M.Count && !found){
+            if (isKalimatSame(M.Elements[i].Key,k)){
+                found=true;
+            } else{
+                i++;   
+            }   
+        }
+    if (found){
+        return(i);
+    } else{
+        return(-1);
+    }
+}
 

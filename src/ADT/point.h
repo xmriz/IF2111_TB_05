@@ -54,11 +54,8 @@ int Kuadran (POINT titik);
 /*              dan P tidak terletak di salah satu sumbu */
 
 /* *** KELOMPOK OPERASI LAIN TERHADAP TYPE *** */
-POINT PlusDelta (POINT titik, int deltaX, int deltaY);
+POINT salinDelta (POINT titik, int deltaX, int deltaY);
 /* Mengirim salinan P yang absisnya adalah Absis(P) + deltaX dan ordinatnya adalah Ordinat(P) + deltaY */
-POINT Geser (POINT titik, int deltaX, int deltaY);
-/* I.S. P terdefinisi */
-/* F.S. P digeser, absisnya sebesar deltaX dan ordinatnya sebesar deltaY */
 float Jarak0 (POINT titik);
 /* Menghitung jarak P ke (0,0) */
 float Panjang (POINT titik1, POINT titik2);

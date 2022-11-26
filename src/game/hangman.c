@@ -6,7 +6,7 @@
 
 #include "../console.h"
 
-void hangman(){
+void hangman(int *scorehangman){
 	// Inisiasi berupa pembacaan file konfigurasi default
 	MakeEmptyGame(listgame);
 	char filepath[] = "..\\data\\country.txt";
@@ -26,14 +26,14 @@ void hangman(){
 		delay(2);
 
 		int panjangkata, stripnum;
-		panjangkata = countrylist.TG[random].length.; 
+		panjangkata = countrylist.TG[random].Length; 
 		stripnum = panjangkata;
 
 		while (stripnum != 0) {
 			char *cc;
 			TabGame listtebakan;
 
-			printf("Tebakan sebelumnya: ", );
+			printf("Tebakan sebelumnya: " );
 			if (listtebakan.Neff == 0) {
 				printf("-");
 			} else {

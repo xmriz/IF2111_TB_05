@@ -16,7 +16,7 @@ void tebakan (int x, int random){
         }  
 }
 
-void mainRNG(){
+void mainRNG(int *scorerng){
     srand(time(NULL));
     printf("RNG Telah dimulai.\n");
     printf("Uji keberuntungan Anda dengan menebak X (0 <= X <= 100)\n");
@@ -40,4 +40,5 @@ void mainRNG(){
     else{
         printf("Skor anda = %d ", 1000-((count-1)*100));
     }
+    *scorerng = 1000-((count-1)*100);
 }

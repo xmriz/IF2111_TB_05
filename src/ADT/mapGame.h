@@ -70,4 +70,6 @@ void Deletemap(Map *M, keytype k);
 boolean IsMemberMap(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
+int SearchIdxKey(Map M, keytype k);
+
 #endif

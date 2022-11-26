@@ -4,8 +4,8 @@
 
 POINT MakePOINT (int X, int Y){
     POINT titik;
-    Absis(titik) = X;
-    Ordinat(titik) = Y;
+    Absis(titik) = X%5;
+    Ordinat(titik) = Y%5;
     return titik;
 }
 
@@ -50,15 +50,8 @@ int Kuadran (POINT titik){
     }
 }
 
-POINT PlusDelta (POINT titik, int deltaX, int deltaY){
-    MakePOINT(Absis(titik)+deltaX,Ordinat(titik)+deltaY);
-}
-
-POINT Geser (POINT titik, int deltaX, int deltaY){
-    POINT new;
-    new.X = Absis(titik) + deltaX;
-    new.Y = Ordinat(titik) + deltaY;
-    return new;
+POINT salinDelta (POINT titik, int deltaX, int deltaY){
+    return MakePOINT(Absis(titik)+deltaX,Ordinat(titik)+deltaY);
 }
 
 float Jarak0 (POINT titik){

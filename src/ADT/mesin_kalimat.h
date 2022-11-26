@@ -46,6 +46,8 @@ boolean isKalimatSame(Kalimat K1,Kalimat K2);
 
 void copyKalimat (Kalimat k1, Kalimat *k2);
 
+void StringToKalimat (Kalimat *K, char* str);
+
 void printkalimat (Kalimat K);
 
 #endif
