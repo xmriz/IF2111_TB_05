@@ -255,7 +255,7 @@ void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *
     printf("\nLoad file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history){
+void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history, Map RNG, Map dinerdash, Map hangman, Map snakeofm, Map smj){
     FILE * savePtr;
     int i,j;
     savePtr =  fopen(filename, "w");
@@ -270,6 +270,91 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
             for (j=1;j<=listgame.TG[i].Length;j++){
                 fprintf(savePtr,"%c",listgame.TG[i].TabKalimat[j]);
             } 
+            fprintf(savePtr,"%c",'\n');
+        }
+        // masukin history ke file
+        char c2=n_history + '0';
+        fprintf(savePtr,"%c",c2);
+        fprintf(savePtr,"%c",'\n');
+        for (i=0;i<n_history;i++){
+            for (j=1;j<=history.T[i].Length;j++){
+                fprintf(savePtr,"%c",history.T[i].TabKalimat[j]);
+            } 
+            fprintf(savePtr,"%c",'\n');
+        }
+        // masukin map RNG
+        char c3=RNG.Count + '0';
+        fprintf(savePtr,"%c",c3);
+        fprintf(savePtr,"%c",'\n');
+        for (i=0;i<RNG.Count;i++){
+            for (j=1;j<=RNG.Elements[i].Key.Length;j++){
+                fprintf(savePtr,"%c",RNG.Elements[i].Key.TabKalimat[j]);
+            } 
+            fprintf(savePtr,"%c",' ');
+            int k=RNG.Elements[i].Value;
+            char str[20];
+            sprintf(str, "%d", k);
+            fprintf(savePtr,"%s",str);
+            fprintf(savePtr,"%c",'\n');
+        }
+        // masukin map dinerdash
+        char c4=dinerdash.Count + '0';
+        fprintf(savePtr,"%c",c4);
+        fprintf(savePtr,"%c",'\n');
+        for (i=0;i<dinerdash.Count;i++){
+            for (j=1;j<=dinerdash.Elements[i].Key.Length;j++){
+                fprintf(savePtr,"%c",dinerdash.Elements[i].Key.TabKalimat[j]);
+            } 
+            fprintf(savePtr,"%c",' ');
+            int k=dinerdash.Elements[i].Value;
+            char str[20];
+            sprintf(str, "%d", k);
+            fprintf(savePtr,"%s",str);
+            fprintf(savePtr,"%c",'\n');
+        }
+        // masukin map hangman
+        char c5=hangman.Count + '0';
+        fprintf(savePtr,"%c",c5);
+        fprintf(savePtr,"%c",'\n');
+        for (i=0;i<hangman.Count;i++){
+            for (j=1;j<=hangman.Elements[i].Key.Length;j++){
+                fprintf(savePtr,"%c",hangman.Elements[i].Key.TabKalimat[j]);
+            } 
+            fprintf(savePtr,"%c",' ');
+            int k=hangman.Elements[i].Value;
+            char str[20];
+            sprintf(str, "%d", k);
+            fprintf(savePtr,"%s",str);
+            fprintf(savePtr,"%c",'\n');
+        }
+        // masukin map snakeofm
+        char c6=snakeofm.Count + '0';
+        fprintf(savePtr,"%c",c6);
+        fprintf(savePtr,"%c",'\n');
+        for (i=0;i<snakeofm.Count;i++){
+            for (j=1;j<=snakeofm.Elements[i].Key.Length;j++){
+                fprintf(savePtr,"%c",snakeofm.Elements[i].Key.TabKalimat[j]);
+            } 
+            fprintf(savePtr,"%c",' ');
+            int k=snakeofm.Elements[i].Value;
+            char str[20];
+            sprintf(str, "%d", k);
+            fprintf(savePtr,"%s",str);
+            fprintf(savePtr,"%c",'\n');
+        }
+        // masukin map smj
+        char c7=smj.Count + '0';
+        fprintf(savePtr,"%c",c7);
+        fprintf(savePtr,"%c",'\n');
+        for (i=0;i<smj.Count;i++){
+            for (j=1;j<=smj.Elements[i].Key.Length;j++){
+                fprintf(savePtr,"%c",smj.Elements[i].Key.TabKalimat[j]);
+            } 
+            fprintf(savePtr,"%c",' ');
+            int k=smj.Elements[i].Value;
+            char str[20];
+            sprintf(str, "%d", k);
+            fprintf(savePtr,"%s",str);
             fprintf(savePtr,"%c",'\n');
         }
         fprintf(savePtr,"%c",';');

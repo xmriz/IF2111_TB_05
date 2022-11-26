@@ -82,7 +82,7 @@ int main(){
             if (*input3 == '\0'){
                 char *inputsave = "../data/";
                 char *filename = strconcat(inputsave, input2);
-                save(filename, listgame, n_game, History, n_history);
+                save(filename, listgame, n_game, History, n_history, RNG, dinerdash, hangman, snakeonmeteor, smj);
             } else {
                 commandlain();
             }

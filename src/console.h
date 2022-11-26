@@ -47,9 +47,11 @@ void start(TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
 void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj);
 
-void save(char* filename, TabGame listgame, int n_game, Stack History, int n_history);
+void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history, Map RNG, Map dinerdash, Map hangman, Map snakeofm, Map smj);
 
 void createGame(int *n_game, TabGame *listgame);
+
+int panjangString(char*p);
 
 void listofgame(int n_game, TabGame listgame);
 
