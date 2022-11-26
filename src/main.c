@@ -68,7 +68,6 @@ int main(){
         char *input4;
         printf("ENTER COMMAND: ");
         scanParserStr(&input1,&input2,&input3,&input4);
-
         if (isSameString(input1, "SAVE")){
             if (*input3 == '\0'){
                 char *inputsave = "../data/";
