@@ -72,4 +72,6 @@ boolean IsMemberMap(Map M, keytype k);
 
 int SearchIdxKey(Map M, keytype k);
 
+void sortMap (Map *M);
+
 #endif
