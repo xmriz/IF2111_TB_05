@@ -411,21 +411,22 @@ void tolowercase(char *s) {
 }
 
 void displayhistory(Stack S, int n, int n_history){
-    Stack temp;
-    Kalimat baca;
-
     printf("Berikut adalah daftar Game yang telah dimainkan\n");
 
     int i = 0;
     int j;
+
+    Kalimat baca;
+    Stack temp;
+    CreateEmptyStack(&temp);
 
     while (i<n && !IsEmptyStack(S)){
         PopStack(&S, &baca);
         printf("%d. ", i+1);
         printkalimat(baca);
         printf("\n");
-        PushStack(&temp, baca);
         i++;
+        PushStack(&temp, baca);
     }
     for (int i=0; i<n; i++){
         PopStack(&temp, &baca);

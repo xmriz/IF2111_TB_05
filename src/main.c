@@ -13,6 +13,7 @@ int main(){
     TabGame listgame;
     QueueGame QGame;
     Stack History;
+    Map scoreboard;
     CreateQueueGame(&QGame);
     int n_game;
     int n_history;
