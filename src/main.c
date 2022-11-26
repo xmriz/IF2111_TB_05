@@ -175,11 +175,15 @@ int main(){
                 commandlain();
             }
         } else if (isSameString(input1,"HISTORY")){
-            if (strToInt2(input2) >= 0){
-                displayhistory(History,strToInt2(input2), n_history);
+            if (*input3 == '\0'){
+                if (strToInt2(input2) >= 0){
+                    displayhistory(History,strToInt2(input2), n_history);
+                } else {
+                    commandlain();
+                    }
             } else {
                 commandlain();
-                }
+            }
         } else if (isSameString(input1,"RESET")){
             if (*input3 == '\0'){
                 input1 = strconcat(input1, input2);
