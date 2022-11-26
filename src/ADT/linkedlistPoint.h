@@ -37,97 +37,99 @@ boolean IsEmptyl (List L);
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (List *L);
+void CreateEmptyl (List *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-addressl Alokasi (infolist titik);
-/* Mengirimkan addressl hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka addressl tidak nil, dan misalnya */
+addressl Alokasil (infolist titik);
+/* Mengirimkan addressl hasil alokasil sebuah elemen */
+/* Jika alokasil berhasil, maka addressl tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi (addressl *P);
+/* Jika alokasil gagal, mengirimkan Nil */
+void Dealokasil (addressl *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
-/* Melakukan dealokasi/pengembalian addressl P */
+/* Melakukan dealokasil/pengembalian addressl P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-addressl Search (List L, infolist X);
+addressl Searchl(List L, infolist titik);
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan addressl elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (List *L, infolist X);
+void InsVFirstl (List *L, infolist titik);
 /* I.S. L mungkin kosong */
-/* F.S. Melakukan alokasi sebuah elemen dan */
-/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast (List *L, infolist X);
+/* F.S. Melakukan alokasil sebuah elemen dan */
+/* menambahkan elemen pertama dengan nilai X jika alokasil berhasil */
+void InsVLastl (List *L, infolist titik);
 /* I.S. L mungkin kosong */
-/* F.S. Melakukan alokasi sebuah elemen dan */
+/* F.S. Melakukan alokasil sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
-/* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
+/* bernilai X jika alokasil berhasil. Jika alokasil gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (List *L, infolist *X);
+void DelVFirstl (List *L, infolist *titik);
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
-/*      dan alamat elemen pertama di-dealokasi */
-void DelVLast (List *L, infolist *X);
+/*      dan alamat elemen pertama di-dealokasil */
+void DelVLastl (List *L, infolist *titik);
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
-/*      dan alamat elemen terakhir di-dealokasi */
+/*      dan alamat elemen terakhir di-dealokasil */
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (List *L, addressl P);
-/* I.S. Sembarang, P sudah dialokasi  */
+void InsertFirstl (List *L, addressl P);
+/* I.S. Sembarang, P sudah dialokasil  */
 /* F.S. Menambahkan elemen ber-addressl P sebagai elemen pertama */
-void InsertAfter (List *L, addressl P, addressl Prec);
+void InsertAfterl (List *L, addressl P, addressl Prec);
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
-/*      P sudah dialokasi  */
+/*      P sudah dialokasil  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (List *L, addressl P);
-/* I.S. Sembarang, P sudah dialokasi  */
+void InsertLastl (List *L, addressl P);
+/* I.S. Sembarang, P sudah dialokasil  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-void DelFirst (List *L, addressl *P);
+void DelFirstl (List *L, addressl *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (List *L, infolist X);
+void DelPl (List *L, infolist titik);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressl P, dengan info(P)=X  */
-/* Maka P dihapus dari list dan di-dealokasi */
+/* Maka P dihapus dari list dan di-dealokasil */
 /* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
-void DelLast (List *L, addressl *P);
+void DelLastl (List *L, addressl *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
-void DelAfter (List *L, addressl *Pdel, addressl Prec);
+void DelAfterl (List *L, addressl *Pdel, addressl Prec);
 /* I.S. List tidak kosong. Prec adalah anggota list  */
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-int NbElmt (List L);
+int NbElmtl (List L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+
+POINT infoTail(List L);
 
 /****************** PROSES TERHADAP LIST ******************/
 
-void Konkat1 (List *L1, List *L2, List *L3);
+void Konkat1(List *L1, List *L2, List *L3);
 /* I.S. L1 dan L2 sembarang */
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
 /* Konkatenasi dua buah list : L1 dan L2    */
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* dan L1 serta L2 menjadi list kosong.*/
-/* Tidak ada alokasi/dealokasi pada prosedur ini */
+/* Tidak ada alokasil/dealokasil pada prosedur ini */
 
 #endif
