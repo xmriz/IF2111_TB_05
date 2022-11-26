@@ -174,7 +174,7 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
         }
 }
 
-void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History) {
+void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj) {
     CreateEmptyStack(History);
     MakeEmptyGame(listgame);
     STARTKALIMATFILE(filepath);
@@ -185,12 +185,58 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_histor
         listgame->TG[i] = CKalimat;
         ADVKALIMATFILE();
         }
-    *n_history = strToInt(CKalimat.TabKalimat);
+    *n_history = strToInt(CKalimat.TabKalimat); // buat history
     ADVKALIMATFILE();
     for (int i = 0; i < *n_history; i++){
         PushStack(History, CKalimat);
         ADVKALIMATFILE();
         }
+
+    int rng =KalimattoInt(CKalimat);
+    ADVKALIMATFILE();
+    for (int i = 0; i < rng; i++){
+        Kalimat Key;
+        int score;
+        ParserScore(CKalimat, &Key, &score);
+        Insertmap(RNG,Key,score);
+        ADVKALIMATFILE();
+        }
+    int dd = KalimattoInt(CKalimat); // buat dinerdash sb
+    ADVKALIMATFILE();
+    for (int i = 0; i < dd; i++){
+        Kalimat Key;
+        int score;
+        ParserScore(CKalimat, &Key, &score);
+        Insertmap(dinerdash,Key,score);
+        ADVKALIMATFILE();
+    }
+    int hgmn; // buat hangman sb
+    ADVKALIMATFILE();
+    for (int i = 0; i < hgmn; i++){
+        Kalimat Key;
+        int score;
+        ParserScore(CKalimat, &Key, &score);
+        Insertmap(hangman,Key,score);
+        ADVKALIMATFILE();
+    }
+    int snake = KalimattoInt(CKalimat); // buat rng sb
+    ADVKALIMATFILE();
+    for (int i = 0; i < snake; i++){
+        Kalimat Key;
+        int score;
+        ParserScore(CKalimat, &Key, &score);
+        Insertmap(snakeofm,Key,score);
+        ADVKALIMATFILE();
+    }
+    int smjd = KalimattoInt(CKalimat); // buat rng sb
+    ADVKALIMATFILE();
+    for (int i = 0; i < smjd; i++){
+        Kalimat Key;
+        int score;
+        ParserScore(CKalimat, &Key, &score);
+        Insertmap(smj,Key,score);
+        ADVKALIMATFILE();
+    }    
 }
 
 void start(TabGame *listgame, Stack *History, int *n_game, int *n_history){
@@ -203,9 +249,9 @@ void start(TabGame *listgame, Stack *History, int *n_game, int *n_history){
     printf("\nFile konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history){
+void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj){
     MakeEmptyGame(listgame);
-    readSavefile(filename, listgame, n_game, n_history, history); //state listgame sm n_game ngikutin file yg di load
+    readSavefile(filename, listgame, n_game, n_history, history, RNG, dinerdash, hangman, snakeofm, smj); //state listgame sm n_game ngikutin file yg di load
     printf("\nLoad file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 

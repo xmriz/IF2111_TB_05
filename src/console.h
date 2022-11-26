@@ -39,11 +39,13 @@ void menu();
 
 // void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
+void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj);
+
 void readConfig(char filepath[], TabGame *listgame, int *n_game);
 
 void start(TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
-void load(char filename[], TabGame *listgame, int *n_game, Stack *History, int *n_history);
+void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj);
 
 void save(char* filename, TabGame listgame, int n_game, Stack History, int n_history);
 

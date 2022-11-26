@@ -47,7 +47,7 @@ int main(){
         } else if (isSameString(command,"LOAD")){
             char *inputload = "../data/";
             char *filename = strconcat(inputload, inputfile);
-            load(filename, &listgame, &n_game, &History, &n_history);
+            load(filename, &listgame, &n_game, &History, &n_history, &RNG, &dinerdash, &hangman, &snakeonmeteor, &smj);
             isStart = true;
         } else if (isSameString(command,"HELP")){
             if (*inputfile  == '\0'){
