@@ -9,7 +9,7 @@
 #include "mesin_kalimat.h"
 
 #define NilStack -1
-#define MaxElStack 100
+#define MaxElStack 20
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef Kalimat infostack;
