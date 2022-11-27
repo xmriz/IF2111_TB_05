@@ -7,6 +7,6 @@
 
 void tebakan (int x, int random);
 
-void mainRNG();
+void mainRNG(int *scorerng);
 
 #endif

@@ -38,7 +38,7 @@ void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap)
     printf("\n\n");
 }
 
-void mainDinerDash()
+void mainDinerDash(int *scoredinerdash)
 {
     /* KAMUS */
     Queue antrian, memasak, makanan_siap, served;
@@ -395,4 +395,5 @@ void mainDinerDash()
     }
     printf("Permainan selesai! Kamu berhasil memperoleh uang sebanyak %d\n", saldo);
     printf("==========================================================\n\n");
+    *scoredinerdash = saldo;
 }

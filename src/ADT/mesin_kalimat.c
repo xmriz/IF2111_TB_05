@@ -88,6 +88,16 @@ void KalimatToString (Kalimat K, char *S){
     }
 }
 
+void StringToKalimat (Kalimat *K, char* str){
+    int i=0;
+    while (*str != '\0'){
+        K->TabKalimat[i]=*str;
+        str++;
+        i++;
+    }
+    K->Length=i-1;
+}
+
 int strToInt(char s[]){
     int i, n=0;
     for(i=1; s[i]>='0' && s[i]<='9'; i++){
@@ -110,8 +120,16 @@ int strToInt2(char* s){
 
 int KalimattoInt(Kalimat K){
     int val=0;
-    for (int i = 0; i < CKalimat.Length; i++){
+    for (int i = 1; i <= CKalimat.Length; i++){
         val=10*val + (CKalimat.TabKalimat[i] - '0');
+    }
+    return(val);
+}
+
+int KalimattoInt2(Kalimat K){
+    int val=0;
+    for (int i = 0; i < K.Length; i++){
+        val=10*val + (K.TabKalimat[i] - '0');
     }
     return(val);
 }
@@ -145,4 +163,23 @@ void printkalimat (Kalimat K){
     for (i=0;i<=K.Length;i++){
         printf("%c",K.TabKalimat[i]);
     }
+}
+
+void ParserScore(Kalimat input, Kalimat *nama, int *skor){
+    int i=0;
+    while (input.TabKalimat[i]!=' '){
+        nama->TabKalimat[i]=input.TabKalimat[i];
+        i++;
+    }
+    nama->Length=i-1;
+    i++;
+    Kalimat skorK;
+    int j=0;
+    while(i<=input.Length){
+        skorK.TabKalimat[j]=input.TabKalimat[i];
+        i++;
+        j++;
+    }
+    skorK.Length=j;
+    *skor = KalimattoInt2(skorK);
 }

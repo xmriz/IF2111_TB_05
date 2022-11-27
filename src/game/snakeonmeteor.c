@@ -3,7 +3,7 @@
 
 
 
-void mainSnake(){
+void mainSnake(int  *scoresnake){
     infolist meteor;
     Absis(meteor) = -1;
     Ordinat(meteor) = -1;

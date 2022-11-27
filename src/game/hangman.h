@@ -10,6 +10,6 @@
 
 void startHangman(TabGame *listgame, int *n_game);
 
-void mainHangman();
+void hangman(int *scorehangman);
 
 #endif

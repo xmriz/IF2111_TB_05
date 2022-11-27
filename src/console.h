@@ -39,15 +39,19 @@ void menu();
 
 // void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
+void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj);
+
 void readConfig(char filepath[], TabGame *listgame, int *n_game);
 
 void start(TabGame *listgame, Stack *History, int *n_game, int *n_history);
 
-void load(char filename[], TabGame *listgame, int *n_game, Stack *History, int *n_history);
+void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj);
 
-void save(char* filename, TabGame listgame, int n_game, Stack History, int n_history);
+void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history, Map RNG, Map dinerdash, Map hangman, Map snakeofm, Map smj);
 
 void createGame(int *n_game, TabGame *listgame);
+
+int panjangString(char*p);
 
 void listofgame(int n_game, TabGame listgame);
 
@@ -55,11 +59,13 @@ void deleteGame(int *n_game, TabGame *listgame);
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame); 
 
-void playgame(int n_game, QueueGame *Q, Stack *S);
- 
-void skipgame(QueueGame *q, int masukan, int n_game, Stack *S);
+void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor);
+
+void skipgame(QueueGame *q, int masukan, int n_game, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor);
 
 void quit();
+
+void printgamesb(Map x);
 
 void helpstart();
 
@@ -77,6 +83,8 @@ char intToChar(int n);
 
 void displayhistory(Stack S, int n, int n_history);
 
+void scoreboard(Map RNG, Map dinerdash, Map hangman, Map smj, Map snakeonmeteor);
+
 void reset_history(Stack *S, int *n_history);
 
-void reset_scoreboard(Map *skor, int *n_skor);
+void reset_scoreboard(Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor);

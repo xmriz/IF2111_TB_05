@@ -16,7 +16,7 @@ void startcewe(TabGame *listgame, int *n_game){
     readConfig(filepath, listgame, n_game);
 }
 
-void mainjodoh(){
+void mainjodoh(int *scoresmj){
     TabGame listjodoh;
     int n_jodoh;
     printf("Cari Jodohmu disini!!\n");
@@ -45,4 +45,5 @@ void mainjodoh(){
         printf("%c", listjodoh.TG[random].TabKalimat[j]);
         }
     printf("\n");
+    *scoresmj = 0;
     }

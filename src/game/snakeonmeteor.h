@@ -5,7 +5,7 @@
 #include "../console.h"
 #include "../ADT/linkedlistPoint.h"
 
-void mainSnake();
+void mainSnake(int *scoresnake);
 
 infolist randomPoint();
 

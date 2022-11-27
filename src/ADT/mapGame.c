@@ -66,7 +66,13 @@ void Insertmap(Map *M, keytype k, valuetype v){
         M->Count++;
         copyKalimat(k, &((*M).Elements[(*M).Count-1].Key));
         (*M).Elements[(*M).Count-1].Value=v;
+    } else{
+        int i = SearchIdxKey(*M,k);
+        if ((*M).Elements[i].Value<v){
+            M->Elements[i].Value=v;
+        }
     }
+    sortMap(M);
 }
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
@@ -115,3 +121,40 @@ boolean IsMemberMap(Map M, keytype k){
     }
 /* Mengembalikan true jika k adalah member dari M */
 
+int SearchIdxKey(Map M, keytype k){
+    int i=0;
+    boolean found=false;
+    // ALGORITMA
+    while (i<M.Count && !found){
+            if (isKalimatSame(M.Elements[i].Key,k)){
+                found=true;
+            } else{
+                i++;   
+            }   
+        }
+    if (found){
+        return(i);
+    } else{
+        return(-1);
+    }
+}
+
+void sortMap (Map *M){
+    // KAMUS LOKAL
+    int i,j;
+    Kalimat tempKalimat;
+    valuetype tempVal;
+    // ALGORITMA
+    for (i=0; i<M->Count; i++){
+        for (j=i+1; j<M->Count; j++){
+            if (M->Elements[i].Value<M->Elements[j].Value){
+                tempVal=M->Elements[i].Value;
+                M->Elements[i].Value=M->Elements[j].Value;
+                M->Elements[j].Value=tempVal;
+                copyKalimat(M->Elements[i].Key,&tempKalimat);
+                copyKalimat(M->Elements[j].Key,&(M->Elements[i].Key));
+                copyKalimat(tempKalimat,&(M->Elements[j].Key));
+            }
+        }
+    }
+}

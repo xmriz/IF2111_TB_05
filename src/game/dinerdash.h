@@ -9,6 +9,6 @@
 
 void deskripsi(int saldo, Queue antrian, Queue memasak, Queue makanan_siap);
 
-void mainDinerDash();
+void mainDinerDash(int *scoredinerdash);
 
 #endif

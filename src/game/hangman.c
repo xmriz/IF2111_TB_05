@@ -15,6 +15,7 @@ void hangman(){
 	TabGame countrylist;
 	int chance = 10;
 	int nebak = 0;
+	int poin = 0;
 
 	printf("Selamat Datang di Permainan Hangman\n");
 	printf("Edisi : World's Country!\n");
@@ -55,6 +56,7 @@ void hangman(){
 				if (cc==countrylist.TG[random].TabKalimat[j]){
 					printf(" %c",cc);
 					copystripnum -= 1;
+					poin += 10;
 				} else{
 					printf('_');
 					}
@@ -64,7 +66,7 @@ void hangman(){
 			if (copystripnum == stripnum){
 				chance -= 1;
 			}
-
+			// bingung ini gimana kasus  tebakannya salah
 			
 			printf("\n");
 			printf("Kesempatan: %d", chance);
@@ -77,3 +79,4 @@ void hangman(){
 			
 			}
 		}
+	}	
