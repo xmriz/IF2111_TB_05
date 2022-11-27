@@ -56,7 +56,7 @@ void hangman(){
 				if (cc==countrylist.TG[random].TabKalimat[j]){
 					printf(" %c",cc);
 					copystripnum -= 1;
-					poin += 1;
+					poin += 10;
 				} else{
 					printf('_');
 					}
