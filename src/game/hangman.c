@@ -6,7 +6,7 @@
 
 #include "../console.h"
 
-void hangman(int *scorehangman){
+void hangman(){
 	// Inisiasi berupa pembacaan file konfigurasi default
 	MakeEmptyGame(listgame);
 	char filepath[] = "..\\data\\country.txt";
@@ -15,6 +15,7 @@ void hangman(int *scorehangman){
 	TabGame countrylist;
 	int chance = 10;
 	int nebak = 0;
+	int poin = 0;
 
 	printf("Selamat Datang di Permainan Hangman\n");
 	printf("Edisi : World's Country!\n");
@@ -26,14 +27,14 @@ void hangman(int *scorehangman){
 		delay(2);
 
 		int panjangkata, stripnum;
-		panjangkata = countrylist.TG[random].Length; 
+		panjangkata = countrylist.TG[random].length.; 
 		stripnum = panjangkata;
 
 		while (stripnum != 0) {
 			char *cc;
 			TabGame listtebakan;
 
-			printf("Tebakan sebelumnya: " );
+			printf("Tebakan sebelumnya: ", );
 			if (listtebakan.Neff == 0) {
 				printf("-");
 			} else {
@@ -55,6 +56,7 @@ void hangman(int *scorehangman){
 				if (cc==countrylist.TG[random].TabKalimat[j]){
 					printf(" %c",cc);
 					copystripnum -= 1;
+					poin += 1;
 				} else{
 					printf('_');
 					}
@@ -64,7 +66,7 @@ void hangman(int *scorehangman){
 			if (copystripnum == stripnum){
 				chance -= 1;
 			}
-
+			// bingung ini gimana kasus  tebakannya salah
 			
 			printf("\n");
 			printf("Kesempatan: %d", chance);
@@ -77,3 +79,4 @@ void hangman(int *scorehangman){
 			
 			}
 		}
+	}	
