@@ -2,8 +2,17 @@
 #include <time.h>
 #include "console.h"
 
+#define red "\x1b[31m"
+#define green "\x1b[32m"
+#define yellow "\x1b[33m"
+#define blue "\x1b[34m"
+#define magenta "\x1b[35m"
+#define cyan "\x1b[36m"
+#define reset "\x1b[0m"
+
 void welcoming(FILE *ff) {
     char baca_str[255];
+    printf("\n\n");
     while(fgets(baca_str, sizeof(baca_str), ff) != NULL) {
         printf("%s",baca_str);
     }
@@ -14,9 +23,17 @@ void display_welcoming(){
     char *welcomingtext = "..\\data\\welcoming_text.txt";
     FILE *ff = NULL;
     ff = fopen(welcomingtext, "r");
+
     if (ff != NULL) {
         welcoming(ff);
     }
+    printf("\nMemuat BNMO. ");
+    delay(1);
+    printf(". ");
+    delay(1);
+    printf(". ");
+    delay(1);
+    printf(". \n\n");
 }
 
 void mainmenu(){
@@ -25,21 +42,25 @@ void mainmenu(){
     printf("2. LOAD [filename.txt]\n");
     printf("3. HELP\n");
     printf("0. QUIT\n");
-    printf("---------------------------------------------");
+    printf("---------------------------------------------\n");
 }
 
 void menu(){
     printf("--------------------------------------------\n");
     printf("------------------- MENU -------------------\n");
-    printf("1. SAVE [filename.txt]\n");
-    printf("2. CREATE GAME\n");
-    printf("3. LIST GAME\n");
-    printf("4. DELETE GAME\n");
-    printf("6. QUEUE GAME\n");
-    printf("7. PLAY GAME\n");
-    printf("8. SKIPGAME [n]\n");
-    printf("9. HELP\n");
-    printf("0. QUIT\n");
+    printf("1.  SAVE [filename.txt]\n");
+    printf("2.  CREATE GAME\n");
+    printf("3.  LIST GAME\n");
+    printf("4.  DELETE GAME\n");
+    printf("6.  QUEUE GAME\n");
+    printf("7.  PLAY GAME\n");
+    printf("8.  SKIP GAME [n]\n");
+    printf("9.  HISTORY [n]\n");
+    printf("10. SCOREBOARD\n");
+    printf("11. RESET HISTORY\n");
+    printf("12. RESET SCOREBOARD\n");
+    printf("13. HELP\n");
+    printf("14. QUIT\n");
     printf("---------------------------------------------\n");
 }
 
@@ -366,10 +387,14 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
 void createGame(int *n_game, TabGame *listgame) {
     printf("Masukkan nama game yang akan ditambahkan: ");
     STARTKALIMAT();
-    (*listgame).TG[*n_game] = CKalimat;
-    (*n_game)++;
-    ((*listgame).Neff)++;
-    printf("\nGame berhasil ditambahkan\n");
+    if (!isMemberArray(*listgame,CKalimat)){
+        (*listgame).TG[*n_game] = CKalimat;
+        (*n_game)++;
+        ((*listgame).Neff)++;
+        printf("\nGame berhasil ditambahkan\n");
+    } else {
+        printf("\nGame sudah tersedia\n");
+    }
 }
 
 void listofgame(int n_game, TabGame listgame){
@@ -383,7 +408,7 @@ void listofgame(int n_game, TabGame listgame){
     }
 }
 
-void deleteGame(int *n_game, TabGame *listgame) {
+void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame) {
     int input, i;
     printf("Berikut adalah daftar game yang tersedia\n");
     listofgame(*n_game, *listgame);
@@ -391,23 +416,23 @@ void deleteGame(int *n_game, TabGame *listgame) {
     input = scanint();
     printf("\n");
     if ((input > 6) && (input <= *n_game)) {
-        if (input != *n_game) {
-            for (i = input - 1; i < *n_game; i++) {
-                (*listgame).TG[i] = (*listgame).TG[i + 1];
+        if (IsMemberQueue(queuegame, listgame->TG[input-1])) {
+                for (i = input-1; i < *n_game-1; i++) {
+                    listgame->TG[i] = listgame->TG[i+1];
+                }
+                (*n_game)--;
+                ((*listgame).Neff)--;
+                printf("Game berhasil dihapus\n");
+            } else {
+                printf("Game tidak dapat dihapus karena sedang berlangsung\n");
             }
-            ((*listgame).Neff)--;
-            (*n_game)--;
-        } else {
-            ((*listgame).Neff)--;
-            (*n_game)--;
-        }
-        printf("Game berhasil dihapus.\n");
     } else if ((input >= 0) && (input <= 6)) {
         printf("Game gagal dihapus!\n");
     } else {
         printf("Nomor game tidak valid!\n");
     }
 }
+
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame) {
     // menampilkan daftar antrian 

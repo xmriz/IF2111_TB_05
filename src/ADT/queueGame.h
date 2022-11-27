@@ -66,5 +66,7 @@ void displayQueueGame(QueueGame q);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 
+boolean IsMemberQueue(QueueGame q, ElTypeG val);
+
 
 #endif

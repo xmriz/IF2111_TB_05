@@ -51,6 +51,6 @@ boolean IsEmptyGame (TabGame T);
 
 boolean IsFullGame (TabGame T);
 
-
+boolean isMemberArray (TabGame T, ElTypeG game);
 
 #endif

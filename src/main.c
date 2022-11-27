@@ -123,7 +123,7 @@ int main(){
             if (*input3 == '\0'){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "DELETEGAME")){
-                    deleteGame(&n_game, &listgame);
+                    deleteGame(&n_game, &listgame, QGame);
                 } else {
                     commandlain();
                 }

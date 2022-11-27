@@ -27,7 +27,7 @@ infolist pointToPointPeta(infolist p);
 
 void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolean *isGameOver, int *scoresnake);
 
-void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor, int *scoresnake);
+void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor,infolist *crater, int *scoresnake);
 
 boolean isPointinSnake(POINT p, List Snake);
 

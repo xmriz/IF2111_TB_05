@@ -53,3 +53,16 @@ boolean IsEmptyGame (TabGame T) {
 boolean IsFullGame (TabGame T) {
     return (NbElGame(T) == MaxNbElGame(T));
 }
+
+boolean isMemberArray (TabGame T, ElTypeG game){
+    boolean found = false;
+    int i = 1;
+    while (!found && i <= NbElGame(T)){
+        if (isKalimatSame(T.TG[i], game)){
+            found = true;
+        } else {
+            i++;
+        }
+    }
+    return found;
+}

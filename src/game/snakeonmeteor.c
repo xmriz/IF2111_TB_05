@@ -9,32 +9,48 @@ void mainSnake(int  *scoresnake){
     Ordinat(meteor) = -1;
     infolist food;
     infolist obstacle1, obstacle2;
+    infolist crater;
+    Absis(crater) = -1;
+    Ordinat(crater) = -1;
     List Snake;
     CreateEmptyl(&Snake);
     boolean isGameOver = false;
     
     printf("Selamat datang di Snake on Meteor!\n\n");
-    printf("Mengenerate peta, snake, dan makanan.\n\n");
+    delay(1);
+    printf("Mengenerate peta, snake, dan makanan. ");
+    delay(1);
+    printf(". ");
+    delay(1);
+    printf(". ");
+    delay(1);
+    printf(". \n\n");
 
     generateSnake(&Snake);
     generateObstacle(Snake, &obstacle1, &obstacle2);
     generateFood(Snake, obstacle1, obstacle2, &food);
     displayPeta(Snake, obstacle1, obstacle2, food, meteor);
-    printSnakePoint(Snake);
 
     char com;
     while (com != 'q' && !isGameOver ){
-        printf("Masukkan perintah: ");
+        printf("\nMasukkan perintah: ");
         scanf(" %c", &com);
         if (com == 'w' || com == 'a' || com == 's' || com == 'd'){
-            moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor, scoresnake);
+            printf("\nBerhasil bergerak!\n");
+            moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor, &crater, scoresnake);
             displayPeta(Snake, obstacle1, obstacle2, food, meteor);
-            printSnakePoint(Snake);
         } else {
             printf("Perintah tidak valid!!\n");
         }
     }
-    printf ("Game Over!\n");
+    printf("\n. ");
+    delay(1);
+    printf(". ");
+    delay(1);
+    printf(". ");
+    delay(1);
+    printf(". \n");
+    printf ("Game Over!\n\n");
     return;
 }
 
@@ -112,6 +128,7 @@ void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver, int *scores
         *isGameOver = true;
         *scoresnake = (NbElmtl(*Snake)-1)*2;
         printf("Kepalamu kena meteor!\n");
+        delay(1.5);
     } else {
         P = Nextl(P);
         while (P != Nil){
@@ -142,7 +159,7 @@ void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolea
 }
     
 
-void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor, int *scoresnake){
+void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor, infolist *crater, int *scoresnake){
     List Snaketemp;
     CreateEmptyl(&Snaketemp);
     addressl P = Firstl(*Snake);
@@ -173,6 +190,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
         Dealokasil(&Ptail);
         if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
             printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else if (EQ(Info(newPHead), *crater)){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut. Silahkan masukkan command lainnya\n");
         } else {
             CreateEmptyl(Snake);
             addressl P = Firstl(Snaketemp);
@@ -181,6 +200,7 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
                 P = Nextl(P);
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            *crater= *meteor;
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
             isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
             isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
@@ -208,6 +228,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
         Dealokasil(&Ptail);
         if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
             printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else if (EQ(Info(newPHead), *crater)){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut. Silahkan masukkan command lainnya\n");
         } else {
             CreateEmptyl(Snake);
             addressl P = Firstl(Snaketemp);
@@ -216,6 +238,7 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
                 P = Nextl(P);
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            *crater= *meteor;
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
             isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
             isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
@@ -243,6 +266,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
         Dealokasil(&Ptail);
         if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
             printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else if (EQ(Info(newPHead), *crater)){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut. Silahkan masukkan command lainnya\n");
         } else {
             CreateEmptyl(Snake);
             addressl P = Firstl(Snaketemp);
@@ -251,6 +276,7 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
                 P = Nextl(P);
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            *crater= *meteor;
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
             isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
             isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
@@ -278,6 +304,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
         Dealokasil(&Ptail);
         if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
             printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else if (EQ(Info(newPHead), *crater)){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut. Silahkan masukkan command lainnya\n");
         } else {
             CreateEmptyl(Snake);
             addressl P = Firstl(Snaketemp);
@@ -286,6 +314,7 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
                 P = Nextl(P);
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            *crater= *meteor;
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
             isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
             isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
@@ -372,13 +401,24 @@ void displayPeta(List Snake, infolist obstacle1, infolist obstacle2, infolist ma
     infolist meteorPeta = pointToPointPeta(meteorP);
     peta[Absis(meteorPeta)][Ordinat(meteorPeta)] = 'M';
 
-
     // ------
     //print
+    printf("Berikut merupakan peta permainan\n");
     for (int y=0;y<11;y++){
         for (int x=0;x<31;x++){
-            printf("%c",peta[x][y]);
+            if (peta[x][y]=='H'){
+                printf("\x1b[32m" "H");
+            } else if (peta[x][y]=='O'){
+                printf("\x1b[33m" "O");
+            } else if (peta[x][y]=='M'){
+                printf("\x1b[31m" "M");
+            } else if (peta[x][y]-'0'<=23 && peta[x][y]-'0'>=1){
+                printf("\x1b[32m" "%c", peta[x][y]);
+            } else {
+                printf("\x1b[0m" "%c", peta[x][y]);
+            }
         }
         printf("\n");
     }
+    printf("\n");
 }
