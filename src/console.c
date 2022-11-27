@@ -12,7 +12,6 @@
 
 void welcoming(FILE *ff) {
     char baca_str[255];
-    printf("\n\n");
     while(fgets(baca_str, sizeof(baca_str), ff) != NULL) {
         printf("%s",baca_str);
     }
@@ -20,13 +19,6 @@ void welcoming(FILE *ff) {
 }
 
 void display_welcoming(){
-    char *welcomingtext = "..\\data\\welcoming_text.txt";
-    FILE *ff = NULL;
-    ff = fopen(welcomingtext, "r");
-
-    if (ff != NULL) {
-        welcoming(ff);
-    }
     printf("\nMemuat BNMO. ");
     delay(1);
     printf(". ");
@@ -34,10 +26,17 @@ void display_welcoming(){
     printf(". ");
     delay(1);
     printf(". \n\n");
+    char *welcomingtext = "..\\data\\welcoming_text.txt";
+    FILE *ff = NULL;
+    ff = fopen(welcomingtext, "r");
+
+    if (ff != NULL) {
+        welcoming(ff);
+    }
 }
 
 void mainmenu(){
-    printf("----------------- MAIN MENU -----------------\n");
+    printf("\n\n----------------- MAIN MENU -----------------\n");
     printf("1. START\n");
     printf("2. LOAD [filename.txt]\n");
     printf("3. HELP\n");
@@ -61,7 +60,7 @@ void menu(){
     printf("12. RESET SCOREBOARD\n");
     printf("13. HELP\n");
     printf("14. QUIT\n");
-    printf("---------------------------------------------\n");
+    printf("---------------------------------------------\n\n");
 }
 
 
@@ -308,7 +307,7 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
         fprintf(savePtr,"%c",c3);
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<RNG.Count;i++){
-            for (j=1;j<=RNG.Elements[i].Key.Length;j++){
+            for (j=0;j<=RNG.Elements[i].Key.Length;j++){
                 fprintf(savePtr,"%c",RNG.Elements[i].Key.TabKalimat[j]);
             } 
             fprintf(savePtr,"%c",' ');
@@ -323,7 +322,7 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
         fprintf(savePtr,"%c",c4);
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<dinerdash.Count;i++){
-            for (j=1;j<=dinerdash.Elements[i].Key.Length;j++){
+            for (j=0;j<=dinerdash.Elements[i].Key.Length;j++){
                 fprintf(savePtr,"%c",dinerdash.Elements[i].Key.TabKalimat[j]);
             } 
             fprintf(savePtr,"%c",' ');
@@ -338,7 +337,7 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
         fprintf(savePtr,"%c",c5);
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<hangman.Count;i++){
-            for (j=1;j<=hangman.Elements[i].Key.Length;j++){
+            for (j=0;j<=hangman.Elements[i].Key.Length;j++){
                 fprintf(savePtr,"%c",hangman.Elements[i].Key.TabKalimat[j]);
             } 
             fprintf(savePtr,"%c",' ');
@@ -353,7 +352,7 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
         fprintf(savePtr,"%c",c6);
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<snakeofm.Count;i++){
-            for (j=1;j<=snakeofm.Elements[i].Key.Length;j++){
+            for (j=0;j<=snakeofm.Elements[i].Key.Length;j++){
                 fprintf(savePtr,"%c",snakeofm.Elements[i].Key.TabKalimat[j]);
             } 
             fprintf(savePtr,"%c",' ');
@@ -472,11 +471,17 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
         stringval[i]='\0';
         printf("\n");
         if (isSameString(stringval,"Diner DASH")){
-            printf("Loading %s ...\n", stringval);
+            printf("Loading %s . ", stringval);
             delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
             int scoredd;
             mainDinerDash(&scoredd);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("---------------------------------------------\n");
             printf("Skor akhir: %d\n", scoredd);
             printf("Nama:");
             char* nama = scanstring();
@@ -485,11 +490,17 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             Insertmap(dinerdash, n, scoredd);
 
         } else if (isSameString(stringval,"RNG")){
-            printf("Loading %s ...\n", stringval);
+            printf("Loading %s . ", stringval);
             delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
             int scorerng;
             mainRNG(&scorerng);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("---------------------------------------------\n");
             printf("Skor akhir: %d\n", scorerng);
             printf("Nama: ");
             char* nama = scanstring();
@@ -498,11 +509,17 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             Insertmap(RNG, n, scorerng);
 
         } else if (isSameString(stringval, "STI MENCARI JODOH")){
-            printf("Loading %s ...\n", stringval);
+            printf("Loading %s . ", stringval);
             delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
             int scoresmj;
             mainjodoh(&scoresmj);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("---------------------------------------------\n");
             printf("Skor akhir: %d\n", scoresmj);
             printf("Nama: ");
             char* nama = scanstring();
@@ -511,11 +528,17 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             Insertmap(smj, n, scoresmj);
 
         } else if (isSameString(stringval, "SNAKE ON METEOR")){
-            printf("Loading %s ...\n", stringval);
+            printf("Loading %s . ", stringval);
             delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
             int scoresom;
             mainSnake(&scoresom);
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("---------------------------------------------\n");
             printf("Skor akhir: %d\n", scoresom);
             printf("Nama: ");
             char* nama = scanstring();
@@ -524,11 +547,17 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             Insertmap(snakeonmeteor, n, scoresom);
 
         } else if (isSameString(stringval, "HANGMAN")){
-            printf("Loading %s ...\n", stringval);
+            printf("Loading %s . ", stringval);
             delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
             int scorehangman;
             // mainHangman();
             printf("\nTerima kasih telah bermain %s!\n", stringval);
+            printf("---------------------------------------------\n");
             printf("Skor akhir: %d\n", scorehangman);
             printf("Nama: ");
             char* nama = scanstring();
@@ -579,14 +608,17 @@ void help() {
     printf("QUEUE GAME -> Lihat dan tambahkan permainan yang ingin kamu mainkan ke dalam list!\n");
     printf("PLAY GAME -> Mulai memainkan game sesukamu dengan command ini!\n");
     printf("SKIP GAME <n> -> Gunakan command ini untuk melewatkan permainan sebanyak n kali, dengan n harus positif.\n");
+    printf("HISTORY <n> -> Gunakan command ini untuk melihat daftar history sebanyak n, dengan n harus positif.\n");
+    printf("SCOREBOARD -> Gunakan command ini untuk melihat daftar scoreboard setiap game.\n");
+    printf("RESET HISTORY -> Gunakan command ini untuk mereset history game.\n");
+    printf("RESET SCOREBOARD -> Gunakan command ini untuk mereset scoreboard.\n");
     printf("QUIT -> Memungkinkanmu keluar dari program.\n");
     printf("HELP -> Bantuan untuk kamu yang kebingungan dengan command-command yang tersedia!\n");
 }
 
 void commandlain(){
     //Command selain yang disebutkan di atas tidak valid. Keluar dari program
-    printf("\nCommand tidak dikenali, silahkan memasukkan command yang valid.");
-    printf("\n--------------------------------------------");
+    printf("\nCommand tidak dikenali, silahkan memasukkan command yang valid.\n");
 }
 
 void delay(int number_of_seconds) {
@@ -652,9 +684,10 @@ void reset_history(Stack *S, int *n_history){
 }
 
 void printgamesb(Map x){
+    printf("|-------------------------------|\n");
     printf("| NAMA\t\t| SKOR\t\t|\n");
     if (!IsEmptymap(x)){
-        printf("|-------------------------------|\n");
+        printf("|---------------+---------------|\n");
         for (int i=0; i<x.Count; i++){
             printf("| ");
             printkalimat(x.Elements[i].Key);

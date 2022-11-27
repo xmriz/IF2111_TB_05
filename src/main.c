@@ -32,7 +32,7 @@ int main(){
 
     while (!isStart){
         printf("\n");
-        printf("ENTER COMMAND: ");
+        printf("\nENTER COMMAND: ");
         char *command;
         char *inputfile;
         scanParserStartStr(&command, &inputfile);
