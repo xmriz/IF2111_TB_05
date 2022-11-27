@@ -13,7 +13,7 @@ void mainSnake(int *scoresnake){
     boolean gameOver = false;
     
     printf("Selamat datang di Snake on Meteor!\n\n");
-    printf("Mengenerate peta, snake, dan makanan.");
+    printf("Mengenerate peta, snake, dan makanan.\n");
 
     displayPeta();
 

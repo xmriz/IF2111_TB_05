@@ -496,7 +496,7 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             char* nama = scanstring();
             Kalimat n;
             StringToKalimat(&n,nama);
-            Insertmap(RNG, n, scoresom);
+            Insertmap(snakeonmeteor, n, scoresom);
 
         } else if (isSameString(stringval, "HANGMAN")){
             printf("Loading %s ...\n", stringval);
