@@ -27,7 +27,7 @@ void mainSnake(int  *scoresnake){
         printf("Masukkan perintah: ");
         scanf(" %c", &com);
         if (com == 'w' || com == 'a' || com == 's' || com == 'd'){
-            moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor);
+            moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor, scoresnake);
             displayPeta(Snake, obstacle1, obstacle2, food, meteor);
             printSnakePoint(Snake);
         } else {
@@ -106,10 +106,11 @@ void isMakan(List *Snake, infolist *food, addressl *tail, infolist obstacle1, in
     }
 }
 
-void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver){
+void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver, int *scoresnake){
     addressl P = Firstl(*Snake);
     if (EQ(Info(P), meteor)){
         *isGameOver = true;
+        *scoresnake = (NbElmtl(*Snake)-1)*2;
         printf("Kepalamu kena meteor!\n");
     } else {
         P = Nextl(P);
@@ -130,17 +131,18 @@ infolist pointToPointPeta(infolist p){
     return P;
 }
 
-void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolean *isGameOver){
+void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolean *isGameOver, int *scoresnake){
     addressl P = Firstl(Snake);
     infolist head = Info(P);
     if (EQ(head, obstacle1) || EQ(head, obstacle2)){
         *isGameOver = true;
+        *scoresnake = (NbElmtl(Snake))*2;
         printf("Kamu menabrak obstacle!!\n");
     }
 }
     
 
-void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor){
+void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor, int *scoresnake){
     List Snaketemp;
     CreateEmptyl(&Snaketemp);
     addressl P = Firstl(*Snake);
@@ -180,8 +182,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
-            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
-            isKenaMeteor(Snake, *meteor, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
         }
     }else if (command == 's'){
         addressl PHead = Firstl(Snaketemp);
@@ -215,8 +217,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
-            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
-            isKenaMeteor(Snake, *meteor, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
         }
     }else if (command == 'a'){
         addressl PHead = Firstl(Snaketemp);
@@ -250,8 +252,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
-            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
-            isKenaMeteor(Snake, *meteor, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
         }
     }else if (command == 'd'){
         addressl PHead = Firstl(Snaketemp);
@@ -285,8 +287,8 @@ void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, i
             }
             generateMeteor(*obstacle1, *obstacle2, *food, meteor);
             isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
-            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
-            isKenaMeteor(Snake, *meteor, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver, scoresnake);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver, scoresnake);
         }
     }
 }

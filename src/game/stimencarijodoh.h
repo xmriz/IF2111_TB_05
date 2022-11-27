@@ -7,6 +7,6 @@ void startcowo(TabGame *listgame, int *n_game);
 
 void startcewe(TabGame *listgame, int *n_game);
 
-void mainjodoh();
+void mainjodoh(int *scoresmj);
 
 #endif

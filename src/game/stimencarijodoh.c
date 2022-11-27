@@ -45,5 +45,8 @@ void mainjodoh(int *scoresmj){
         printf("%c", listjodoh.TG[random].TabKalimat[j]);
         }
     printf("\n");
-    *scoresmj = 0;
+    // random score between 70-100
+    srand(time(NULL));
+    *scoresmj = (rand() % (100 - 70 + 1)) + 70;
+    printf("Tingkat keharmonisan <3 kalian : %d\n", *scoresmj);
     }

@@ -21,13 +21,13 @@ void generateMeteor(infolist obstacle1, infolist obstacle2, infolist food, infol
 
 void isMakan(List *Snake, infolist *food, addressl *tail, infolist obstacle1, infolist obstacle2, infolist meteor);
 
-void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver);
+void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver, int *scoresnake);
 
 infolist pointToPointPeta(infolist p);
 
-void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolean *isGameOver);
+void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolean *isGameOver, int *scoresnake);
 
-void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor);
+void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor, int *scoresnake);
 
 boolean isPointinSnake(POINT p, List Snake);
 
