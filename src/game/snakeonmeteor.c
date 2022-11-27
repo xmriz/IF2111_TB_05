@@ -4,51 +4,55 @@
 
 
 void mainSnake(){
-    char headSnake = 'H', food = 'O', meteor = 'M', obstacle='X';
-    POINT makananP, meteorP, obstacle1, obstacle2;
+    infolist meteor;
+    Absis(meteor) = -1;
+    Ordinat(meteor) = -1;
+    infolist food;
+    infolist obstacle1, obstacle2;
     List Snake;
     CreateEmptyl(&Snake);
-    obstacle1=randomPoint();
-    obstacle2=randomPoint();
-    boolean gameOver = false;
+    boolean isGameOver = false;
     
     printf("Selamat datang di Snake on Meteor!\n\n");
-    printf("Mengenerate peta, snake, dan makanan.");
+    printf("Mengenerate peta, snake, dan makanan.\n\n");
 
-    displayPeta();
+    generateSnake(&Snake);
+    generateObstacle(Snake, &obstacle1, &obstacle2);
+    generateFood(Snake, obstacle1, obstacle2, &food);
+    displayPeta(Snake, obstacle1, obstacle2, food, meteor);
+    printSnakePoint(Snake);
 
-    
-    // delay(0.5);
-    // printf(".");
-    // delay(0.5);
-    // printf(".\n\n");
-    // generateFood(&makananP);
-    // generateMeteor(&meteorP);
-    // generateSnake(List &Snake);
-    // printf("Berhasil digenerate!\n\n");
-    // printf("Berikut merupakan peta permainan :\n");
-    // generateFood(&makananP);
-    // generateMeteor(&meteorP);
-    // displayMap(Snake, makananP, meteorP, obstacle1, obstacle2);
-    
-    // while (!gameOver){
-    //     do{
-    //     char command;
-    //     printf("Masukkan perintah (a, w, s, d): ");
-    //     scanf("%c",command);
-    //     } while (command!='a' && command!='w' && command!='s' && command!='d');
-    //     moveSnake(command,&Snake);
-    //     // belooooooooommmmmmmmmmmmmmmmmm
-    // }
+    char com;
+    while (com != 'q' && !isGameOver ){
+        printf("Masukkan perintah: ");
+        scanf(" %c", &com);
+        if (com == 'w' || com == 'a' || com == 's' || com == 'd'){
+            moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor);
+            displayPeta(Snake, obstacle1, obstacle2, food, meteor);
+            printSnakePoint(Snake);
+        } else {
+            printf("Perintah tidak valid!!\n");
+        }
+    }
+    printf ("Game Over!\n");
     return;
 }
 
 infolist randomPoint(){
     infolist p;
     srand(time(NULL));
-    Absis(p) = (rand()%5)+1;
-    Ordinat(p) = (rand()%5)+1;
+    Absis(p) = (rand()%5);
+    Ordinat(p) = (rand()%5);
     return p;
+}
+
+void printSnakePoint(List Snake){
+    addressl P = Firstl(Snake);
+    while (P != Nil){
+        printf("(%d,%d) ", Absis(Info(P)), Ordinat(Info(P)));
+        P = Nextl(P);
+    }
+    printf("\n");
 }
 
 void generateSnake(List *Snake){
@@ -62,11 +66,245 @@ void generateSnake(List *Snake){
     return;
 }
 
-void growSnake(List *Snake){
-    return;
+void generateObstacle(List Snake, infolist *obstacle1, infolist *obstacle2){
+    *obstacle1 = randomPoint();
+    while (isPointinSnake(*obstacle1, Snake)){
+        *obstacle1 = randomPoint();
+    }
+    *obstacle2 = randomPoint();
+    while (EQ(*obstacle1, *obstacle2) || isPointinSnake(*obstacle2, Snake)){
+        *obstacle2 = randomPoint();
+    }
 }
 
-void displayPeta(){
+
+void generateFood(List Snake, infolist obstacle1, infolist obstacle2, infolist *food){
+    *food = randomPoint();
+    while (isPointinSnake(*food, Snake) || EQ(*food, obstacle1) || EQ(*food, obstacle2)){
+        *food = randomPoint();
+    }
+}
+
+void generateMeteor(infolist obstacle1, infolist obstacle2, infolist food, infolist *meteor){
+    *meteor = randomPoint();
+    while (EQ(*meteor, obstacle1) || EQ(*meteor, obstacle2) || EQ(*meteor, food)){
+        *meteor = randomPoint();
+    }
+}
+
+void isMakan(List *Snake, infolist *food, addressl *tail, infolist obstacle1, infolist obstacle2, infolist meteor){
+    addressl P = Firstl(*Snake);
+    if (EQ(Info(P), *food)){
+        InsVLastl(Snake, Info(*tail));
+        Dealokasil(tail);
+        *food = randomPoint();
+        while (isPointinSnake(*food, *Snake) || EQ(*food, obstacle1) || EQ(*food, obstacle2) || EQ(*food, meteor)){
+            *food = randomPoint();
+        }
+    } else {
+        Dealokasil(tail);
+    }
+}
+
+void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver){
+    addressl P = Firstl(*Snake);
+    if (EQ(Info(P), meteor)){
+        *isGameOver = true;
+        printf("Kepalamu kena meteor!\n");
+    } else {
+        P = Nextl(P);
+        while (P != Nil){
+            if (EQ(Info(P), meteor)){
+                DelPl(Snake, Info(P));
+                break;
+            }
+            P = Nextl(P);
+        }
+    }
+}
+
+infolist pointToPointPeta(infolist p){
+    POINT P;
+    Absis(P) = 3*((Absis(p)*2)+1);
+    Ordinat(P) = (Ordinat(p)*2)+1;
+    return P;
+}
+
+void isNabrakObstacle(List Snake, infolist obstacle1, infolist obstacle2, boolean *isGameOver){
+    addressl P = Firstl(Snake);
+    infolist head = Info(P);
+    if (EQ(head, obstacle1) || EQ(head, obstacle2)){
+        *isGameOver = true;
+        printf("Kamu menabrak obstacle!!\n");
+    }
+}
+    
+
+void moveSnake(char command, List *Snake, infolist *food, boolean *isGameOver, infolist *obstacle1, infolist *obstacle2, infolist *meteor){
+    List Snaketemp;
+    CreateEmptyl(&Snaketemp);
+    addressl P = Firstl(*Snake);
+    while (P != Nil){
+        InsVLastl(&Snaketemp, Info(P));
+        P = Nextl(P);
+    }
+    if (command == 'w'){
+        addressl PHead = Firstl(Snaketemp);
+        addressl PBody1  = Nextl(PHead);
+        POINT newHead = salinDelta(Info(PHead),0,-1);
+        InsVFirstl(&Snaketemp,newHead);
+        addressl Ptemp;
+        DelLastl(&Snaketemp,&Ptemp);
+        addressl newPHead = Firstl(Snaketemp);
+        List Snaketemptanpaekor;
+        CreateEmptyl(&Snaketemptanpaekor);
+        addressl P = Firstl(*Snake);
+        while (P != Nil){
+            InsVLastl(&Snaketemptanpaekor, Info(P));
+            P = Nextl(P);
+        }
+        addressl Ptail = Firstl(Snaketemptanpaekor);
+        while (Nextl(Ptail) != Nil){
+            Ptail = Nextl(Ptail);
+        }
+        DelLastl(&Snaketemptanpaekor, &Ptail);
+        Dealokasil(&Ptail);
+        if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
+            printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else {
+            CreateEmptyl(Snake);
+            addressl P = Firstl(Snaketemp);
+            while (P != Nil){
+                InsVLastl(Snake, Info(P));
+                P = Nextl(P);
+            }
+            generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver);
+        }
+    }else if (command == 's'){
+        addressl PHead = Firstl(Snaketemp);
+        addressl PBody1  = Nextl(PHead);
+        POINT newHead = salinDelta(Info(PHead),0,1);
+        InsVFirstl(&Snaketemp,newHead);
+        addressl Ptemp;
+        DelLastl(&Snaketemp,&Ptemp);
+        addressl newPHead = Firstl(Snaketemp);
+        List Snaketemptanpaekor;
+        CreateEmptyl(&Snaketemptanpaekor);
+        addressl P = Firstl(*Snake);
+        while (P != Nil){
+            InsVLastl(&Snaketemptanpaekor, Info(P));
+            P = Nextl(P);
+        }
+        addressl Ptail = Firstl(Snaketemptanpaekor);
+        while (Nextl(Ptail) != Nil){
+            Ptail = Nextl(Ptail);
+        }
+        DelLastl(&Snaketemptanpaekor, &Ptail);
+        Dealokasil(&Ptail);
+        if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
+            printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else {
+            CreateEmptyl(Snake);
+            addressl P = Firstl(Snaketemp);
+            while (P != Nil){
+                InsVLastl(Snake, Info(P));
+                P = Nextl(P);
+            }
+            generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver);
+        }
+    }else if (command == 'a'){
+        addressl PHead = Firstl(Snaketemp);
+        addressl PBody1  = Nextl(PHead);
+        POINT newHead = salinDelta(Info(PHead),-1,0);
+        InsVFirstl(&Snaketemp,newHead);
+        addressl Ptemp;
+        DelLastl(&Snaketemp,&Ptemp);
+        addressl newPHead = Firstl(Snaketemp);
+        List Snaketemptanpaekor;
+        CreateEmptyl(&Snaketemptanpaekor);
+        addressl P = Firstl(*Snake);
+        while (P != Nil){
+            InsVLastl(&Snaketemptanpaekor, Info(P));
+            P = Nextl(P);
+        }
+        addressl Ptail = Firstl(Snaketemptanpaekor);
+        while (Nextl(Ptail) != Nil){
+            Ptail = Nextl(Ptail);
+        }
+        DelLastl(&Snaketemptanpaekor, &Ptail);
+        Dealokasil(&Ptail);
+        if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
+            printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else {
+            CreateEmptyl(Snake);
+            addressl P = Firstl(Snaketemp);
+            while (P != Nil){
+                InsVLastl(Snake, Info(P));
+                P = Nextl(P);
+            }
+            generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver);
+        }
+    }else if (command == 'd'){
+        addressl PHead = Firstl(Snaketemp);
+        addressl PBody1  = Nextl(PHead);
+        POINT newHead = salinDelta(Info(PHead),1,0);
+        InsVFirstl(&Snaketemp,newHead);
+        addressl Ptemp;
+        DelLastl(&Snaketemp,&Ptemp);
+        addressl newPHead = Firstl(Snaketemp);
+        List Snaketemptanpaekor;
+        CreateEmptyl(&Snaketemptanpaekor);
+        addressl P = Firstl(*Snake);
+        while (P != Nil){
+            InsVLastl(&Snaketemptanpaekor, Info(P));
+            P = Nextl(P);
+        }
+        addressl Ptail = Firstl(Snaketemptanpaekor);
+        while (Nextl(Ptail) != Nil){
+            Ptail = Nextl(Ptail);
+        }
+        DelLastl(&Snaketemptanpaekor, &Ptail);
+        Dealokasil(&Ptail);
+        if (isPointinSnake(Info(newPHead), Snaketemptanpaekor)){
+            printf("Snake tidak bisa bergerak ke badan sendiri!!\n");
+        } else {
+            CreateEmptyl(Snake);
+            addressl P = Firstl(Snaketemp);
+            while (P != Nil){
+                InsVLastl(Snake, Info(P));
+                P = Nextl(P);
+            }
+            generateMeteor(*obstacle1, *obstacle2, *food, meteor);
+            isMakan(Snake, food, &Ptemp, *obstacle1, *obstacle2, *meteor);
+            isNabrakObstacle(*Snake, *obstacle1, *obstacle2, isGameOver);
+            isKenaMeteor(Snake, *meteor, isGameOver);
+        }
+    }
+}
+
+boolean isPointinSnake(POINT p, List Snake){
+    boolean found = false;
+    addressl P = Firstl(Snake);
+    while (P!=Nil && !found){
+        if (Absis(p)==Absis(Info(P)) && Ordinat(p)==Ordinat(Info(P))){
+            found = true;
+        }
+        P = Nextl(P);
+    }
+    return found;
+}
+
+void displayPeta(List Snake, infolist obstacle1, infolist obstacle2, infolist makananP, infolist meteorP){
+    // buat template peta 
     int nx = 31;
     int ny = 11;
     char peta[nx][ny];
@@ -100,6 +338,40 @@ void displayPeta(){
             peta[x][y]='+';
         }
     }
+
+
+    // isi peta dengan food
+    infolist foodP = pointToPointPeta(makananP);
+    peta[Absis(foodP)][Ordinat(foodP)] = 'O';
+
+   
+    // isi peta dengan snake
+    addressl P = Firstl(Snake);
+        //head
+    infolist headP = pointToPointPeta(Info(P));
+    peta[Absis(headP)][Ordinat(headP)] = 'H';
+        //body
+    P = Nextl(P);
+    int i=1;
+    while (P!=Nil){
+        infolist bodyP = pointToPointPeta(Info(P));
+        peta[Absis(bodyP)][Ordinat(bodyP)] = intToChar(i);
+        i++;
+        P = Nextl(P);
+    }
+
+    //  isi peta dengan obstacle
+    infolist obstacle1P = pointToPointPeta(obstacle1);
+    infolist obstacle2P = pointToPointPeta(obstacle2);
+    peta[Absis(obstacle1P)][Ordinat(obstacle1P)] = 'X';
+    peta[Absis(obstacle2P)][Ordinat(obstacle2P)] = 'X';
+    
+    // isi peta dengan meteor
+    infolist meteorPeta = pointToPointPeta(meteorP);
+    peta[Absis(meteorPeta)][Ordinat(meteorPeta)] = 'M';
+
+
+    // ------
     //print
     for (int y=0;y<11;y++){
         for (int x=0;x<31;x++){
@@ -132,7 +404,7 @@ void displayPeta(){
 
 
 // boolean isSnakeNabrakObstacle(List Snake, POINT obstacle){
-//     // addressl P=First(Snake);
+//     // addressl P=Firstl(Snake);
 //     // If ((Absis(Info(P)) == Absis(obstacle1) && Ordinat(Info(P)) == Ordinat(obstacle)) || (Absis(Info(P)) == Absis(obstacle2) && Ordinat(Info(P)) == Ordinat(obstacle2))){
 //     //     return true;
 //     // } else {
@@ -142,10 +414,10 @@ void displayPeta(){
 // }
 
 // void moveSnake(char command, List *Snake){
-//     // addressl P = First(*Snake);
+//     // addressl P = Firstl(*Snake);
 //     // POINT headSnake = Info(P);
 //     // if (command=='a'){
-//     //     P=Next(P);
+//     //     P=Nextl(P);
 //     //     if (Absis(headSnake)==InfoX(P)-1 && Ordinat(headSnake)==InfoY(P)){
 //     //         printf("Tidak bisa bergerak ke arah tersebut!\n");
 //     //     } else{
@@ -156,7 +428,7 @@ void displayPeta(){
 //     //         DelVLast(Snake, &val);
 //     //     }
 //     // } else if (command=='d'){
-//     //     P=Next(P);
+//     //     P=Nextl(P);
 //     //     if (Absis(headSnake)==InfoX(P)+1 && Ordinat(headSnake)==InfoY(P)){
 //     //         printf("Tidak bisa bergerak ke arah tersebut!\n");
 //     //     } else{
@@ -167,7 +439,7 @@ void displayPeta(){
 //     //         DelVLast(Snake, &val);
 //     //     }
 //     // } else if (command=='w'){
-//     //     P=Next(P);
+//     //     P=Nextl(P);
 //     //     if (Absis(headSnake)==InfoX(P) && Ordinat(headSnake)==InfoY(P)+1){
 //     //         printf("Tidak bisa bergerak ke arah tersebut!\n");
 //     //     } else{
@@ -178,7 +450,7 @@ void displayPeta(){
 //     //         DelVLast(Snake, &val);
 //     //     }
 //     // } else if (command=='s'){
-//     //     P=Next(P);
+//     //     P=Nextl(P);
 //     //     if (Absis(headSnake)==InfoX(P) && Ordinat(headSnake)==InfoY(P)-1){
 //     //         printf("Tidak bisa bergerak ke arah tersebut!\n");
 //     //     } else{
@@ -212,7 +484,7 @@ void displayPeta(){
 // }
 
 // void snakeMemanjang(List *Snake, POINT obstacle, POINT makanan, boolean *gameover){
-//     // addressl P = First(*Snake);
+//     // addressl P = Firstl(*Snake);
 //     // gameover=false;
 //     // while (P!=Nil){
 //     //     P=P->next; // nyari tail
@@ -261,14 +533,14 @@ void displayPeta(){
 //     //         } else if (i==InfoX(obstacle) && j==InfoY(obstacle)){
 //     //             printf("%c", obstacle);
 //     //         } else {
-//     //             addressl P = First(S);
+//     //             addressl P = Firstl(S);
 //     //             boolean found = false;
 //     //             while (P!=Nil && !found){
 //     //                 if (InfoX(Info(P))==i && InfoY(Info(P))==j){
 //     //                     printf("%c", headSnake);
 //     //                     found = true;
 //     //                 }
-//     //                 P=Next(P);
+//     //                 P=Nextl(P);
 //     //             }
 //     //             if (!found){
 //     //                 printf(" ");

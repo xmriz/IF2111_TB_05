@@ -3,9 +3,19 @@
 #include "math.h"
 
 POINT MakePOINT (int X, int Y){
+    if (X >= 0){
+        X = X % 5;
+    } else {
+        X = (X % 5) + 5;
+    }
+    if (Y >= 0){
+        Y = Y % 5;
+    } else {
+        Y = (Y % 5) + 5;
+    }
     POINT titik;
-    Absis(titik) = X%5;
-    Ordinat(titik) = Y%5;
+    Absis(titik) = X;
+    Ordinat(titik) = Y;
     return titik;
 }
 

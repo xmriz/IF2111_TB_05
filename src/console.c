@@ -410,6 +410,10 @@ void tolowercase(char *s) {
     }
 }
 
+char intToChar(int n) {
+    return (char)(n + 48);
+}
+
 void displayhistory(Stack S, int n, int n_history){
     printf("Berikut adalah daftar Game yang telah dimainkan\n");
 

@@ -73,6 +73,8 @@ void delay(int number_of_seconds);
 
 void tolowercase(char* s);
 
+char intToChar(int n);
+
 void displayhistory(Stack S, int n, int n_history);
 
 void reset_history(Stack *S, int *n_history);

@@ -28,8 +28,8 @@ typedef struct {
 #define Info(P) (P)->info
 #define InfoX(P) Absis(Info(P))
 #define InfoY(P) Ordinat(Info(P))
-#define Next(P) (P)->next
-#define First(L) ((L).First)
+#define Nextl(P) (P)->next
+#define Firstl(L) ((L).First)
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
