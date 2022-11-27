@@ -649,6 +649,9 @@ void reset_history(Stack *S, int *n_history){
         printf("\n\nHistory tidak jadi di-reset. ");
         displayhistory(*S, *n_history, *n_history);
     }
+    else{
+        printf("\n Input tidak valid, silahkan masukkan input yang valid! \n");
+    }
 }
 
 void printgamesb(Map x){
