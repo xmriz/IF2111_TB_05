@@ -34,23 +34,3 @@ boolean isPointinSnake(POINT p, List Snake);
 void displayPeta(List Snake, infolist obstacle1, infolist obstacle2, infolist makananP, infolist meteorP);
 
 #endif
-
-
-//---------------------------------------------------------------------------------------------
-
-// void generateFood(POINT *food, POINT meteor, POINT obstacle);
-
-// void generateFood(POINT *food, POINT meteor, POINT obstacle);
-
-// void generateMeteor(POINT *meteor, POINT food, POINT obstacle);
-
-
-// boolean isSnakeNabrakObstacle(List Snake, POINT obstacle);
-
-// boolean isTidakTerhalang(POINT posisiPenambahan, List Snake, POINT obstacle, POINT makanan);
-
-// void moveSnake(char command, List *Snake);
-
-// void snakeMemanjang(List *Snake, POINT obstacle, POINT makanan, boolean *gameover);
-
-// void displayMap(List Snake, POINT makanan, POINT meteor, POINT obstacle1, POINT obstacle2);
