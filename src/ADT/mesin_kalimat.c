@@ -24,7 +24,7 @@ void SalinKalimat () {
 }
 
 void SalinKalimatFile () {
-    int i = 1;
+    int i = 1; // nih boleh diganti jd 0 gasih bjir nanges
     while ((CC != EOF) && (CC != NEWLINE))
     {
         CKalimat.TabKalimat[i] = CC;
@@ -95,7 +95,7 @@ void StringToKalimat (Kalimat *K, char* str){
         str++;
         i++;
     }
-    K->Length=i-1;
+    K->Length=i;
 }
 
 int strToInt(char s[]){
@@ -139,7 +139,7 @@ boolean isKalimatSame(Kalimat K1,Kalimat K2){
     int i=0;
     if (K1.Length==K2.Length){
         while (isSame && i<K1.Length){
-            if (K1.TabKalimat[i]!=K2.TabKalimat[i]){
+            if (K1.TabKalimat[i]!=K2.TabKalimat[i+1]){
                 isSame=false;
             } else{
                 i++;

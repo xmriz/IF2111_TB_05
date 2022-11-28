@@ -59,32 +59,20 @@ addressl Searchl(List L, infolist titik)
     addressl P;
     boolean bFound = false;
 
-    if (!IsEmptyl(L))
-    {
+    if (!IsEmptyl(L)){
         P = Firstl(L);
-        while (!bFound && P != NilList)
-        {
-            if (InfoX(P) == Absis(titik) && InfoY(P) == Ordinat(titik))
-            {
+        while (!bFound && P != NilList){
+            if (InfoX(P) == Absis(titik) && InfoY(P) == Ordinat(titik)) {
                 bFound = true;
-            }
-            else
-            {
+            } else {
                 P = Nextl(P);
             }
-        }
-
-        if (bFound)
-        {
+        } if (bFound){
             return P;
-        }
-        else
-        {
+        } else{
             return NilList;
         }
-    }
-    else
-    {
+    } else{
         return NilList;
     }
 }

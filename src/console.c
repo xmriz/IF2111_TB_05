@@ -2,14 +2,6 @@
 #include <time.h>
 #include "console.h"
 
-#define red "\x1b[31m"
-#define green "\x1b[32m"
-#define yellow "\x1b[33m"
-#define blue "\x1b[34m"
-#define magenta "\x1b[35m"
-#define cyan "\x1b[36m"
-#define reset "\x1b[0m"
-
 void welcoming(FILE *ff) {
     char baca_str[255];
     while(fgets(baca_str, sizeof(baca_str), ff) != NULL) {
@@ -172,22 +164,21 @@ boolean isSameString(char* a, char* b){
     return(isSame);
 }
 
-// void readConfigGame(char filepath[], TabGame *listgame, Stack *History, int *n_game, int *n_history) {
-//     STARTKALIMATFILE(filepath);
-//     *n_game = strToInt(CKalimat.TabKalimat);
-//     listgame->Neff = *n_game;
-//     ADVKALIMATFILE();
-//     for (int i = 0; i < listgame->Neff; i++){
-//         listgame->TG[i] = CKalimat;
-//         ADVKALIMATFILE();
-//         }
-//     *n_history = strToInt(CKalimat.TabKalimat);
-//     ADVKALIMATFILE();
-//     for (int i = 0; i < *n_history; i++){
-//         PushStack(History, CKalimat);
-//         ADVKALIMATFILE();
-//         }
-// }
+void readConfigStart(char filepath[], TabGame *listgame, int *n_game, ListGame *datagame) {
+    STARTKALIMATFILE(filepath);
+    *n_game = strToInt(CKalimat.TabKalimat);
+    listgame->Neff = *n_game;
+    ADVKALIMATFILE();
+    addressGame P=FirstList(*datagame);
+    for (int i = 0; i < listgame->Neff; i++){
+        listgame->TG[i] = CKalimat;
+        game g;
+        g.name = CKalimat;
+        CreateEmptymap(&g.scoreboard);
+        InsVLastGame(datagame, g);
+        ADVKALIMATFILE();
+        }
+}
 
 void readConfig(char filepath[], TabGame *listgame, int *n_game) {
     STARTKALIMATFILE(filepath);
@@ -200,8 +191,9 @@ void readConfig(char filepath[], TabGame *listgame, int *n_game) {
         }
 }
 
-void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj) {
+void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_history, Stack *History, ListGame *datagame) {
     CreateEmptyStack(History);
+    CreateEmptyListGame(datagame);
     MakeEmptyGame(listgame);
     STARTKALIMATFILE(filepath);
     *n_game = strToInt(CKalimat.TabKalimat);
@@ -209,6 +201,10 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_histor
     ADVKALIMATFILE();
     for (int i = 0; i < listgame->Neff; i++){
         listgame->TG[i] = CKalimat;
+        game g;
+        g.name = CKalimat;
+        CreateEmptymap(&g.scoreboard);
+        InsVLastGame(datagame, g);
         ADVKALIMATFILE();
         }
     *n_history = strToInt(CKalimat.TabKalimat); // buat history
@@ -217,71 +213,42 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_histor
         PushStack(History, CKalimat);
         ADVKALIMATFILE();
         }
-
-    int rng =KalimattoInt(CKalimat);
-    ADVKALIMATFILE();
-    for (int i = 0; i < rng; i++){
-        Kalimat Key;
-        int score;
-        ParserScore(CKalimat, &Key, &score);
-        Insertmap(RNG,Key,score);
+    addressGame P=FirstList(*datagame);
+    for (int i = 0; i < listgame->Neff; i++){
+        int n = KalimattoInt(CKalimat);
         ADVKALIMATFILE();
+        printf("%d\n", n);
+        for (int j=0;j<n;j++){
+            Kalimat key;
+            int score;
+            ParserScore(CKalimat, &key, &score);
+            printf("%d ", score);
+            printkalimat(CKalimat);
+            Insertmap(&InfoGame(P).scoreboard, key, score);
+            printf("5");
+            ADVKALIMATFILE();
         }
-    int dd = KalimattoInt(CKalimat); // buat dinerdash sb
-    ADVKALIMATFILE();
-    for (int i = 0; i < dd; i++){
-        Kalimat Key;
-        int score;
-        ParserScore(CKalimat, &Key, &score);
-        Insertmap(dinerdash,Key,score);
-        ADVKALIMATFILE();
-    }
-    int hgmn; // buat hangman sb
-    ADVKALIMATFILE();
-    for (int i = 0; i < hgmn; i++){
-        Kalimat Key;
-        int score;
-        ParserScore(CKalimat, &Key, &score);
-        Insertmap(hangman,Key,score);
-        ADVKALIMATFILE();
-    }
-    int snake = KalimattoInt(CKalimat); // buat rng sb
-    ADVKALIMATFILE();
-    for (int i = 0; i < snake; i++){
-        Kalimat Key;
-        int score;
-        ParserScore(CKalimat, &Key, &score);
-        Insertmap(snakeofm,Key,score);
-        ADVKALIMATFILE();
-    }
-    int smjd = KalimattoInt(CKalimat); // buat rng sb
-    ADVKALIMATFILE();
-    for (int i = 0; i < smjd; i++){
-        Kalimat Key;
-        int score;
-        ParserScore(CKalimat, &Key, &score);
-        Insertmap(smj,Key,score);
-        ADVKALIMATFILE();
-    }    
+        P=P->nextGame;      
 }
-
-void start(TabGame *listgame, Stack *History, int *n_game, int *n_history){
+}
+void start(TabGame *listgame, Stack *History, int *n_game, int *n_history, ListGame *datagame){
     // pembacan file konfigurasi default yang berisi list game yang dapat dimainkan
     MakeEmptyGame(listgame);
     char filepath[] = "..\\data\\config.txt";
-    readConfig(filepath, listgame, n_game);
+    CreateEmptyListGame(datagame);
+    readConfigStart(filepath, listgame, n_game, datagame);
     CreateEmptyStack(History);
     *n_history=0;
     printf("\nFile konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history, Map *RNG, Map *dinerdash, Map *hangman, Map *snakeofm, Map *smj){
+void load(char filename[], TabGame *listgame, int *n_game, Stack *history, int *n_history, ListGame *datagame){
     MakeEmptyGame(listgame);
-    readSavefile(filename, listgame, n_game, n_history, history, RNG, dinerdash, hangman, snakeofm, smj); //state listgame sm n_game ngikutin file yg di load
+    readSavefile(filename, listgame, n_game, n_history, history, datagame); //state listgame sm n_game ngikutin file yg di load
     printf("\nLoad file berhasil dibaca. BNMO berhasil dijalankan.\n");
 }
 
-void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history, Map RNG, Map dinerdash, Map hangman, Map snakeofm, Map smj){
+void save(char* filename, TabGame listgame, int n_game, Stack history, int n_history, ListGame datagame){
     FILE * savePtr;
     int i,j;
     savePtr =  fopen(filename, "w");
@@ -308,80 +275,21 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
             } 
             fprintf(savePtr,"%c",'\n');
         }
-        // masukin map RNG
-        char c3=RNG.Count + '0';
-        fprintf(savePtr,"%c",c3);
-        fprintf(savePtr,"%c",'\n');
-        for (i=0;i<RNG.Count;i++){
-            for (j=0;j<=RNG.Elements[i].Key.Length;j++){
-                fprintf(savePtr,"%c",RNG.Elements[i].Key.TabKalimat[j]);
-            } 
-            fprintf(savePtr,"%c",' ');
-            int k=RNG.Elements[i].Value;
-            char str[20];
-            sprintf(str, "%d", k);
-            fprintf(savePtr,"%s",str);
+        // masukin scoreboard ke file
+        addressGame P=FirstList(datagame);
+        for (int i=0; i<n_game; i++){
+            int n = Scoreboard(P).Count;
+            fprintf(savePtr,"%d",n);
             fprintf(savePtr,"%c",'\n');
-        }
-        // masukin map dinerdash
-        char c4=dinerdash.Count + '0';
-        fprintf(savePtr,"%c",c4);
-        fprintf(savePtr,"%c",'\n');
-        for (i=0;i<dinerdash.Count;i++){
-            for (j=0;j<=dinerdash.Elements[i].Key.Length;j++){
-                fprintf(savePtr,"%c",dinerdash.Elements[i].Key.TabKalimat[j]);
-            } 
-            fprintf(savePtr,"%c",' ');
-            int k=dinerdash.Elements[i].Value;
-            char str[20];
-            sprintf(str, "%d", k);
-            fprintf(savePtr,"%s",str);
-            fprintf(savePtr,"%c",'\n');
-        }
-        // masukin map hangman
-        char c5=hangman.Count + '0';
-        fprintf(savePtr,"%c",c5);
-        fprintf(savePtr,"%c",'\n');
-        for (i=0;i<hangman.Count;i++){
-            for (j=0;j<=hangman.Elements[i].Key.Length;j++){
-                fprintf(savePtr,"%c",hangman.Elements[i].Key.TabKalimat[j]);
-            } 
-            fprintf(savePtr,"%c",' ');
-            int k=hangman.Elements[i].Value;
-            char str[20];
-            sprintf(str, "%d", k);
-            fprintf(savePtr,"%s",str);
-            fprintf(savePtr,"%c",'\n');
-        }
-        // masukin map snakeofm
-        char c6=snakeofm.Count + '0';
-        fprintf(savePtr,"%c",c6);
-        fprintf(savePtr,"%c",'\n');
-        for (i=0;i<snakeofm.Count;i++){
-            for (j=0;j<=snakeofm.Elements[i].Key.Length;j++){
-                fprintf(savePtr,"%c",snakeofm.Elements[i].Key.TabKalimat[j]);
-            } 
-            fprintf(savePtr,"%c",' ');
-            int k=snakeofm.Elements[i].Value;
-            char str[20];
-            sprintf(str, "%d", k);
-            fprintf(savePtr,"%s",str);
-            fprintf(savePtr,"%c",'\n');
-        }
-        // masukin map smj
-        char c7=smj.Count + '0';
-        fprintf(savePtr,"%c",c7);
-        fprintf(savePtr,"%c",'\n');
-        for (i=0;i<smj.Count;i++){
-            for (j=0;j<=smj.Elements[i].Key.Length;j++){
-                fprintf(savePtr,"%c",smj.Elements[i].Key.TabKalimat[j]);
-            } 
-            fprintf(savePtr,"%c",' ');
-            int k=smj.Elements[i].Value;
-            char str[20];
-            sprintf(str, "%d", k);
-            fprintf(savePtr,"%s",str);
-            fprintf(savePtr,"%c",'\n');
+            for (int j=0; j<n; j++){
+                for (int k=1; k<=Scoreboard(P).Elements[j].Key.Length;k++){
+                    fprintf(savePtr,"%c",Scoreboard(P).Elements[j].Key.TabKalimat[k]);
+                }
+                fprintf(savePtr,"%c",' ');
+                fprintf(savePtr,"%d",Scoreboard(P).Elements[j].Value);
+                fprintf(savePtr,"%c",'\n');
+            }
+            P=P->nextGame;
         }
         fprintf(savePtr,"%c",';');
         fclose(savePtr);
@@ -389,13 +297,17 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
     }
 }
 
-void createGame(int *n_game, TabGame *listgame) {
+void createGame(int *n_game, TabGame *listgame, ListGame *ListofCreate) {
     printf("Masukkan nama game yang akan ditambahkan: ");
     STARTKALIMAT();
     if (!isMemberArray(*listgame,CKalimat)){
         (*listgame).TG[*n_game] = CKalimat;
         (*n_game)++;
         ((*listgame).Neff)++;
+        game G;
+        G.name = CKalimat;
+        CreateEmptymap(&G.scoreboard);
+        InsVLastGame(ListofCreate,G);
         printf("\nGame berhasil ditambahkan\n");
     } else {
         printf("\nGame sudah tersedia\n");
@@ -464,7 +376,7 @@ void queuegame (QueueGame *q, int n_game, TabGame listgame) {
 }
 }
 
-void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor){
+void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor, ListGame *datagame){
     // Map udah di create di main paling awal
     if (!isEmptyGame(*Q)){
         ElTypeG val;
@@ -491,9 +403,12 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             printf("Skor akhir: %d\n", scoredd);
             printf("Nama:");
             char* nama = scanstring();
-            Kalimat n;
-            StringToKalimat(&n,nama);
-            Insertmap(dinerdash, n, scoredd);
+            Kalimat player;
+            StringToKalimat(&player,nama);
+            Kalimat namagame;
+            StringToKalimat(&namagame,stringval);
+            addressGame P=SearchListGame(*datagame,namagame);
+            Insertmap(&Scoreboard(P), player, scoredd);
 
         } else if (isSameString(stringval,"RNG")){
             printf("Loading %s . ", stringval);
@@ -510,9 +425,14 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             printf("Skor akhir: %d\n", scorerng);
             printf("Nama: ");
             char* nama = scanstring();
-            Kalimat n;
-            StringToKalimat(&n,nama);
-            Insertmap(RNG, n, scorerng);
+            Kalimat player;
+            StringToKalimat(&player,nama);
+            Kalimat namagame;
+            StringToKalimat(&namagame,stringval);
+            printkalimat(namagame);
+            printf("\n");
+            addressGame P=SearchListGame(*datagame,namagame);
+            Insertmap(&Scoreboard(P), player, scorerng);
 
         } else if (isSameString(stringval, "STI MENCARI JODOH")){
             printf("Loading %s . ", stringval);
@@ -529,9 +449,12 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             printf("Skor akhir: %d\n", scoresmj);
             printf("Nama: ");
             char* nama = scanstring();
-            Kalimat n;
-            StringToKalimat(&n,nama);
-            Insertmap(smj, n, scoresmj);
+            Kalimat player;
+            StringToKalimat(&player,nama);
+            Kalimat namagame;
+            StringToKalimat(&namagame,stringval);
+            addressGame P=SearchListGame(*datagame,namagame);
+            Insertmap(&Scoreboard(P), player, scoresmj);
 
         } else if (isSameString(stringval, "SNAKE ON METEOR")){
             printf("Loading %s . ", stringval);
@@ -548,9 +471,12 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             printf("Skor akhir: %d\n", scoresom);
             printf("Nama: ");
             char* nama = scanstring();
-            Kalimat n;
-            StringToKalimat(&n,nama);
-            Insertmap(snakeonmeteor, n, scoresom);
+            Kalimat player;
+            StringToKalimat(&player,nama);
+            Kalimat namagame;
+            StringToKalimat(&namagame,stringval);
+            addressGame P=SearchListGame(*datagame,namagame);
+            Insertmap(&Scoreboard(P), player, scoresom);
 
         } else if (isSameString(stringval, "HANGMAN")){
             printf("Loading %s . ", stringval);
@@ -567,13 +493,26 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
             printf("Skor akhir: %d\n", scorehangman);
             printf("Nama: ");
             char* nama = scanstring();
-            Kalimat n;
-            StringToKalimat(&n,nama);
-            Insertmap(hangman, n, scorehangman);
+            Kalimat player;
+            StringToKalimat(&player,nama);
+            Kalimat namagame;
+            StringToKalimat(&namagame,stringval);
+            addressGame P=SearchListGame(*datagame,namagame);
+            Insertmap(&Scoreboard(P), player, scorehangman);
 
         } else{
-            printf("Skor akhir: 0\n");
-            return;
+            printf("---------------------------------------------\n");
+            int score=0;
+            printf("Skor akhir: %d\n", score);
+            printf("Nama: ");
+            char* nama = scanstring();
+            Kalimat player;
+            StringToKalimat(&player,nama);
+            Kalimat namagame;
+            StringToKalimat(&namagame,stringval);
+            addressGame P=SearchListGame(*datagame,namagame);
+            Insertmap(&Scoreboard(P), player, score);
+
         }
         PushStack(S, val);
     } else {
@@ -581,13 +520,13 @@ void playgame(int n_game, QueueGame *Q, Stack *S, Map *RNG, Map *dinerdash, Map 
     }
 }
 
-void skipgame(QueueGame *q, int masukan, int n_game, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor){
+void skipgame(QueueGame *q, int masukan, int n_game, Stack *S, Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor, ListGame *datagame){
     displayQueueGame(*q);
     for(int i=1;i<=masukan;i++){
         ElTypeG v;
         dequeueGame(q,&v);
     }
-    playgame(n_game, q, S, RNG, dinerdash, hangman, smj, snakeonmeteor);  
+    playgame(n_game, q, S, RNG, dinerdash, hangman, smj, snakeonmeteor, datagame);  
  }
 
 void quit(){
@@ -700,7 +639,7 @@ void printgamesb(Map x){
         for (int i=0; i<x.Count; i++){
             printf("| ");
             printkalimat(x.Elements[i].Key);
-            if (x.Elements[i].Key.Length<=5){
+            if (x.Elements[i].Key.Length<=6){
                 printf("\t\t|");
             } else{
                 printf("\t|");
@@ -719,18 +658,16 @@ void printgamesb(Map x){
     }
 }
 
-void scoreboard(Map RNG, Map dinerdash, Map hangman, Map smj, Map snakeonmeteor){
+void scoreboard(int n_game, ListGame datagame){
     printf("\nBerikut adalah scoreboard BNMO!\n\n");
-    printf("1. Random Number Generator\n");
-    printgamesb(RNG);
-    printf("2. Diner Dash\n");
-    printgamesb(dinerdash);
-    printf("3. Hangman\n");
-    printgamesb(hangman);
-    printf("4. Snake on Meteor\n");
-    printgamesb(snakeonmeteor);
-    printf("5. STI Mencari Jodoh\n");
-    printgamesb(smj);
+    addressGame P=FirstList(datagame);
+    for (int i=0; i<n_game; i++){
+        printf("%d. ", i+1);
+        printkalimat(Name(P));
+        printf("\n");
+        printgamesb(Scoreboard(P));
+        P=NextList(P);
+    }
 }
 
 void reset_scoreboard(Map *RNG, Map *dinerdash, Map *hangman, Map *smj, Map *snakeonmeteor){

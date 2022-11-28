@@ -158,3 +158,13 @@ void sortMap (Map *M){
         }
     }
 }
+
+void copyMap(Map M1, Map *M2){
+    // KAMUS LOKAL
+    int i;
+    // ALGORITMA
+    CreateEmptymap(M2);
+    for (i=0; i<M1.Count; i++){
+        Insertmap(M2,M1.Elements[i].Key,M1.Elements[i].Value);
+    }
+}

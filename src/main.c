@@ -23,6 +23,8 @@ int main(){
     CreateEmptymap(&snakeonmeteor);
     Map smj;
     CreateEmptymap(&smj);
+    ListGame datagame;
+    CreateEmptyListGame(&datagame);
     CreateQueueGame(&QGame);
     int n_game=0;
     int n_history=0;
@@ -39,7 +41,7 @@ int main(){
 
         if (isSameString(command,"START")){
             if (*inputfile  == '\0'){
-                start(&listgame, &History, &n_game, &n_history);
+                start(&listgame, &History, &n_game, &n_history, &datagame);
                 isStart = true;
             } else {
                 commandlain();
@@ -48,7 +50,7 @@ int main(){
             char *inputload = "../data/";
             char *filename = strconcat(inputload, inputfile);
             if (*inputfile != '\0'){
-                load(filename, &listgame, &n_game, &History, &n_history, &RNG, &dinerdash, &hangman, &snakeonmeteor, &smj);
+                load(filename, &listgame, &n_game, &History, &n_history, &datagame);
                 isStart = true;
             } else {
                 commandlain();
@@ -86,7 +88,7 @@ int main(){
             if (input3 == NULL && input2 != NULL){
                 char *inputsave = "../data/";
                 char *filename = strconcat(inputsave, input2);
-                save(filename, listgame, n_game, History, n_history, RNG, dinerdash, hangman, snakeonmeteor, smj);
+                save(filename, listgame, n_game, History, n_history, datagame);
             } else {
                 commandlain();
             }
@@ -94,7 +96,7 @@ int main(){
             if (input3 == NULL && input2 != NULL){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "CREATEGAME")){
-                    createGame(&n_game, &listgame);
+                    createGame(&n_game, &listgame, &datagame);
                 } else {
                     commandlain();
                 }
@@ -139,7 +141,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "PLAYGAME")){
                     displayQueueGame(QGame);
-                    playgame(n_game, &QGame, &History, &RNG, &dinerdash, &hangman, &smj, &snakeonmeteor);
+                    playgame(n_game, &QGame, &History, &RNG, &dinerdash, &hangman, &smj, &snakeonmeteor, &datagame);
                 } else {
                     commandlain();
                 }
@@ -151,7 +153,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "SKIPGAME")){
                     if (strToInt2(input3) >= 0){
-                        skipgame(&QGame,strToInt2(input3),n_game, &History, &RNG, &dinerdash, &hangman, &smj, &snakeonmeteor);
+                        skipgame(&QGame,strToInt2(input3),n_game, &History, &RNG, &dinerdash, &hangman, &smj, &snakeonmeteor, &datagame);
                     } else {
                         commandlain();
                     }
@@ -185,7 +187,7 @@ int main(){
                 }
         } else if (isSameString(input1,"SCOREBOARD")){
             if (input2 == NULL){
-                scoreboard(RNG, dinerdash, hangman, smj, snakeonmeteor);
+                scoreboard(n_game, datagame);
             } else {
                 commandlain();
             }
