@@ -367,7 +367,7 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
         fprintf(savePtr,"%c",c7);
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<smj.Count;i++){
-            for (j=1;j<=smj.Elements[i].Key.Length;j++){
+            for (j=0;j<=smj.Elements[i].Key.Length;j++){
                 fprintf(savePtr,"%c",smj.Elements[i].Key.TabKalimat[j]);
             } 
             fprintf(savePtr,"%c",' ');

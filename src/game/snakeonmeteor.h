@@ -21,7 +21,9 @@ void generateMeteor(infolist obstacle1, infolist obstacle2, infolist food, infol
 
 void isMakan(List *Snake, infolist *food, addressl *tail, infolist obstacle1, infolist obstacle2, infolist meteor);
 
-void isKenaMeteor(List *Snake, infolist meteor, boolean *isGameOver, int *scoresnake);
+boolean isKenaMeteorBoolean (List Snake, infolist meteor);
+
+void isKenaMeteor(List *Snake, infolist meteor, infolist makanan, infolist obstacle1, infolist obstacle2, boolean *isGameOver, int *scoresnake);
 
 infolist pointToPointPeta(infolist p);
 
