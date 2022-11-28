@@ -657,6 +657,7 @@ void displayhistory(Stack S, int n, int n_history){
 
     Kalimat baca;
     Stack temp;
+    int count = 0;
     CreateEmptyStack(&temp);
 
     while (i<n && !IsEmptyStack(S)){
@@ -666,8 +667,9 @@ void displayhistory(Stack S, int n, int n_history){
         printf("\n");
         i++;
         PushStack(&temp, baca);
+        count++;
     }
-    for (int i=0; i<n; i++){
+    for (int i=0; i<count; i++){
         PopStack(&temp, &baca);
         PushStack(&S, baca);
     }
