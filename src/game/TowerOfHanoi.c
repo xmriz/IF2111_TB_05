@@ -280,7 +280,6 @@ void mainTOH(int *scoreTOH)
     StackToH a, b, c;
     char *asal;
     char *tujuan;
-    char *username;
     // ALGORITMA
     printf("Masukkan jumlah piringan: ");
     piring = scanint();
