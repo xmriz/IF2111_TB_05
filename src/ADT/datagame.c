@@ -33,6 +33,28 @@ int NbElmtListGame (ListGame L){
     return count;
 }
 
+addressGame SearchListGameRes (ListGame L, Kalimat X){
+    addressGame P;
+    boolean bFound = false;
+
+    if (!IsEmptyListGame(L)){
+        P = FirstList(L);
+        while (!bFound && P != NilList){
+            if (isKalimatSame2(X, Name(P))) {
+                bFound = true;
+            } else {
+                P = NextList(P);
+            }
+        } if (bFound){
+            return P;
+        } else{
+            return NilList;
+        }
+    } else{
+        return NilList;
+    } 
+}
+
 addressGame SearchListGame (ListGame L, Kalimat X){
     addressGame P;
     boolean bFound = false;
@@ -111,6 +133,14 @@ void DelPGame (ListGame *L, Kalimat X){
                 DealokasiListGame(&Q);
             }
         }
+    }
+}
+
+void DelAllScoreboard(ListGame *L){
+    addressGame P=FirstList(*L);
+    while (P!=NULL){
+        CreateEmptymap(&Scoreboard(P));
+        P=P->nextGame;
     }
 }
 /* I.S. Sembarang */

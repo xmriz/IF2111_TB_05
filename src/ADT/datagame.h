@@ -49,6 +49,8 @@ int NbElmtGame (ListGame L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 /* *** Selektor *** */
 addressGame SearchListGame (ListGame L, Kalimat X);
+
+addressGame SearchListGameRes (ListGame L, Kalimat X);
 /* Mencari apakah ada elemen list dengan
     Info(P).name=X */
 /* Jika ada, mengirimkan addressl elemen tersebut. */
@@ -67,6 +69,8 @@ void DelVLastGame (ListGame *L, game *X);
 void DelPGame (ListGame *L, Kalimat X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressl P, dengan Info(P).name=X  */
+
+void DelAllScoreboard(ListGame *L);
 
 
 #endif

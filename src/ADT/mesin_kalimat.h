@@ -47,6 +47,8 @@ int KalimattoInt2(Kalimat K);
 
 boolean isKalimatSame(Kalimat K1,Kalimat K2);
 
+boolean isKalimatSame2(Kalimat K1,Kalimat K2);
+
 void copyKalimat (Kalimat k1, Kalimat *k2);
 
 void StringToKalimat (Kalimat *K, char* str);

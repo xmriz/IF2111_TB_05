@@ -13,16 +13,6 @@ int main(){
     TabGame listgame;
     QueueGame QGame;
     Stack History;
-    Map RNG;
-    CreateEmptymap(&RNG);
-    Map dinerdash;
-    CreateEmptymap(&dinerdash);
-    Map hangman;
-    CreateEmptymap(&hangman);
-    Map snakeonmeteor;
-    CreateEmptymap(&snakeonmeteor);
-    Map smj;
-    CreateEmptymap(&smj);
     ListGame datagame;
     CreateEmptyListGame(&datagame);
     CreateQueueGame(&QGame);
@@ -143,7 +133,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "PLAYGAME")){
                     displayQueueGame(QGame);
-                    playgame(n_game, &QGame, &History, &RNG, &dinerdash, &hangman, &smj, &snakeonmeteor, &datagame);
+                    playgame(n_game, &QGame, &History, &datagame);
                 } else {
                     commandlain();
                 }
@@ -155,7 +145,7 @@ int main(){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "SKIPGAME")){
                     if (strToInt2(input3) >= 0){
-                        skipgame(&QGame,strToInt2(input3),n_game, &History, &RNG, &dinerdash, &hangman, &smj, &snakeonmeteor, &datagame);
+                        skipgame(&QGame,strToInt2(input3),n_game, &History, &datagame);
                     } else {
                         commandlain();
                     }
@@ -199,7 +189,7 @@ int main(){
                 if (isSameString(input1, "RESETHISTORY")){
                     reset_history(&History, &n_history);
                 } else if(isSameString(input1, "RESETSCOREBOARD")){
-                    reset_scoreboard(&RNG, &dinerdash, &hangman, &smj, &snakeonmeteor);
+                    reset_scoreboard(&datagame, n_game, listgame);
                 } else {
                     commandlain();
                 }
