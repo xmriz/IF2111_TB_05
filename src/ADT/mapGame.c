@@ -1,10 +1,3 @@
-// Naura Valda Prameswari
-// 18221173
-// K-01
-// 28-10-2022
-// PRAPRAKTIKUM 8 - 2
-/* File : map.c */
-
 #include <stdio.h>
 #include "mapGame.h"
 

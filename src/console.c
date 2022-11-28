@@ -218,7 +218,7 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_histor
         ADVKALIMATFILE();
         }
 
-    int rng =KalimattoInt(CKalimat);
+    int rng =KalimattoInt(CKalimat); // buat rng sb
     ADVKALIMATFILE();
     for (int i = 0; i < rng; i++){
         Kalimat Key;
@@ -236,7 +236,7 @@ void readSavefile(char filepath[], TabGame *listgame, int *n_game, int *n_histor
         Insertmap(dinerdash,Key,score);
         ADVKALIMATFILE();
     }
-    int hgmn; // buat hangman sb
+    int hgmn = KalimattoInt(CKalimat); // buat hangman sb
     ADVKALIMATFILE();
     for (int i = 0; i < hgmn; i++){
         Kalimat Key;

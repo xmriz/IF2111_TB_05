@@ -24,6 +24,7 @@ int main(){
     Map smj;
     CreateEmptymap(&smj);
     CreateQueueGame(&QGame);
+
     int n_game=0;
     int n_history=0;
     
@@ -53,6 +54,7 @@ int main(){
             } else {
                 commandlain();
             }
+
         } else if (isSameString(command,"HELP")){
             if (*inputfile  == '\0'){
                 helpstart();
