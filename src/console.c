@@ -115,29 +115,35 @@ void scanParserStr(char* *sInput1, char* *sInput2, char* *sInput3, char* *sInput
     InputToString(CInput,*sInput1);
     ADVINPUT2();
     if (isSameString(*sInput1, "SAVE") || isSameString(*sInput1, "CREATE") || isSameString(*sInput1, "LIST") || isSameString(*sInput1, "DELETE") || isSameString(*sInput1, "QUEUE") || isSameString(*sInput1, "PLAY") || isSameString(*sInput1, "HISTORY")){
-        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
-        InputToString(CInput,*sInput2);
         if (CInput.Length != 0){
+            *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+            InputToString(CInput,*sInput2);
             ADVINPUT2();
-            *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
-            InputToString(CInput,*sInput3);
+            if (CInput.Length != 0){
+                *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
+                InputToString(CInput,*sInput3);
+            }
         }
     } else if (isSameString(*sInput1, "SKIP")){
-        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
-        InputToString(CInput,*sInput2);
         if (CInput.Length != 0){
+            *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+            InputToString(CInput,*sInput2);
             ADVINPUT2();
-            *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
-            InputToString(CInput,*sInput3);
             if (CInput.Length != 0){
+                *sInput3 = (char*)malloc(sizeof(char)* CInput.Length);
+                InputToString(CInput,*sInput3);
                 ADVINPUT2();
-                *sInput4 = (char*)malloc(sizeof(char)* CInput.Length);
-                InputToString(CInput,*sInput4);
+                if (CInput.Length != 0){
+                    *sInput4 = (char*)malloc(sizeof(char)* CInput.Length);
+                    InputToString(CInput,*sInput4);
+                }
             }
         }
     } else {
-        *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
-        InputToString(CInput,*sInput2);
+        if (CInput.Length != 0){
+            *sInput2 = (char*)malloc(sizeof(char)* CInput.Length);
+            InputToString(CInput,*sInput2);
+        }
     }
     while (CInput.Length != 0){
         ADVINPUT2();
