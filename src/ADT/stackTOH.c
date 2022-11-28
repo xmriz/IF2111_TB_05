@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "stack.h"
+#include "stackTOH.h"
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
