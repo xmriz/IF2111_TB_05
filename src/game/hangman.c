@@ -82,10 +82,10 @@ void hangman(int* scorehangman){
 		}
 	}
 
-int main(){
+//int main(){
     //driver
-    int scorehangman = 0;
-    hangman(&scorehangman);
-    printf("Score : %d\n", score);
-    return 0;
-}
+    //int scorehangman = 0;
+    //hangman(&scorehangman);
+    //printf("Score : %d\n", score);
+    //return 0;
+//}
