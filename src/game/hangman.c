@@ -6,7 +6,7 @@
 
 #include "../console.h"
 
-void hangman(){
+void hangman(int* score){
 	// Inisiasi berupa pembacaan file konfigurasi default
 	MakeEmptyGame(listgame);
 	char filepath[] = "..\\data\\country.txt";
@@ -71,12 +71,21 @@ void hangman(){
 			printf("\n");
 			printf("Kesempatan: %d", chance);
 			printf("Masukkan tebakan: ");
-			scanf(" %c",&cc);
-			listtebakan.TG[nebak].TabKalimat[0] = cc;
+			cc = scanstring();
+			//scanf(" %c",&cc);
+			listtebakan.TG[nebak].TabKalimat[0] = cc[0];
 			nebak += 1;
 			stripnum = copystripnum;
 
 			
 			}
 		}
-	}	
+	}
+
+int main(){
+    //driver
+    int score = 0;
+    playHangman(&score);
+    printf("Score : %d\n", score);
+    return 0;
+}
