@@ -6,7 +6,7 @@
 
 #include "../console.h"
 
-void hangman(int* score){
+void hangman(int* scorehangman){
 	// Inisiasi berupa pembacaan file konfigurasi default
 	MakeEmptyGame(listgame);
 	char filepath[] = "..\\data\\country.txt";
@@ -84,8 +84,8 @@ void hangman(int* score){
 
 int main(){
     //driver
-    int score = 0;
-    playHangman(&score);
+    int scorehangman = 0;
+    hangman(&scorehangman);
     printf("Score : %d\n", score);
     return 0;
 }
