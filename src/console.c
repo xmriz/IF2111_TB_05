@@ -435,6 +435,15 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
             delay(1);
             printf(". \n\n");
             // mainHangman();
+        } else if (isSameString(stringval, "TOWER OF HANOI")){
+            printf("Loading %s . ", stringval);
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
+            mainTOH(&score);
         } else{
             int score=0;
         }

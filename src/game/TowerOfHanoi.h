@@ -10,6 +10,6 @@ int piringTerbesar(StackToH S);
 
 void printStack(StackToH S1, StackToH S2, StackToH S3, int piring);
 
-mainTOH(int *scoreTOH);
+void mainTOH(int *scoreTOH);
 
 #endif

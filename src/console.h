@@ -15,6 +15,7 @@
 #include "ADT\stackGame.h"
 #include "game\stimencarijodoh.h"
 // #include "game\hangman.h"
+#include "game\TowerOfHanoi.h"
 #include "game\snakeonmeteor.h"
 #include "ADT\datagame.h"
 
