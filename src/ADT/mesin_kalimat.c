@@ -76,16 +76,14 @@ void ADVKALIMATFILE () {
 }
 
 void KalimatToString (Kalimat K, char *S){
-    for (int i = 0; i < K.Length; i++)
+    int i;
+    int j=0;
+    for (i = 1; i <= K.Length; i++)
     {
-        S[i] = K.TabKalimat[i];
+        S[j] = K.TabKalimat[i];
+        j++;
     }
-    for (int i = K.Length; i < strlen(S); i++) 
-    {
-        if (S[i] != '\0') {
-            S[i] = '\0';
-        }
-    }
+    S[j] = '\0';
 }
 
 void StringToKalimat (Kalimat *K, char* str){

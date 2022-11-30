@@ -448,7 +448,16 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
             delay(1);
             printf(". \n\n");
             mainTOH(&score);
-        } else{
+        } else if (isSameString(stringval, "TREASURE HUNT")){
+            printf("Loading %s . ", stringval);
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". ");
+            delay(1);
+            printf(". \n\n");
+            mainTreasureHunt(&score);
+        }else{
             int score=0;
         }
         printf("\nTerima kasih telah bermain %s!\n", stringval);

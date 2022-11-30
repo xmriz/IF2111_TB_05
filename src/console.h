@@ -18,6 +18,7 @@
 #include "game\TowerOfHanoi.h"
 #include "game\snakeonmeteor.h"
 #include "ADT\datagame.h"
+#include "game\treasurehunt.h"
 
 void welcoming(FILE *ff);
 
