@@ -252,8 +252,10 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
         printf("\nTidak bisa membuka file.\n");
     } else{
         // masukin  listgame ke file
-        char c=n_game + '0';
-        fprintf(savePtr,"%c",c);
+        char *c= inttostring(n_game);
+        for (i=0;i<strlength(c);i++){
+            fprintf(savePtr, "%c", c[i]);
+        }
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<n_game;i++){
             for (j=1;j<=listgame.TG[i].Length;j++){
@@ -262,8 +264,10 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
             fprintf(savePtr,"%c",'\n');
         }
         // masukin history ke file
-        char c2=n_history + '0';
-        fprintf(savePtr,"%c",c2);
+        char *c2 = inttostring(n_history);
+        for (i=0;i<strlength(c2);i++){
+            fprintf(savePtr, "%c", c2[i]);
+        }
         fprintf(savePtr,"%c",'\n');
         for (i=0;i<n_history;i++){
             for (j=1;j<=history.T[i].Length;j++){
@@ -536,6 +540,40 @@ char intToChar(int n) {
     return (char)(n + 48);
 }
 
+char *inttostring(int n) {
+    int i = 0;
+    char *s = (char*)malloc(100);
+    if (n == 0) {
+        s[0] = '0';
+        s[1] = '\0';
+        return s;
+    }
+    while (n > 0) {
+        s[i] = intToChar(n % 10);
+        n /= 10;
+        i++;
+    }
+    s[i] = '\0';
+    char *s2 = (char*)malloc(100);
+    int j = 0;
+    for (i = strlength(s) - 1; i >= 0; i--) {
+        s2[j] = s[i];
+        j++;
+    }
+    s2[j] = '\0';
+    return s2;
+    
+}
+
+int jumlahdigit(int n) {
+    int i = 0;
+    while (n > 0) {
+        n /= 10;
+        i++;
+    }
+    return i;
+}
+
 void displayhistory(Stack S, int n, int n_history){
 
     int i = 0;
@@ -677,7 +715,6 @@ boolean isKalimatinArray(Kalimat K, TabGame T){
 
 boolean isCharinKalimat(char c, Kalimat K){
     for (int i=0; i<K.Length; i++){
-        printf("%c", K.TabKalimat[i]);
         if (c==K.TabKalimat[i]){
             return true;
         }
@@ -705,6 +742,13 @@ boolean isCharinString(char c, char *s){
         if (toupperChar(c)==toupperChar(s[i])){
             return true;
         }
+    }
+    return false;
+}
+
+boolean isAlphabet(char c){
+    if ((c>='a' && c<='z') || (c>='A' && c<='Z')){
+        return true;
     }
     return false;
 }

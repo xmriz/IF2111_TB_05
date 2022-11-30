@@ -81,6 +81,10 @@ void tolowercase(char* s);
 
 char intToChar(int n);
 
+char *inttostring(int n);
+
+int jumlahdigit(int n);
+
 void displayhistory(Stack S, int n, int n_history);
 
 void scoreboard(int n_game, ListGame datagame);
@@ -98,4 +102,6 @@ char toupperChar(char c);
 char tolowerChar(char c);
 
 boolean isCharinString(char c, char* s);
+
+boolean isAlphabet(char c);
 

@@ -9,6 +9,9 @@
 #include <string.h>
 
 
+void inputtofile(char *filepath, char *input, int n_coutry, TabGame countrylist);
+
 void mainhangman(int *scorehangman);
+
 
 #endif
