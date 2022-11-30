@@ -8,8 +8,7 @@
 #include <time.h>
 #include <string.h>
 
-void startHangman(TabGame *listgame, int *n_game);
 
-void hangman(int *scorehangman);
+void mainhangman(int *scorehangman);
 
 #endif

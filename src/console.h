@@ -14,7 +14,8 @@
 #include "ADT\mapGame.h"
 #include "ADT\stackGame.h"
 #include "game\stimencarijodoh.h"
-// #include "game\hangman.h"
+#include "game\hangman.h"
+#include "game\TowerOfHanoi.h"
 #include "game\snakeonmeteor.h"
 #include "ADT\datagame.h"
 #include "game\treasurehunt.h"
@@ -53,8 +54,6 @@ void save(char* filename, TabGame listgame, int n_game, Stack history, int n_his
 
 void createGame(int *n_game, TabGame *listgame, ListGame *ListofCreate);
 
-int panjangString(char*p);
-
 void listofgame(int n_game, TabGame listgame);
 
 void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame);
@@ -90,3 +89,14 @@ void scoreboard(int n_game, ListGame datagame);
 void reset_history(Stack *S, int *n_history);
 
 void reset_scoreboard(ListGame *datagame, int n_game, TabGame tabgame);
+
+boolean isKalimatinArray(Kalimat K, TabGame T);
+
+boolean isCharinKalimat(char c, Kalimat K);
+
+char toupperChar(char c);
+
+char tolowerChar(char c);
+
+boolean isCharinString(char c, char* s);
+
