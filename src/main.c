@@ -121,7 +121,7 @@ int main(){
             if (input3 == NULL && input2 != NULL){
                 input1 = strconcat(input1, input2);
                 if (isSameString(input1, "DELETEGAME")){
-                    deleteGame(&n_game, &listgame, QGame);
+                    deleteGame(&n_game, &listgame, QGame, &History, &datagame);
                 } else {
                     commandlain();
                 }

@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<string.h>
 #include"mesin_kalimat.h"
 
 boolean EndKalimat;

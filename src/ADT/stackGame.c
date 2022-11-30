@@ -47,3 +47,19 @@ void PopStack(Stack * S, infostack* X){
         Top(*S) -= 1;
     }
 } 
+
+void DeleteElmt(Stack *S, infostack X){
+    Stack temp;
+    infostack tempInfo;
+    CreateEmptyStack(&temp);
+    while (!IsEmptyStack(*S)) {
+        PopStack(S, &tempInfo);
+        if (!isKalimatSame2(tempInfo, X)) {
+            PushStack(&temp, tempInfo);
+        }
+    }
+    while (!IsEmptyStack(temp)) {
+        PopStack(&temp, &tempInfo);
+        PushStack(S, tempInfo);
+    }
+}

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "point.h"
-#include "math.h"
 
 POINT MakePOINT (int X, int Y){
     if (X >= 0){
@@ -58,12 +57,5 @@ int Kuadran (POINT titik){
 
 POINT salinDelta (POINT titik, int deltaX, int deltaY){
     return MakePOINT(Absis(titik)+deltaX,Ordinat(titik)+deltaY);
-}
-
-float Jarak0 (POINT titik){
-    return (sqrtf(Absis(titik) * Absis(titik) + Ordinat(titik) * Ordinat(titik)));
-}
-float Panjang (POINT titik1, POINT titik2){
-     return (sqrtf(powf(Absis(titik2) - Absis(titik1), 2) + powf(Ordinat(titik2) - Ordinat(titik1), 2)));
 }
 

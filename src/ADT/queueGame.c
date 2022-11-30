@@ -94,13 +94,13 @@ void displayQueueGame(QueueGame q){
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 
-boolean IsMemberQueue(QueueGame q, ElTypeG val){
+boolean IsMemberQueue(QueueGame q, Kalimat val){
     int i;
     boolean found = false;
     if (isEmptyGame(q)){
         return false;
     } else {
-        for (i=IDX_HEADG(q); i!=IDX_TAILG(q); i=(i+1)%CAPACITY){
+        for (i=IDX_HEADG(q); i<=IDX_TAILG(q); i=(i+1)%CAPACITY){
             if (isKalimatSame(q.bufferG[i], val)){
                 found = true;
             }

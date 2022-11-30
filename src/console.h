@@ -58,7 +58,7 @@ void createGame(int *n_game, TabGame *listgame, ListGame *ListofCreate);
 
 void listofgame(int n_game, TabGame listgame);
 
-void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame);
+void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame, Stack *history, ListGame *datagame);
 
 void queuegame (QueueGame *q, int n_game, TabGame listgame); 
 
