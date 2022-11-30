@@ -31,16 +31,22 @@ void mainSnake(int  *scoresnake){
     generateFood(Snake, obstacle1, obstacle2, &food);
     displayPeta(Snake, obstacle1, obstacle2, food, meteor);
 
+    char *comstring;
     char com;
-    while (com != 'q' && !isGameOver ){
+    while (!isGameOver ){
         printf("\nMasukkan perintah: ");
-        com = scanchar();
-        if (com == 'w' || com == 'a' || com == 's' || com == 'd'){
-            printf("\nBerhasil bergerak!\n");
-            moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor, &crater, scoresnake);
-            displayPeta(Snake, obstacle1, obstacle2, food, meteor);
-        } else {
-            printf("Perintah tidak valid!!\n");
+        comstring = scanstring();
+        if (strlength(comstring) != 1){
+            printf("Perintah salah! Masukkan perintah yang benar!\n");
+        } else{
+            com = comstring[0];
+            if (com == 'w' || com == 'a' || com == 's' || com == 'd'){
+                printf("\nBerhasil bergerak!\n");
+                moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor, &crater, scoresnake);
+                displayPeta(Snake, obstacle1, obstacle2, food, meteor);
+            } else {
+                printf("Perintah tidak valid!!\n");
+            }
         }
     }
     printf("\n. ");
