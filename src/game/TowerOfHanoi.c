@@ -283,6 +283,11 @@ void mainTOH(int *scoreTOH)
     // ALGORITMA
     printf("Masukkan jumlah piringan: ");
     piring = scanint();
+    while (piring < 1)
+    {
+        printf("Input error! Ulangi!\nMasukkan jumlah piringan: ");
+        piring = scanint();
+    }
     printf("\n");
     CreateEmptyStackToH(&a);
     CreateEmptyStackToH(&b);
