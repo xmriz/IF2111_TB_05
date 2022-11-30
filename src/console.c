@@ -321,7 +321,7 @@ void listofgame(int n_game, TabGame listgame){
     }
 }
 
-void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame) {
+void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame, Stack *history, ListGame *datagame) {
     int input, i;
     printf("Berikut adalah daftar game yang tersedia\n");
     listofgame(*n_game, *listgame);
@@ -329,7 +329,11 @@ void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame) {
     input = scanint();
     printf("\n");
     if ((input > 6) && (input <= *n_game)) {
-        if (IsMemberQueue(queuegame, listgame->TG[input-1])) {
+        if (!IsMemberQueue(queuegame, listgame->TG[input-1])) {
+            printf("1\n");
+                DelPListGame(datagame, listgame->TG[input-1]);
+            printf("2\n");
+                DeleteElmt(history, listgame->TG[input-1]);
                 for (i = input-1; i < *n_game-1; i++) {
                     listgame->TG[i] = listgame->TG[i+1];
                 }

@@ -36,7 +36,7 @@ void AlokasiListGame (addressGame *P, game X);
 /* I.S. Sembarang */
 /* F.S. Alamat P dialokasi, jika berhasil maka Info(P)=X dan Next(P)=NilList */
 /* P=NilList jika alokasi gagal */
-void DealokasiListGame (addressGame  *P);
+void DealokasiListGame (addressGame *P);
 /* I.S. P adalah hasil alokasi, P <> NilList */
 /* F.S. Alamat P didealokasi, dikembalikan ke sistem */
 void CreateEmptyListGame (ListGame *L);
@@ -66,9 +66,17 @@ void DelVLastGame (ListGame *L, game *X);
 /*      Elemen L berkurang satu (mungkin menjadi kosong) */
 /* First(L) diset NilList jika kosong */
 
-void DelPGame (ListGame *L, Kalimat X);
+void DelAfterListGame(ListGame *L, addressGame *Pdel, addressGame Prec);
+
+void DelFirstListGame(ListGame *L, addressGame *P);
+
+void DelLastListGame (ListGame *L, addressGame *P);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressl P, dengan Info(P).name=X  */
+
+void DelPListGame(ListGame *L, Kalimat X);
+
+int NbElmt (ListGame L);
 
 void DelAllScoreboard(ListGame *L);
 

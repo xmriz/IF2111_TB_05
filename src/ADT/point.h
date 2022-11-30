@@ -56,10 +56,7 @@ int Kuadran (POINT titik);
 /* *** KELOMPOK OPERASI LAIN TERHADAP TYPE *** */
 POINT salinDelta (POINT titik, int deltaX, int deltaY);
 /* Mengirim salinan P yang absisnya adalah Absis(P) + deltaX dan ordinatnya adalah Ordinat(P) + deltaY */
-float Jarak0 (POINT titik);
-/* Menghitung jarak P ke (0,0) */
-float Panjang (POINT titik1, POINT titik2);
-/* Menghitung panjang garis yang dibentuk P1 dan P2. */
+
 
 
 #endif

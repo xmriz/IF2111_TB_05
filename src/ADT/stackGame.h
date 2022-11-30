@@ -57,4 +57,6 @@ void PopStack(Stack * S, infostack* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
+void DeleteElmt(Stack *S, infostack X);
+
 #endif
