@@ -19,11 +19,7 @@ POINT MakePOINT (int X, int Y){
     return titik;
 }
 
-void BacaPOINT (POINT * titik){
-    int X,Y;
-    scanf("%f %f",&X,&Y);
-    *titik = MakePOINT(X,Y);
-}
+
 void TulisPOINT (POINT titik){
     printf("(%d,%d)",Absis(titik),Ordinat(titik));
 }

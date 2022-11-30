@@ -28,6 +28,8 @@ char *scanstring();
 
 int scanint();
 
+char scanchar();
+
 void scanParserStrInt(char* *sInput, int *valInput);
 
 void scanParserStartStr(char* *sInput1, char* *sInput2);

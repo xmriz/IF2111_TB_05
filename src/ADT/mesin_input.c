@@ -106,6 +106,10 @@ int InputtoInt(Input K){
     return(val);
 }
 
+char InputtoChar(Input K){
+    return K.TabInput[0];
+}
+
 void CopyInput (Input K1, Input *K2){
     K2->Length=K1.Length;
     for (int i=0; i<=K1.Length; i++){

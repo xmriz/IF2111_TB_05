@@ -34,7 +34,7 @@ void mainSnake(int  *scoresnake){
     char com;
     while (com != 'q' && !isGameOver ){
         printf("\nMasukkan perintah: ");
-        scanf(" %c", &com);
+        com = scanchar();
         if (com == 'w' || com == 'a' || com == 's' || com == 'd'){
             printf("\nBerhasil bergerak!\n");
             moveSnake(com, &Snake, &food, &isGameOver, &obstacle1, &obstacle2, &meteor, &crater, scoresnake);

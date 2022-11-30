@@ -70,6 +70,13 @@ int scanint(){
     return val;
 }
 
+char scanchar(){
+    char val;
+    STARTINPUT();
+    val=InputtoChar(CInput);
+    return val;
+}
+
 void scanParserStrInt(char* *sInput, int *valInput){
     STARTINPUT2();
     *sInput = (char*)malloc(sizeof(char)* CInput.Length);

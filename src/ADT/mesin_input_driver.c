@@ -55,5 +55,4 @@ int main()
         printf("%c", CInput.TabInput[i]);
     }
     printf("\n");
-    scanf("Input file yang ingin dibaca: %s", input);
 }

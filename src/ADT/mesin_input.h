@@ -35,6 +35,8 @@ void InputToString (Input K, char *S);
 
 int InputtoInt(Input K);
 
+char InputtoChar(Input K);
+
 void CopyInput (Input K1, Input *K2);
 
 int strlength(char *s);
