@@ -131,6 +131,7 @@ int KalimattoInt2(Kalimat K){
     return(val);
 }
 
+// kalimatbiasa == kalimatfile
 boolean isKalimatSame(Kalimat K1,Kalimat K2){
     boolean isSame=true;
     int i=0;
@@ -148,9 +149,28 @@ boolean isKalimatSame(Kalimat K1,Kalimat K2){
     return (isSame);
 }
 
+//kalimatfile  == kalimatfile
 boolean isKalimatSame2(Kalimat K1,Kalimat K2){
     boolean isSame=true;
     int i=1;
+    if (K1.Length==K2.Length){
+        while (isSame && i<K1.Length){
+            if (K1.TabKalimat[i]!=K2.TabKalimat[i]){
+                isSame=false;
+            } else{
+                i++;
+            }
+        }
+    } else{
+        return false;
+    }
+    return (isSame);
+}
+
+//kalimatbiasa == kalimatbiasa
+boolean isKalimatSame3(Kalimat K1,Kalimat K2){
+    boolean isSame=true;
+    int i=0;
     if (K1.Length==K2.Length){
         while (isSame && i<K1.Length){
             if (K1.TabKalimat[i]!=K2.TabKalimat[i]){

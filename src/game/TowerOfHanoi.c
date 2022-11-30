@@ -276,13 +276,38 @@ void printStack(StackToH S1, StackToH S2, StackToH S3, int piring)
 void mainTOH(int *scoreTOH)
 {
     // KAMUS
-    int piring, i, langkah, skor, langkahOptimal;
+    int piring, temp, i, num, langkah, skor, langkahOptimal;
     StackToH a, b, c;
     char *asal;
     char *tujuan;
+    char *piringStr;
     // ALGORITMA
     printf("Masukkan jumlah piringan: ");
-    piring = scanint();
+    piringStr = scanstring();
+    piring = 0;
+    num = 0;
+    while (piringStr[num] != '\0')
+    {
+        temp = piringStr[num] - '0';
+        if (temp >= 0 && temp <= 9)
+        {
+            piring *= 10;
+            piring += temp;
+            num++;
+        }
+        else
+        {
+            printf("Input error! Ulangi!\nMasukkan jumlah piringan: ");
+            piringStr = scanstring();
+            num = 0;
+            piring = 0;
+        }
+    }
+    while (piring < 1)
+    {
+        printf("Input error! Ulangi!\nMasukkan jumlah piringan: ");
+        piring = scanint();
+    }
     printf("\n");
     CreateEmptyStackToH(&a);
     CreateEmptyStackToH(&b);
