@@ -3,6 +3,7 @@
         "stdlib.h": "c",
         "linkedlistpoint.h": "c",
         "snakeonmeteor.h": "c",
-        "console.h": "c"
+        "console.h": "c",
+        "math.h": "c"
     }
 }

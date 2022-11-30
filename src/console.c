@@ -337,7 +337,7 @@ void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame) {
                 ((*listgame).Neff)--;
                 printf("Game berhasil dihapus\n");
             } else {
-                printf("Game tidak dapat dihapus karena sedang berlangsung\n");
+                printf("Game tidak dapat dihapus karena berada pada QUEUE GAME\n");
             }
     } else if ((input >= 0) && (input <= 6)) {
         printf("Game gagal dihapus!\n");
@@ -423,7 +423,6 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
             printf(". ");
             delay(1);
             printf(". \n\n");
-            int score;
             mainSnake(&score);
 
         } else if (isSameString(stringval, "HANGMAN")){
@@ -434,7 +433,8 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
             printf(". ");
             delay(1);
             printf(". \n\n");
-            // mainHangman();
+            mainhangman(&score);
+
         } else if (isSameString(stringval, "TOWER OF HANOI")){
             printf("Loading %s . ", stringval);
             delay(1);
@@ -664,4 +664,47 @@ void reset_scoreboard(ListGame *datagame, int n_game, TabGame tabgame){
         }
     } while (input<0 && input>n_game); 
     
-} 
+}
+
+boolean isKalimatinArray(Kalimat K, TabGame T){
+    for (int i=0; i<T.Neff; i++){
+        if (isKalimatSame2(K, T.TG[i])){
+            return true;
+        }
+    }
+    return false;
+}
+
+boolean isCharinKalimat(char c, Kalimat K){
+    for (int i=0; i<K.Length; i++){
+        printf("%c", K.TabKalimat[i]);
+        if (c==K.TabKalimat[i]){
+            return true;
+        }
+    }
+    printf("\n");
+    return false;
+}
+
+char toupperChar(char c){
+    if (c>='a' && c<='z'){
+        return (char)(c-32);
+    }
+    return c;
+}
+
+char tolowerChar(char c){
+    if (c>='A' && c<='Z'){
+        return (char)(c+32);
+    }
+    return c;
+}
+
+boolean isCharinString(char c, char *s){
+    for (int i=0; i<strlength(s); i++){
+        if (toupperChar(c)==toupperChar(s[i])){
+            return true;
+        }
+    }
+    return false;
+}
