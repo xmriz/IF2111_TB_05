@@ -96,7 +96,7 @@ void reset_history(Stack *S, int *n_history);
 
 void reset_scoreboard(ListGame *datagame, int n_game, TabGame tabgame);
 
-boolean isKalimatinArray(Kalimat K, TabGame T);
+boolean isStringinTabGame(char* s, TabGame tabgame);
 
 boolean isCharinKalimat(char c, Kalimat K);
 

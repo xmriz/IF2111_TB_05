@@ -724,14 +724,17 @@ void reset_scoreboard(ListGame *datagame, int n_game, TabGame tabgame){
     
 }
 
-boolean isKalimatinArray(Kalimat K, TabGame T){
-    for (int i=0; i<T.Neff; i++){
-        if (isKalimatSame2(K, T.TG[i])){
+boolean isStringinTabGame(char* s, TabGame tabgame){
+    char *s2 = (char*)malloc(100*sizeof(char));
+    for (int i=0; i<tabgame.Neff; i++){
+        KalimatToString(tabgame.TG[i], s2);
+        if (isSameString(s, s2)){
             return true;
         }
     }
     return false;
 }
+
 
 boolean isCharinKalimat(char c, Kalimat K){
     for (int i=0; i<K.Length; i++){

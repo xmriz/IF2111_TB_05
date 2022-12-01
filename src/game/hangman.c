@@ -13,7 +13,6 @@ void inputtofile(char *filepath, char *input, int n_coutry, TabGame countrylist)
 	fp = fopen(filepath, "w");
 	int n = n_coutry + 1;
 	char *c = inttostring(n);
-	printf("%s\n", c);
 	for (i = 0; i < strlength(c); i++) {
 		fprintf(fp, "%c", c[i]);
 	}
@@ -25,7 +24,7 @@ void inputtofile(char *filepath, char *input, int n_coutry, TabGame countrylist)
 		fprintf(fp, "%c", '\n');
 	}
 	for (i = 0; i < strlen(input); i++){
-		fprintf(fp, "%c", input[i]);
+		fprintf(fp, "%c", toupperChar(input[i]));
 	}
 	fprintf(fp, "%c", '\n');
 	fprintf(fp, "%c", ';');
@@ -156,6 +155,10 @@ void mainhangman(int* scorehangman){
 		readConfig(filepath, &countrylist, &n_country);
 		printf("Masukkan nama negara yang ingin ditambahkan: ");
 		char *input = scanstring();
+		while (isStringinTabGame(input, countrylist)){
+			printf("Negara sudah ada dalam kamus. Masukkan nama negara yang lain: ");
+			input = scanstring();
+		}
 		inputtofile(filepath, input, n_country, countrylist);
 		printf("\n\n");
 		goto checkpoint;
