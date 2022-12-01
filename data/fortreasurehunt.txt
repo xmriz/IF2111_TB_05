@@ -1,0 +1,106 @@
+104
+Banyak negara yang diakui di dunia adalah 
+195
+Perjalanan pertama ke Bulan diluncurkan tahun 
+1969
+Negara terbesar di dunia adalah 
+RUSIA
+Banyak katup yang dimiliki jantung manusia adalah 
+4
+Croissant berasal dari 
+AUSTRIA
+Freddy Mercury meninggal tahun 
+1991
+Organ terbesar dalam tubuh manusia adalah 
+KULIT
+Pada tubuh kita, insulin diproduksi di 
+PANKREAS
+Ibukota Kanada adalah 
+OTTAWA
+Teman spongebob yang berwarna pink bernama 
+PATRICK
+Representasi data biner 101010 dalam desimal bernilai 
+42
+Representasi data hexadecimal 5AF dalam desimal bernilai 
+1455
+Representasi data biner 1111 dalam desimal bernilai 
+15
+Representasi data octal 144 dalam desimal bernilai 
+100
+Representasi data desimal 20 dalam octal bernilai 
+24
+Representasi data decimal 30 dalam biner bernilai 
+11110
+Representasi data desimal 80 dalam hexadecimal bernilai 
+50
+Berapa jam umur capung rata-rata? 
+24
+Program komputer yang mengubah instruksi ke dalam bentuk biner 
+ASSEMBLER
+Program yang menerjemahkan dari bahasa tingkat tinggi menjadi bahasa assembly 
+COMPILER
+Memori kecil dan cepat yang bertugas sebagai buffer untuk memori utama 
+CACHE
+Control Unit ataupun ALU berisi lokasi-lokasi penyimpanan yang disebut 
+REGISTER
+Suatu register untuk mengawasi instruksi yang akan dibaca selanjutnya disebut 
+PROGRAM COUNTER
+Operating System adalah struktur UTAMA komputer (YA/TIDAK) 
+TIDAK
+CPU adalah struktur UTAMA komputer (YA/TIDAK) 
+YA
+Komponen utama komputer yang mengontrol operasi komputer dan membentuk fungsi pengolahan data 
+CPU
+Kelelawar dapat mencari mangsa di tempat gelap karena kemampuan 
+EKOLOKASI
+Sumpah yang diucapkan Patih Gajah Mada adalah Sumpah 
+PALAPA
+Ketua umum PDIP adalah 
+MEGAWATI
+Kota Hujan adalah julukan untuk Kota 
+BOGOR
+Negara terkaya di dunia adalah 
+QATAR
+Nama kapal pesiar yang tenggelam pada 15 Juni 1912 adalah 
+TITANIC
+Besaran bunyi adalah 
+DESIBEL
+Adolf Hitler merupakan diktator organisasi 
+NAZI
+Belalang bernafas menggunakan 
+TRAKEA
+Zea Mays adalah nama latin dari 
+JAGUNG
+Felis Catus adalah nama latin dari 
+KUCING
+Pempek berasal dari 
+PALEMBANG
+Pengarang Harry Potter adalah 
+JK ROWLING
+Negara di ASEAN yang tidak pernah dijajah adalah 
+THAILAND
+Negara yang memiliki tanggal kemerdekaan sama dengan Indonesia adalah 
+GABON
+Mata uang Malaysia adalah 
+RINGGIT
+Mata uang Filipina adalah 
+PESO
+Mata uang India adalah 
+RUPEE
+Nama latin dari tumbuhan padi adalah 
+ORYZA SATIVA
+Nama klub sepak bola yang sulit akur dengan Persija adalah 
+PERSIB
+Nama induk organisasi sepak bola Internasional adalah 
+FIFA
+Nama induk organisasi sepak bola di Indonesia adalah 
+PSSI
+Negara dengan kepadatan penduduk tertinggi ke-2 adalah 
+INDIA
+Organel sel yang memiliki julukan "power house of cell" adalah 
+MITOKONDRIA
+Organel sel yang berfungsi sebagai tempat sintesis protein 
+RIBOSOM
+Pada umumnya, dinding sel dimiliki oleh sel hewan (YA/TIDAK) 
+TIDAK;
+
