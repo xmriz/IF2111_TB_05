@@ -3,13 +3,10 @@
 
 
 void mainTreasureHunt(int *scoretreasurehunt){
-    printf("Selamat datang di Treasure Hunt!\n\n");
-    printf("Tentukan pilhanmu untuk menemukan harta karun!\n");
-    printf("Men-generate peta dan harta karun. ");
-    delay(1);
-    printf(". ");
-    delay(1);
-    printf(". \n");
+    printf("\nSelamat datang di Treasure Hunt!\n\n");
+    guidelines();
+    printf("\n\nTentukan pilhanmu untuk menemukan harta karun!\n");
+    printf("\nMen-generate peta dan harta karun. "); delay(1); printf(". "); delay(1); printf(". \n");
     TabGame ListQuestion;
     MakeEmptyGame(&ListQuestion);
     int n_line;
@@ -19,8 +16,8 @@ void mainTreasureHunt(int *scoretreasurehunt){
     BinTree TreeAwal = genMapAwal();
     int nyawa = lives;
     boolean gameOver=false;
-    printf("Tentukan path petualanganmu! (LEFT/RIGHT) \n"); // nih buat milih dia mau soal pertanyaan umum atau mtk
-    printf("Masukkan pilihanmu: ");
+    printf("\nTentukan path petualanganmu! (LEFT/RIGHT) \n"); // nih buat milih dia mau soal pertanyaan umum atau mtk
+    printf("\nMasukkan pilihanmu: ");
     char* pilihan=scanstring();
     AddressT P=TreeAwal;
     do{
@@ -53,7 +50,8 @@ void mainTreasureHunt(int *scoretreasurehunt){
     }
     } while (!isSameString(pilihan,"LEFT") && !isSameString(pilihan,"RIGHT"));
     if (nyawa==0){
-        printf("Game Over! Nyawa kamu habis. \n");
+        printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
+        printf("\nGame Over! Nyawa kamu habis. \n");
     } 
     else{
         printf("Selamat! Kamu berhasil menamatkan map Treasure Hunt GG Geming\n");
@@ -64,7 +62,6 @@ void mainTreasureHunt(int *scoretreasurehunt){
     }
 }
 
-// pake grow map bukan build secara langsung soalnya kl build lebih lama dan ga efisien
 BinTree BuildMap(int rentangrandom, int n){
     int ingfotreasure[]={999,0,999,0,0,-999,0,0,-999,0,999,0,0,-999};
     srand(time(NULL));
@@ -84,7 +81,7 @@ BinTree BuildMap(int rentangrandom, int n){
         ElTypeT node;
         node.random=X;
         Y = rand() % 14;
-        Y = (Y+n) % 14;
+        Y = (Y+n+3) % 14;
         node.isTreasure=ingfotreasure[Y];
         P = newTreeNode(node);
         if (P != Nil){
@@ -280,7 +277,7 @@ int func(int op1, int op2, char op){
 }
 
 void QuestionandAnswer(boolean *isTrue,  int random, TabGame listPertanyaan){
-    printf("Jawablah pertanyaan berikut!\n\n");
+    printf("\nJawablah pertanyaan berikut!\n\n");
     printkalimat(listPertanyaan.TG[random]);
     char* jawaban=scanstring();
     char* jawabanAsli = (char*)malloc(sizeof(char)* 100);
@@ -290,7 +287,7 @@ void QuestionandAnswer(boolean *isTrue,  int random, TabGame listPertanyaan){
         *isTrue=true;
     } else{
         printf("Jawaban kamu salah!\n");
-        printf("Jawaban yang benar adalah %s\n",jawabanAsli);
+        printf("Jawaban yang benar adalah %s\n\n",jawabanAsli);
         *isTrue=false;
     }
 }
@@ -303,7 +300,7 @@ void play1(boolean gameOver, int *score, int *nyawa, BinTree tree, TabGame listP
     AddressT P=tree;
     boolean isEmpty=false;
     while (!isEmpty && *nyawa!=0){
-        printf("Masukkan pilihanmu: ");
+        printf("\nMasukkan pilihanmu: ");
         char* pilihan=scanstring();
         if (isSameString(pilihan,"LEFT")){
             P=LEFT(P);
@@ -311,13 +308,13 @@ void play1(boolean gameOver, int *score, int *nyawa, BinTree tree, TabGame listP
                 if (ROOT(P).isTreasure==999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("Selamat kamu menemukan treasure!\n");
+                    printtreasure();
                     printf("\nScore kamu bertambah 1000\n");
                     *score+=1000;   
                 } else if (ROOT(P).isTreasure==-999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("\nOops! Kamu menginjak trap!\n");
+                    printtrap();
                     printf("\nNyawamu berkurang 1\n");
                     *nyawa-=1;
                 } else {
@@ -338,13 +335,13 @@ void play1(boolean gameOver, int *score, int *nyawa, BinTree tree, TabGame listP
                 if (ROOT(P).isTreasure==999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("Selamat kamu menemukan treasure!\n");
+                    printtreasure();
                     printf("\nScore kamu bertambah 1000\n");
                     *score+=1000;
                 } else if (ROOT(P).isTreasure==-999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("\nOops! Kamu menginjak trap!\n");
+                    printtrap();
                     printf("\nNyawamu berkurang 1\n");
                     *nyawa-=1;
                 } else {
@@ -359,7 +356,12 @@ void play1(boolean gameOver, int *score, int *nyawa, BinTree tree, TabGame listP
             } else{
                 isEmpty=true;
             }
-            } else {
+            } else if(isSameString(pilihan,"HELP")){
+                guidelines();
+            } else if (isSameString(pilihan, "INFO")){
+            infouser(*score,*nyawa);
+            }
+            else {
                     printf("Pilihan tidak valid. Silahkan coba lagi.\n");
             }
         }
@@ -375,7 +377,7 @@ void play2(boolean gameOver, int *score, int *nyawa, BinTree tree){
     AddressT P=tree;
     boolean isEmpty=false;
     while (!isEmpty && *nyawa!=0){
-        printf("Masukkan pilihanmu: ");
+        printf("\nMasukkan pilihanmu: ");
         char* pilihan=scanstring();
         if (isSameString(pilihan,"LEFT")){
             P=LEFT(P);
@@ -383,13 +385,13 @@ void play2(boolean gameOver, int *score, int *nyawa, BinTree tree){
                 if (ROOT(P).isTreasure==999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("Selamat kamu menemukan treasure!\n");
+                    printtreasure();
                     printf("\nScore kamu bertambah 1000\n");
                     *score+=1000;
                 } else if (ROOT(P).isTreasure==-999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("\nOops! Kamu menginjak trap!\n");
+                    printtrap();
                     printf("\nNyawamu berkurang 1\n");
                     *nyawa-=1;
                 } else {
@@ -410,13 +412,13 @@ void play2(boolean gameOver, int *score, int *nyawa, BinTree tree){
                 if (ROOT(P).isTreasure==999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("Selamat kamu menemukan treasure!\n");
+                    printtreasure();
                     printf("\nScore kamu bertambah 1000\n");
                     *score+=1000;
                 } else if (ROOT(P).isTreasure==-999){
                     printf("Tunggu, kamu menginjak sesuatu!\n");
                     printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". \n");
-                    printf("\nOops! Kamu menginjak trap!\n");
+                    printtrap();
                     printf("\nNyawamu berkurang 1\n");
                     *nyawa-=1;
                 } else {
@@ -428,17 +430,22 @@ void play2(boolean gameOver, int *score, int *nyawa, BinTree tree){
                         *score -=10;
                     }
                 }
-            } else {
+            } 
+            else {
                 isEmpty=true;
             }
-        } else {
+        } else if (isSameString(pilihan,"HELP")){
+                guidelines();
+        } else if (isSameString(pilihan, "INFO")){
+            infouser(*score,*nyawa);
+        }else {
                     printf("Pilihan tidak valid. Silahkan coba lagi.\n");
                 }
         }
     }
         
 
-void guideline(){
+void guidelines(){
     printf("=======================================================================================================\n");
     printf("|                                    GUIDE BERMAIN TREASURE HUNT                                      |\n");
     printf("| Pada game Treasure Hunt, kamu memiliki misi untuk mengumpulkan emas sebanyak-banyaknya              |\n");
@@ -447,8 +454,17 @@ void guideline(){
     printf("| jika kamu bisa menjawab pertanyaan tersebut, kamu mendapatkan emas, jika tidak maka emasmu berkurang|\n");
     printf("| Saat kamu mendapat treasure, emasmu akan bertambah secara signifikan                                |\n");
     printf("| Sebaliknya jika kamu terkena trap, nyawamu berkurang 1                                              |\n");
-    printf("| Kamu hanya memiliki %s nyawa, jika kamu terkena trap %s kali, kamu akan mati </3                      |\n",lives,lives);
+    printf("| Kamu hanya memiliki %d nyawa, jika kamu terkena trap %d kali, kamu akan mati </3                      |\n",lives,lives);
+    printf("| Ketik 'HELP' untuk melihat petunjuk bermain dan 'INFO' untuk mengetahui informasi score dan nyawamu |\n");
     printf("=======================================================================================================\n");
+}
+
+void infouser(int score, int nyawa){
+    printf("=================\n");
+    printf("| Score: %d\n",score);
+    printf("| Nyawa: %d\n",nyawa);
+    printf("=================\n");
+    
 }
 
 int pangkat2(int n){
@@ -457,4 +473,32 @@ int pangkat2(int n){
         hasil*=2;
     }
     return hasil;
+}
+
+void printtxt(FILE *ff) {
+    char baca_str[255];
+    while(fgets(baca_str, sizeof(baca_str), ff) != NULL) {
+        printf("%s",baca_str);
+    }
+    printf("\n");
+}
+
+void printtreasure(){
+    char *treasuretxt = "..\\data\\treasure.txt";
+    FILE *ff = NULL;
+    ff = fopen(treasuretxt, "r");
+
+    if (ff != NULL) {
+        printtxt(ff);
+    }
+}
+
+void printtrap(){
+    char *traptxt = "..\\data\\trap.txt";
+    FILE *ff = NULL;
+    ff = fopen(traptxt, "r");
+
+    if (ff != NULL) {
+        printtxt(ff);
+    }
 }

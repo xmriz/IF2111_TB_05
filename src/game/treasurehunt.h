@@ -25,9 +25,15 @@ void QuestionandAnswer(boolean *isTrue,  int random, TabGame listPertanyaan);
 
 int func(int op1, int op2, char op);
 
-void guideline();
+void guidelines();
 
 int pangkat2(int n);
+
+void printtrap();
+void printtreasure();
+void printtxt();
+
+void infouser(int score, int nyawa);
 
 #endif
 

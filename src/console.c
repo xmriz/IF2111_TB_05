@@ -474,7 +474,7 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
         printf("\nTerima kasih telah bermain %s!\n", stringval);
         printf("---------------------------------------------\n");
         printf("Skor akhir: %d\n", score);
-        printf("Nama:");
+        printf("Nama: ");
         char* nama = scanstring();
         Kalimat player;
         StringToKalimat(&player,nama);
