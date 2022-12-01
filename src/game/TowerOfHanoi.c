@@ -327,13 +327,13 @@ void mainTOH(int *scoreTOH)
         printf("\nTIANGTUJUAN: ");
         tujuan = scanstring();
         printf("\n");
-        if (asal[0] == 'A')
+        if (asal[0] == 'A' && asal[1] == '\0')
         {
-            if (tujuan[0] == 'B')
+            if (tujuan[0] == 'B' && tujuan[1] == '\0')
             {
                 move(&a, &b, &langkah);
             }
-            else if (tujuan[0] == 'C')
+            else if (tujuan[0] == 'C' && tujuan[1] == '\0')
             {
                 move(&a, &c, &langkah);
             }
@@ -342,13 +342,13 @@ void mainTOH(int *scoreTOH)
                 printf("Input tujuan tidak valid!\n\n");
             }
         }
-        else if (asal[0] == 'B')
+        else if (asal[0] == 'B' && asal[1] == '\0')
         {
-            if (tujuan[0] == 'A')
+            if (tujuan[0] == 'A' && tujuan[1] == '\0')
             {
                 move(&b, &a, &langkah);
             }
-            else if (tujuan[0] == 'C')
+            else if (tujuan[0] == 'C' && tujuan[1] == '\0')
             {
                 move(&b, &c, &langkah);
             }
@@ -357,13 +357,13 @@ void mainTOH(int *scoreTOH)
                 printf("Input tujuan tidak valid!\n\n");
             }
         }
-        else if (asal[0] == 'C')
+        else if (asal[0] == 'C' && asal[1] == '\0')
         {
-            if (tujuan[0] == 'A')
+            if (tujuan[0] == 'A' && tujuan[1] == '\0')
             {
                 move(&c, &a, &langkah);
             }
-            else if (tujuan[0] == 'B')
+            else if (tujuan[0] == 'B' && tujuan[1] == '\0')
             {
                 move(&c, &b, &langkah);
             }
