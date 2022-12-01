@@ -631,14 +631,14 @@ void reset_history(Stack *S, int *n_history){
         CreateEmptyStack(S);
         *n_history = 0;
 
-        printf("\n\nHistory berhasil di-reset.\n");
+        printf("\nHistory berhasil di-reset.\n");
     }
     else if (isSameString(masukan, "TIDAK")){
-        printf("\n\nHistory tidak jadi di-reset. ");
-        displayhistory(*S, *n_history, *n_history);
+        printf("\nHistory tidak jadi di-reset.\n ");
+        displayhistory(*S, 10, *n_history);
     }
     else{
-        printf("\n Input tidak valid, silahkan masukkan input yang valid! \n");
+        printf("\nInput tidak valid, silahkan masukkan input yang valid! \n");
     }
 }
 
