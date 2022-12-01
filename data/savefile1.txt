@@ -1,4 +1,4 @@
-7
+8
 RNG
 Diner DASH
 HANGMAN
@@ -24,5 +24,8 @@ Indra 10
 Freak 6
 1
 Doni 89
+2
+Naura 1000
+BNMO 990
 0
 ;
