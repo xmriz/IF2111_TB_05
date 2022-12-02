@@ -374,7 +374,7 @@ void mainTOH(int *scoreTOH)
         }
         else
         {
-            printf("Input asal tidak valid!\n\n");
+            printf("Input tidak valid!\n\n");
         }
     }
     printStack(a, b, c, piring);
@@ -389,6 +389,6 @@ void mainTOH(int *scoreTOH)
     {
         skor--;
     }
-    printf("Skor didapatkan: %d\n\n", skor);
+
     *scoreTOH = skor;
 }
