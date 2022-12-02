@@ -11,8 +11,8 @@ int main()
     ElType val;
     /* ALGORITMA*/
     CreateQueue(&q);
-    printf("Terbuat queueGame yang kosong (1 = true, 2 = false): %d\n", isEmpty(q));
-    printf("Terbuat queueGame yang full (1 = true, 2 = false): %d\n", isFull(q));
+    printf("Terbuat queueGame yang kosong (1 = true, 0 = false): %d\n", isEmpty(q));
+    printf("Terbuat queueGame yang full (1 = true, 0 = false): %d\n", isFull(q));
     printf("Memasukan elemen val ke queue\n");
     val.makanan = 2;
     val.durasi = 3;
