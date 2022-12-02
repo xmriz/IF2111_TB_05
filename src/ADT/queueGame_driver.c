@@ -11,8 +11,8 @@ int main()
     Kalimat val;
     /* ALGORITMA*/
     CreateQueueGame(&q);
-    printf("Terbuat queueGame yang kosong (1 = true, 2 = false): %d\n", isEmptyGame(q));
-    printf("Terbuat queueGame yang full (1 = true, 2 = false): %d\n", isFullGame(q));
+    printf("Terbuat queueGame yang kosong (1 = true, 0 = false): %d\n", isEmptyGame(q));
+    printf("Terbuat queueGame yang full (1 = true, 0 = false): %d\n", isFullGame(q));
     printf("Kalimat yang ingin dimasukkan ke queue: ");
     STARTKALIMAT();
     enqueueGame(&q, CKalimat);
