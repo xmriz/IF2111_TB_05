@@ -45,8 +45,8 @@ Kelompok 05
 alt 1.
 Compile with Makefile
 1. Install 'make' 
-2. Compile all files with 'make main' command at main.c directory
-3. Run the executable file named main.exe ('./main')
+2. Compile all files with `make main` command at main.c directory
+3. Run the executable file named main.exe (`./main.exe`)
 
 
 alt 2.
@@ -55,5 +55,5 @@ Compile manually
 Write the code below in your terminal, but make sure you're in main.c directory.
 ```
 {main} : directory (cd "D:\Coding\git-repo\Tubes_IF2111_Alstrukdat\IF2111_TB_05\src\")
-gcc -o main main.c console.c game/dinerdash.c game/RNG.c game/stimencarijodoh.c ADT/queueDinerDash.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c ADT/mesin_input.c
+gcc -o main main.c console.c game/dinerdash.c game/RNG.c game/stimencarijodoh.c game/snakeonmeteor.c game/hangman.c game/TowerOfHanoi.c ADT/queueDinerDash.c ADT/arrayGame.c ADT/mesin_kalimat.c ADT/mesin_kar.c ADT/queueGame.c ADT/mesin_input.c ADT/point.c ADT/linkedlistPoint.c ADT/stackGame.c ADT/stackTOH.c ADT/mapGame.c ADT/datagame.c ADT/bintree.c game/treasurehunt.c
 ```
