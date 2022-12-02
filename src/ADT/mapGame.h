@@ -76,4 +76,6 @@ void sortMap (Map *M);
 
 void copyMap(Map M1, Map *M2);
 
+Kalimat tolowerkalimat (Kalimat K);
+
 #endif

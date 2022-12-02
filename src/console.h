@@ -4,7 +4,6 @@
 // Deklarasi module dasar
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 // Deklarasi ADT
 #include "ADT\boolean.h"

@@ -478,6 +478,9 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
         char* nama = scanstring();
         Kalimat player;
         StringToKalimat(&player,nama);
+        Kalimat a = tolowerkalimat(player);
+        printkalimat(a);
+
         Kalimat namagame;
         StringToKalimat(&namagame,stringval);
         addressGame P=SearchListGame(*datagame,namagame);
@@ -499,8 +502,16 @@ void skipgame(QueueGame *q, int masukan, int n_game, Stack *S, ListGame *datagam
 
 void quit(){
     printf("Anda keluar dari game BNMO.\n");
-    printf("Bye bye ...\n");
-    printf("--------------- TERIMA KASIH ---------------\n");
+    delay(1);
+    char *treasuretxt = "..\\data\\bnmo.txt";
+    FILE *ff = NULL;
+    ff = fopen(treasuretxt, "r");
+
+    if (ff != NULL) {
+        printtxt(ff);
+    }
+    printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1); printf(". "); delay(1);
+    printf("\n--------------- TERIMA KASIH ---------------\n");
     printf("---------- TELAH MENGGUNAKAN BNMO ----------\n");
     exit(0);
 }

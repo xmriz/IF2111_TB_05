@@ -104,7 +104,7 @@ boolean IsMemberMap(Map M, keytype k){
     boolean found=false;
     // ALGORITMA
     while (i<M.Count && !found){
-            if (isKalimatSame(M.Elements[i].Key,k)){
+            if (isKalimatSame3(tolowerkalimat(k),tolowerkalimat(M.Elements[i].Key))){
                 found=true;
             } else{
                 i++;   
@@ -119,7 +119,7 @@ int SearchIdxKey(Map M, keytype k){
     boolean found=false;
     // ALGORITMA
     while (i<M.Count && !found){
-            if (isKalimatSame(M.Elements[i].Key,k)){
+            if (isKalimatSame3(tolowerkalimat(M.Elements[i].Key),tolowerkalimat(k))){
                 found=true;
             } else{
                 i++;   
@@ -160,4 +160,14 @@ void copyMap(Map M1, Map *M2){
     for (i=0; i<M1.Count; i++){
         Insertmap(M2,M1.Elements[i].Key,M1.Elements[i].Value);
     }
+}
+
+Kalimat tolowerkalimat (Kalimat K){
+    int i;
+    for (i = 0; i<K.Length; i++) {
+      if(K.TabKalimat[i] >= 'A' && K.TabKalimat[i] <= 'Z') {
+         K.TabKalimat[i] = K.TabKalimat[i] + 32;
+      }
+    }
+    return(K);
 }
