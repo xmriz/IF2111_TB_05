@@ -479,7 +479,6 @@ void playgame(int n_game, QueueGame *Q, Stack *S, ListGame *datagame){
         Kalimat player;
         StringToKalimat(&player,nama);
         Kalimat a = tolowerkalimat(player);
-        printkalimat(a);
 
         Kalimat namagame;
         StringToKalimat(&namagame,stringval);
