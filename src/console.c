@@ -354,7 +354,7 @@ void deleteGame(int *n_game, TabGame *listgame, QueueGame queuegame, Stack *hist
             } else {
                 printf("Game tidak dapat dihapus karena berada pada QUEUE GAME\n");
             }
-    } else if ((input >= 0) && (input <= 6)) {
+    } else if ((input >= 0) && (input <= 7)) {
         printf("Game gagal dihapus!\n");
     } else {
         printf("Nomor game tidak valid!\n");

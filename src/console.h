@@ -1,3 +1,6 @@
+#ifndef CONSOLE_H
+#define CONSOLE_H
+
 // Deklarasi module dasar
 #include <stdio.h>
 #include <stdlib.h>
@@ -108,3 +111,4 @@ boolean isCharinString(char c, char* s);
 
 boolean isAlphabet(char c);
 
+#endif
